@@ -282,7 +282,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.5372549, g: 0.5372549, b: 0.5372549, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -11800,10 +11800,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faa8fc2b80fe24a0da766c77c23cfffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountOfJumps: 1
   movementSpeed: 10
   jumpForce: 16
   groundCheckRadius: 0.3
+  amountOfJumps: 1
   groundCheck: {fileID: 1873788596}
   whatIsGround:
     serializedVersion: 2
@@ -12647,12 +12647,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Turret
       objectReference: {fileID: 0}
-    - target: {fileID: 5553695151154908456, guid: 75e3b51fe662341cda7c266ce0dca91d,
-        type: 3}
-      propertyPath: bullet
-      value: 
-      objectReference: {fileID: 908826292613682881, guid: 9f83a06b2eed4433f9fe5f46c0aa08a6,
-        type: 3}
     - target: {fileID: 8721700251962568261, guid: 75e3b51fe662341cda7c266ce0dca91d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12718,6 +12712,12 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5553695151154908456, guid: 75e3b51fe662341cda7c266ce0dca91d,
+        type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 908826292613682881, guid: 9f83a06b2eed4433f9fe5f46c0aa08a6,
+        type: 3}
     - target: {fileID: 8721700251962568262, guid: 75e3b51fe662341cda7c266ce0dca91d,
         type: 3}
       propertyPath: m_SortingOrder
