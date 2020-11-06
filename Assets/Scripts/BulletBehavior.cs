@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletBehavior : MonoBehaviour
-{
+public class BulletBehavior : MonoBehaviour {
 	float moveSpeed = 10f;
 
 	private Rigidbody2D rb;
@@ -13,26 +12,22 @@ public class BulletBehavior : MonoBehaviour
 
 	// Use this for initialization
 	void Start () {
-		if(gameObject.name == "Turret") {
+		if (gameObject.name == "Turret") {
 			transform.position += transform.up * (moveSpeed * Time.smoothDeltaTime);
-		}
-		else {
+		} else {
 			rb = GetComponent<Rigidbody2D> ();
-			target = GameObject.Find("Player");
+			target = GameObject.Find ("Player");
 			moveDirection = (target.transform.position - transform.position).normalized * moveSpeed;
 			rb.velocity = new Vector2 (moveDirection.x, moveDirection.y);
 			Destroy (gameObject, 3f);
 		}
 	}
 
-	void OnTriggerEnter2D (Collider2D col)
-	{
+	void OnTriggerEnter2D (Collider2D col) {
 		if (col.tag != ("Enemy")) {
-			Debug.Log ("Hit!");
+			//Debug.Log ("Hit!");
 			Destroy (gameObject);
 		}
 	}
 
-    
 }
-
