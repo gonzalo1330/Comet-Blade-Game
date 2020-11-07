@@ -11,9 +11,10 @@ public class PlayerController : MonoBehaviour {
     public float jumpForce;
     private bool isGrounded;
     public float groundCheckRadius;
+    public int totalScore;
 
     private bool isDashing;
-    private const float defaultDashTime = 5.0f;
+    private const float defaultDashTime = 8.0f;
     private const float defaultSpeed = 5.0f;
     private const float defaultForce = 16.0f;
 
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour {
         amountOfJumpsLeft = amountOfJumps;
         movementSpeed = defaultSpeed;
         jumpForce = defaultForce;
+        totalScore = 0;
     }
 
     // Update is called once per frame
@@ -131,11 +133,17 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void OnCollisionEnter2D (Collision2D collision) {
-        if (collision.gameObject.name == "PowerUp") {
+        if (collision.gameObject.name == "Timer") {
             isDashing = true;
-            GameObject diamond = GameObject.Find ("PowerUp");
-            Destroy (diamond);
+            GameObject timer = GameObject.Find ("Timer");
+            Destroy (timer);
             StartCoroutine (SetDashToFalse ());
+        }
+
+        if (collision.gameObject.name == "Coin") {
+            totalScore++;
+            Debug.Log ("Total score: " + totalScore);
+            Destroy (collision.gameObject);
         }
     }
 
