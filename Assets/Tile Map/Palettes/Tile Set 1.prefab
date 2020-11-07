@@ -77,10 +77,19 @@ Tilemap:
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
       m_ColliderType: 1
-  - first: {x: -1, y: -6, z: 0}
+  - first: {x: 4, y: -7, z: 0}
     second:
-      m_TileIndex: 24
-      m_TileSpriteIndex: 24
+      m_TileIndex: 19
+      m_TileSpriteIndex: 20
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
+  - first: {x: 5, y: -7, z: 0}
+    second:
+      m_TileIndex: 20
+      m_TileSpriteIndex: 19
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -115,8 +124,8 @@ Tilemap:
       m_ColliderType: 1
   - first: {x: -1, y: -5, z: 0}
     second:
-      m_TileIndex: 20
-      m_TileSpriteIndex: 20
+      m_TileIndex: 24
+      m_TileSpriteIndex: 24
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -135,15 +144,6 @@ Tilemap:
     second:
       m_TileIndex: 22
       m_TileSpriteIndex: 22
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_ObjectToInstantiate: {fileID: 0}
-      m_TileFlags: 1
-      m_ColliderType: 1
-  - first: {x: 2, y: -5, z: 0}
-    second:
-      m_TileIndex: 23
-      m_TileSpriteIndex: 23
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -214,8 +214,8 @@ Tilemap:
       m_ColliderType: 1
   - first: {x: 2, y: -4, z: 0}
     second:
-      m_TileIndex: 19
-      m_TileSpriteIndex: 19
+      m_TileIndex: 23
+      m_TileSpriteIndex: 23
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -509,10 +509,10 @@ Tilemap:
     m_Data: {fileID: 1296955713063707548, guid: 247920a3ee1414c449cce8b58012b227,
       type: 3}
   - m_RefCount: 1
-    m_Data: {fileID: 7828017421341732505, guid: 247920a3ee1414c449cce8b58012b227,
+    m_Data: {fileID: 5641304389960186697, guid: 247920a3ee1414c449cce8b58012b227,
       type: 3}
   - m_RefCount: 1
-    m_Data: {fileID: 5641304389960186697, guid: 247920a3ee1414c449cce8b58012b227,
+    m_Data: {fileID: 7828017421341732505, guid: 247920a3ee1414c449cce8b58012b227,
       type: 3}
   - m_RefCount: 1
     m_Data: {fileID: -1149633687490783162, guid: 247920a3ee1414c449cce8b58012b227,
