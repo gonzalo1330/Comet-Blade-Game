@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
     private float movementInputDirection;
@@ -29,8 +30,14 @@ public class PlayerController : MonoBehaviour {
 
     public LayerMask whatIsGround;
 
+    public bool checkpointMet;
+    public int health = 5;
+
+    private Vector3 savedPostion;
+
     // Start is called before the first frame update
     void Start () {
+        checkpointMet = false;
         rb = GetComponent<Rigidbody2D> ();
         anim = GetComponent<Animator> ();
         amountOfJumpsLeft = amountOfJumps;
@@ -45,6 +52,29 @@ public class PlayerController : MonoBehaviour {
         CheckMovementDirection ();
         UpdateAnimations ();
         CheckIfCanJump ();
+        Checkpoint ();
+
+        if (Input.GetKeyDown (KeyCode.P))
+            SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex - 1);
+
+        if (Input.GetKeyDown (KeyCode.G))
+            health = 0;
+    }
+
+    // function for checking if checkpoints are met when you lose all health
+    private void Checkpoint () {
+        if (health == 0 && checkpointMet) { // met checkpoint but lost all health
+            RespawnAtLastCheckPoint ();
+        } else if (health == 0) { // checkpoint not met and died
+            Application.Quit ();
+        }
+    }
+
+    // respawns character at last known checkpoint and restores health
+    private void RespawnAtLastCheckPoint () {
+        isDashing = false;
+        health = 5;
+        gameObject.transform.position = savedPostion; // location change
     }
 
     private void FixedUpdate () {
@@ -142,8 +172,13 @@ public class PlayerController : MonoBehaviour {
 
         if (collision.gameObject.name == "Coin") {
             totalScore++;
-            Debug.Log ("Total score: " + totalScore);
             Destroy (collision.gameObject);
+        }
+
+        if (collision.gameObject.name == "Checkpoint") {
+            Destroy (collision.gameObject);
+            checkpointMet = true;
+            savedPostion = collision.transform.position;
         }
     }
 
