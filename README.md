@@ -2,7 +2,8 @@
 Team: Champagne
 
 On command line copy the repo to your local memory be sure to be on the folder you want to copy into
-  `git clone https://github.com/gonzalo1330/champagne.git`
+  
+    git clone https://github.com/gonzalo1330/champagne.git`
 
 **RULE never checkout the main branch it will be merged using Pull Requests
 Only reason to checkout main is to pull updates no pushing to Main
