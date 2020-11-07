@@ -18,17 +18,22 @@ public class PlayerController : MonoBehaviour {
     private const float defaultDashTime = 8.0f;
     private const float defaultSpeed = 5.0f;
     private const float defaultForce = 16.0f;
+    public const float attackRange = 0.8f;
 
     private Rigidbody2D rb;
     private Animator anim;
 
     private bool canJump;
+    private bool jumpAttack = false;
+    private bool attack = false;
     private int amountOfJumpsLeft;
     public int amountOfJumps = 1;
+    public Transform attackPoint;
 
     public Transform groundCheck;
 
     public LayerMask whatIsGround;
+    public LayerMask enemyLayers;
 
     public bool checkpointMet;
     public int health = 5;
@@ -122,11 +127,38 @@ public class PlayerController : MonoBehaviour {
     private void CheckInput () {
         movementInputDirection = Input.GetAxisRaw ("Horizontal");
 
+        if (Input.GetKeyDown(KeyCode.X)) {
+            jumpAttack = true;
+            attack = true;
+        }
+        Attack();
         if (Input.GetButtonDown ("Jump")) {
             Jump ();
+    
         }
 
+
         CheckDash ();
+        attack = false;
+    }
+    void Attack() {
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        if (isGrounded && attack) {
+            anim.SetBool("attack", true);
+            print("attack clicked");
+        }
+        if (isGrounded && !attack) {
+            anim.SetBool("attack", false);
+        }
+        if (jumpAttack && !isGrounded && !this.anim.GetCurrentAnimatorStateInfo(1).IsName("JumpAttack")) {
+            anim.SetBool("jumpAttack", true);
+        }
+        if (!jumpAttack && !anim.GetCurrentAnimatorStateInfo(1).IsTag("JumpAttack")) {
+            anim.SetBool("jumpAttack", false);
+        }
+        foreach (Collider2D enemy in hitEnemies) {
+            Debug.Log("We hit" + enemy.name);
+        }
     }
 
     private void CheckDash () {

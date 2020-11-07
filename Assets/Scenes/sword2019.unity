@@ -11734,7 +11734,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1226364079}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0faed703dae6d3549ac6b848fc64c527, type: 3}
   m_Name: 
@@ -17663,6 +17663,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165460242958187163, guid: 1f37d37c1a2624c53b82da9738fa1888,
+        type: 3}
+      propertyPath: attackPoint
+      value: 
+      objectReference: {fileID: 855045224}
+    - target: {fileID: 7165460242958187163, guid: 1f37d37c1a2624c53b82da9738fa1888,
+        type: 3}
+      propertyPath: enemyLayers.m_Bits
+      value: 512
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f37d37c1a2624c53b82da9738fa1888, type: 3}
