@@ -12,3 +12,10 @@ ALWAYS USE |git status| TO ENSURE THAT YOU ARE NOT ON THE MAIN BRANCH
      git commit -a -m "MESSAGE GOES IN HERE"
         1st time pushing do -> git push --set-upstream origin BRANCH_NAME
         after this is done simply do --> git push
+
+Known bugs:
+    -Issues with movement and wall collision
+    -Object capture/release:
+	-Captured objects getting placed inside of wall collision
+	-Captured objects getting caught on wall collision
+	-Captured objects being placed out of bounds
