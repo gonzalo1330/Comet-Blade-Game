@@ -113,7 +113,7 @@ public class BasicEnemyController : MonoBehaviour
         knockbackStartTime = Time.time;
         movement.Set(knockbackSpeed.x * damageDirection, knockbackSpeed.y);
         aliveRb.velocity = movement;
-        aliveAnim.SetBool("Knockback", true);
+        aliveAnim.SetBool("knockback", true);
     }
 
     private void UpdateKnockbackState()
@@ -126,7 +126,7 @@ public class BasicEnemyController : MonoBehaviour
 
     private void ExitKnockbackState()
     {
-        aliveAnim.SetBool("Knockback", false);
+        aliveAnim.SetBool("knockback", false);
     }
 
     //--DEAD STATE---------------------------------------------------------------------------------------
@@ -148,6 +148,19 @@ public class BasicEnemyController : MonoBehaviour
 
     //--OTHER FUNCTIONS--------------------------------------------------------------------------------
 
+    public void TakeDamage(float healthPoints) {
+        print("Take damage called" + healthPoints);
+        currentHealth -= healthPoints;
+        if (currentHealth > 0.0f) {
+            SwitchState(State.Knockback);
+        }
+        else if (currentHealth <= 0.0f) {
+            SwitchState(State.Dead);
+        }
+    }
+
+
+    //Not sure what Float[] is used for, wrote my own method instead (Kelvin)
     private void Damage(float[] attackDetails)
     {
         currentHealth -= attackDetails[0];

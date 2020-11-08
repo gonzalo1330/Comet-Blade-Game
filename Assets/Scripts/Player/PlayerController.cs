@@ -14,6 +14,11 @@ public class PlayerController : MonoBehaviour {
     public float groundCheckRadius;
     public int totalScore;
 
+    private bool jumpAttack = false;
+    private bool attack = false;
+    public int attackDamage = 10;
+    private float attackCooldown = 0.2f;
+
     private bool isDashing;
     private const float defaultDashTime = 8.0f;
     private const float defaultSpeed = 5.0f;
@@ -24,8 +29,6 @@ public class PlayerController : MonoBehaviour {
     private Animator anim;
 
     private bool canJump;
-    private bool jumpAttack = false;
-    private bool attack = false;
     private int amountOfJumpsLeft;
     public int amountOfJumps = 1;
     public Transform attackPoint;
@@ -49,6 +52,7 @@ public class PlayerController : MonoBehaviour {
         movementSpeed = defaultSpeed;
         jumpForce = defaultForce;
         totalScore = 0;
+        attackDamage = 10;
     }
 
     // Update is called once per frame
@@ -127,36 +131,46 @@ public class PlayerController : MonoBehaviour {
     private void CheckInput () {
         movementInputDirection = Input.GetAxisRaw ("Horizontal");
 
-        if (Input.GetKeyDown (KeyCode.X)) {
+        if (Input.GetKeyDown (KeyCode.X) && attackCooldown <= 0) { // make sure cooldown is reached before using attack
             jumpAttack = true;
             attack = true;
+            attackCooldown = 1f;
+            GameObject e = Instantiate(Resources.Load("Prefabs/fireball") as GameObject);
+            e.transform.localPosition = transform.localPosition;
+            e.transform.localRotation = transform.localRotation;
         }
-        Attack ();
         if (Input.GetButtonDown ("Jump")) {
             Jump ();
 
         }
-
+        if (attackCooldown >= 0) {
+            attackCooldown -= Time.deltaTime;
+        }
         CheckDash ();
+        Attack();
         attack = false;
+        jumpAttack = false;
     }
     void Attack () {
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll (attackPoint.position, attackRange, enemyLayers);
+        Collider2D[] hitEnemies = { };
         if (isGrounded && attack) {
             anim.SetBool ("attack", true);
+            hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
             print ("attack clicked");
         }
         if (isGrounded && !attack) {
             anim.SetBool ("attack", false);
         }
-        if (jumpAttack && !isGrounded && !this.anim.GetCurrentAnimatorStateInfo (1).IsName ("JumpAttack")) {
+        if (jumpAttack && !isGrounded) {
             anim.SetBool ("jumpAttack", true);
+            print("Jump Attack called");
         }
-        if (!jumpAttack && !anim.GetCurrentAnimatorStateInfo (1).IsTag ("JumpAttack")) {
-            anim.SetBool ("jumpAttack", false);
+        if (!jumpAttack) {
+            anim.SetBool("jumpAttack", false);
         }
-        foreach (Collider2D enemy in hitEnemies) {
-            Debug.Log ("We hit" + enemy.name);
+        foreach (Collider2D enemy in hitEnemies) { 
+            GameObject parent = enemy.transform.parent.gameObject;
+            parent.gameObject.GetComponent<BasicEnemyController>().TakeDamage(attackDamage);
         }
     }
 
