@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask objectMask;
 
     const int MAX_JUMPS = 1;
-    int jumpsRemaining;
+    public int jumpsRemaining;
 
     float kMove;
     float kJump;

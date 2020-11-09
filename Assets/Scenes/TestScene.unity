@@ -884,7 +884,8 @@ MonoBehaviour:
     m_Bits: 256
   objectMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 4096
+  jumpsRemaining: 0
 --- !u!50 &1524370971
 Rigidbody2D:
   serializedVersion: 4

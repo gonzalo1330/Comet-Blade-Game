@@ -36,7 +36,7 @@ public class CaptureBar : MonoBehaviour
             Launch(0, dir, launchOrg);
         }
         captured.Add(toCapture);
-        toCapture.transform.localPosition = hideObject;
+        toCapture.transform.position = hideObject;
     }
 
     void RenderSlots()
@@ -62,7 +62,7 @@ public class CaptureBar : MonoBehaviour
         }
         foreach(GameObject g in captured)
         {
-            g.transform.localPosition = hideObject;
+            g.transform.position = hideObject;
             g.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
     }
@@ -96,11 +96,11 @@ public class CaptureBar : MonoBehaviour
             {
                 selected--;
                 if (selected < 0) selected = 0;
-                launched.transform.localPosition = origin - 0.5f* direction;
+                launched.transform.position = origin - 0.25f* direction;
                 Rigidbody2D body = launched.GetComponent<Rigidbody2D>();
                 if(body != null)
                 {
-                    body.AddForce(direction * 10f, ForceMode2D.Impulse);
+                    body.AddForce(launchDir * 10f, ForceMode2D.Impulse);
                 }
             }
         }
@@ -119,7 +119,7 @@ public class CaptureBar : MonoBehaviour
             
             if (launched != null)
             {
-                launched.transform.localPosition = pos;
+                launched.transform.position = pos;
             }
         }
     }

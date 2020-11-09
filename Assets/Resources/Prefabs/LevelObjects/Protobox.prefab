@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7229444865611116919}
   - component: {fileID: 1917050500384261710}
   - component: {fileID: 789079791911873374}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Protobox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
