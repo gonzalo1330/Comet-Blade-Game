@@ -17,6 +17,21 @@ TextureImporter:
   - first:
       213: -1121449715954170542
     second: Closed_Door
+  - first:
+      213: -3773040926290065159
+    second: Decor Items_0
+  - first:
+      213: -7761867055256066199
+    second: Decor Items_1
+  - first:
+      213: 2513354407709305537
+    second: Decor Items_2
+  - first:
+      213: 318401898442563493
+    second: Decor Items_3
+  - first:
+      213: 3429380190978139064
+    second: Decor Items_4
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -99,34 +114,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Light_Post
+      name: Decor Items_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 190
-        width: 48
-        height: 64
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6f56b01f6f2d44c599bfe8d1e8cc876a
-      internalID: 757297629121894909
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Wall_Light
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 239
-        width: 16
-        height: 16
+        x: 9
+        y: 192
+        width: 30
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,71 +128,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 355fc7c7306bb4b7292777045e48b6b3
-      internalID: 2399564579272566381
+      spriteID: b9b0225ba23634ea088c3224872a5e13
+      internalID: -3773040926290065159
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tree
+      name: Decor Items_1
       rect:
         serializedVersion: 2
-        x: 63
-        y: 191
-        width: 64
-        height: 47
-      alignment: 9
-      pivot: {x: 0.46875, y: 0.17021276}
+        x: 51
+        y: 241
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 11c17cf6264874872938f62a256d0712
-      internalID: -5616722099392927122
+      spriteID: 9e0566fa1d75a422b88ced7d1ef5c350
+      internalID: -7761867055256066199
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Open_Door
+      name: Decor Items_2
       rect:
         serializedVersion: 2
-        x: 127
-        y: 188
-        width: 17
-        height: 40
-      alignment: 9
-      pivot: {x: 0.47058824, y: 0.2}
+        x: 66
+        y: 192
+        width: 60
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e06619c3994574a2e82d3aa01ecc3fc8
-      internalID: 5819164607040618440
+      spriteID: ef30a89dc5b9342c3843109ecb878c51
+      internalID: 2513354407709305537
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Closed_Door
+      name: Decor Items_3
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2927ecec92b44da89667c3b9be60f7e
+      internalID: 318401898442563493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decor Items_4
       rect:
         serializedVersion: 2
         x: 144
         y: 192
-        width: 16
+        width: 4
         height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b9512da4f5824e93a77e0913734aee4
-      internalID: -1121449715954170542
+      spriteID: 4fb4cf817e8514790b0a5e70b54f25c5
+      internalID: 3429380190978139064
       vertices: []
       indices: 
       edges: []
