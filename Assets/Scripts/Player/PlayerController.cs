@@ -135,9 +135,6 @@ public class PlayerController : MonoBehaviour {
             jumpAttack = true;
             attack = true;
             attackCooldown = 1f;
-            GameObject e = Instantiate(Resources.Load("Prefabs/fireball") as GameObject);
-            e.transform.localPosition = transform.localPosition;
-            e.transform.localRotation = transform.localRotation;
         }
         if (Input.GetButtonDown ("Jump")) {
             Jump ();
@@ -162,6 +159,9 @@ public class PlayerController : MonoBehaviour {
             anim.SetBool ("attack", false);
         }
         if (jumpAttack && !isGrounded) {
+            GameObject e = Instantiate(Resources.Load("Prefabs/fireball") as GameObject);
+            e.transform.localPosition = transform.localPosition;
+            e.transform.localRotation = transform.localRotation;
             anim.SetBool ("jumpAttack", true);
             print("Jump Attack called");
         }
