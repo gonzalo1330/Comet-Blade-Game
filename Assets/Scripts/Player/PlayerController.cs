@@ -40,6 +40,11 @@ public class PlayerController : MonoBehaviour {
 
     public bool checkpointMet;
     public int health = 5;
+    public int maxHealth = 5;
+    //Get health bar
+    public HealthBar healthBar;
+    private float flashtimer = 0.3f;
+
 
     private Vector3 savedPostion;
 
@@ -62,6 +67,7 @@ public class PlayerController : MonoBehaviour {
         UpdateAnimations ();
         CheckIfCanJump ();
         Checkpoint ();
+        UpdateHealthBar();
 
         if (Input.GetKeyDown (KeyCode.P))
             SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex - 1);
@@ -230,6 +236,23 @@ public class PlayerController : MonoBehaviour {
         // collision with enemies within the world
         if (collision.gameObject.tag == "Enemy") {
             health--;
+        }
+    }
+    public void UpdateHealthBar() {
+        float healthPercent = (float)health / maxHealth;
+        if (healthPercent >= 0) {
+            healthBar.setSize(new Vector3(1.0f * healthPercent, 1.0f));
+        }
+        flashtimer -= Time.deltaTime;
+        if (healthPercent < 0.3f) {
+            print(healthPercent * 100f);
+            if (flashtimer <= 0) {
+                healthBar.setColor(Color.white);
+                flashtimer = 0.3f;
+            }
+            else {
+                healthBar.setColor(Color.red);
+            }
         }
     }
 
