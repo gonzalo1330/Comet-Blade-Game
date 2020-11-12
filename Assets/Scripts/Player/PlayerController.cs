@@ -20,9 +20,9 @@ public class PlayerController : MonoBehaviour {
     private float attackCooldown = 0.2f;
 
     private bool isDashing;
-    private const float defaultDashTime = 8.0f;
+    private const float defaultDashTime = 7.0f;
     private const float defaultSpeed = 5.0f;
-    private const float defaultForce = 16.0f;
+    private const float defaultForce = 21.0f;
     public const float attackRange = 0.8f;
 
     private Rigidbody2D rb;
@@ -45,7 +45,6 @@ public class PlayerController : MonoBehaviour {
     public HealthBar healthBar;
     private float flashtimer = 0.3f;
 
-
     private Vector3 savedPostion;
 
     // Start is called before the first frame update
@@ -67,13 +66,22 @@ public class PlayerController : MonoBehaviour {
         UpdateAnimations ();
         CheckIfCanJump ();
         Checkpoint ();
-        UpdateHealthBar();
+        UpdateHealthBar ();
+        CheckOffGrid ();
 
         if (Input.GetKeyDown (KeyCode.P))
             SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex - 1);
 
         if (Input.GetKeyDown (KeyCode.G))
             health = 0;
+
+    }
+
+    private void CheckOffGrid () {
+        if (gameObject.transform.localPosition.y < -45) {
+            health--;
+            RespawnAtLastCheckPoint ();
+        }
     }
 
     // function for checking if checkpoints are met when you lose all health
@@ -150,7 +158,7 @@ public class PlayerController : MonoBehaviour {
             attackCooldown -= Time.deltaTime;
         }
         CheckDash ();
-        Attack();
+        Attack ();
         attack = false;
         jumpAttack = false;
     }
@@ -158,32 +166,32 @@ public class PlayerController : MonoBehaviour {
         Collider2D[] hitEnemies = { };
         if (isGrounded && attack) {
             anim.SetBool ("attack", true);
-            hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+            hitEnemies = Physics2D.OverlapCircleAll (attackPoint.position, attackRange, enemyLayers);
             print ("attack clicked");
         }
         if (isGrounded && !attack) {
             anim.SetBool ("attack", false);
         }
         if (jumpAttack && !isGrounded) {
-            GameObject e = Instantiate(Resources.Load("Prefabs/fireball") as GameObject);
+            GameObject e = Instantiate (Resources.Load ("Prefabs/fireball") as GameObject);
             e.transform.localPosition = transform.localPosition;
             e.transform.localRotation = transform.localRotation;
             anim.SetBool ("jumpAttack", true);
-            print("Jump Attack called");
+            print ("Jump Attack called");
         }
         if (!jumpAttack) {
-            anim.SetBool("jumpAttack", false);
+            anim.SetBool ("jumpAttack", false);
         }
-        foreach (Collider2D enemy in hitEnemies) { 
+        foreach (Collider2D enemy in hitEnemies) {
             GameObject parent = enemy.transform.parent.gameObject;
-            parent.gameObject.GetComponent<BasicEnemyController>().TakeDamage(attackDamage);
+            parent.gameObject.GetComponent<BasicEnemyController> ().TakeDamage (attackDamage);
         }
     }
 
     private void CheckDash () {
         if (isDashing) {
-            jumpForce = 33;
-            movementSpeed = 21;
+            jumpForce = 32;
+            movementSpeed = 18;
         } else {
             movementSpeed = defaultSpeed;
             jumpForce = defaultForce;
@@ -214,23 +222,22 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void OnCollisionEnter2D (Collision2D collision) {
-        if (collision.gameObject.name == "Timer") {
+        if (collision.gameObject.tag == "Power") {
             isDashing = true;
-            GameObject timer = GameObject.Find ("Timer");
-            Destroy (timer);
+            Destroy (collision.gameObject);
             StartCoroutine (SetDashToFalse ());
         }
 
-        if (collision.gameObject.name == "Coin") {
+        if (collision.gameObject.tag == "Coin") {
             totalScore++;
             Destroy (collision.gameObject);
         }
 
         // player located the checkpoint
-        if (collision.gameObject.name == "Checkpoint") {
-            Destroy (collision.gameObject);
-            checkpointMet = true;
+        if (collision.gameObject.tag == "Checkpoint") {
             savedPostion = collision.transform.position;
+            checkpointMet = true;
+            Destroy (collision.gameObject);
         }
 
         // collision with enemies within the world
@@ -238,20 +245,19 @@ public class PlayerController : MonoBehaviour {
             health--;
         }
     }
-    public void UpdateHealthBar() {
-        float healthPercent = (float)health / maxHealth;
+    public void UpdateHealthBar () {
+        float healthPercent = (float) health / maxHealth;
         if (healthPercent >= 0) {
-            healthBar.setSize(new Vector3(1.0f * healthPercent, 1.0f));
+            healthBar.setSize (new Vector3 (1.0f * healthPercent, 1.0f));
         }
         flashtimer -= Time.deltaTime;
         if (healthPercent < 0.3f) {
-            print(healthPercent * 100f);
+            print (healthPercent * 100f);
             if (flashtimer <= 0) {
-                healthBar.setColor(Color.white);
+                healthBar.setColor (Color.white);
                 flashtimer = 0.3f;
-            }
-            else {
-                healthBar.setColor(Color.red);
+            } else {
+                healthBar.setColor (Color.red);
             }
         }
     }
