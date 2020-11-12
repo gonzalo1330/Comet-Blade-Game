@@ -23,8 +23,8 @@ TagManager:
   - Player
   - Objects
   - Projectiles
-  - 
-  - 
+  - Minimap
+  - UI(Use This)
   - 
   - 
   - 
@@ -62,4 +62,7 @@ TagManager:
     locked: 0
   - name: Foreground Decoration
     uniqueID: 3507477789
+    locked: 0
+  - name: GUI
+    uniqueID: 2162220605
     locked: 0

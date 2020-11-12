@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour {
         CheckInput ();
         CheckMovementDirection ();
         UpdateAnimations ();
-        CheckIfCanJump ();
+        CheckIfCanJump();
         Checkpoint ();
         UpdateHealthBar ();
         CheckOffGrid ();
@@ -110,13 +110,13 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void CheckIfCanJump () {
-        if ((isGrounded && rb.velocity.y <= 0)) {
+        if (isGrounded && rb.velocity.y <= 0.1f ) {
             amountOfJumpsLeft = amountOfJumps;
         }
-
         if (amountOfJumpsLeft <= 0) {
             canJump = false;
-        } else {
+        }
+        else {
             canJump = true;
         }
 
@@ -144,15 +144,14 @@ public class PlayerController : MonoBehaviour {
 
     private void CheckInput () {
         movementInputDirection = Input.GetAxisRaw ("Horizontal");
+        if (Input.GetButtonDown("Jump")) {
+            Jump();
+        }
 
         if (Input.GetKeyDown (KeyCode.X) && attackCooldown <= 0) { // make sure cooldown is reached before using attack
             jumpAttack = true;
             attack = true;
             attackCooldown = 1f;
-        }
-        if (Input.GetButtonDown ("Jump")) {
-            Jump ();
-
         }
         if (attackCooldown >= 0) {
             attackCooldown -= Time.deltaTime;
@@ -203,6 +202,7 @@ public class PlayerController : MonoBehaviour {
 
     private void Jump () {
         if (canJump) {
+            print("INSIDE CANJUMP");
             rb.velocity = new Vector2 (rb.velocity.x, jumpForce);
             amountOfJumpsLeft--;
         }
