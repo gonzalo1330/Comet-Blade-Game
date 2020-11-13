@@ -6,23 +6,29 @@ public class SwitchBehavior : MonoBehaviour {
     public DoorTrigger doorTrig;
     Animator anim;
     private bool active = false;
-
+    private bool stay;
+    private HashSet<Collider2D> checkObj = new HashSet<Collider2D>();
     void Start() {
         anim = GetComponent<Animator>();
     }
 
-    void OnTriggerEnter2D(Collider2D other) {
-        // animate door
-        doorTrig.Toggle(true);
-
-        Debug.Log("Inside switch");
-        anim.SetBool("active", true);
+    private void Update() {
+        stay = false;
     }
 
+    void OnTriggerStay2D(Collider2D other) {
+        // animate door
+        print(other);
+            doorTrig.Toggle(true);
+            anim.SetBool("active", true);
+        checkObj.Add(other);
+    }
     void OnTriggerExit2D(Collider2D other) {
-        doorTrig.Toggle(false);
-
-        anim.SetBool("active", false);
+        checkObj.Remove(other);
+        if (checkObj.Count == 0) {
+            doorTrig.Toggle(false);
+            anim.SetBool("active", false);
+        }
     }
 
     void OnDrawGizmos() {
@@ -30,4 +36,3 @@ public class SwitchBehavior : MonoBehaviour {
         Gizmos.DrawLine(transform.position, doorTrig.transform.position);
     }
 }
-

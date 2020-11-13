@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour {
         CheckIfCanJump();
         Checkpoint ();
         UpdateHealthBar ();
-        CheckOffGrid ();
+        CheckDeath ();
 
         if (Input.GetKeyDown (KeyCode.P))
             SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex - 1);
@@ -77,7 +77,10 @@ public class PlayerController : MonoBehaviour {
 
     }
 
-    private void CheckOffGrid () {
+    private void CheckDeath () {
+        if (health <= 0) {
+            RespawnAtLastCheckPoint();
+        }
         if (gameObject.transform.localPosition.y < -45) {
             health--;
             RespawnAtLastCheckPoint ();
@@ -97,6 +100,7 @@ public class PlayerController : MonoBehaviour {
     private void RespawnAtLastCheckPoint () {
         isDashing = false;
         health = 5;
+        healthBar.setColor(Color.red);
         gameObject.transform.position = savedPostion; // location change
     }
 
@@ -202,7 +206,6 @@ public class PlayerController : MonoBehaviour {
 
     private void Jump () {
         if (canJump) {
-            print("INSIDE CANJUMP");
             rb.velocity = new Vector2 (rb.velocity.x, jumpForce);
             amountOfJumpsLeft--;
         }
@@ -222,6 +225,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void OnCollisionEnter2D (Collision2D collision) {
+        print(collision.gameObject.name);
         if (collision.gameObject.tag == "Power") {
             isDashing = true;
             Destroy (collision.gameObject);
@@ -241,7 +245,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         // collision with enemies within the world
-        if (collision.gameObject.tag == "Enemy") {
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.name == "SpikyBall(Clone)") {
             health--;
         }
     }
@@ -264,7 +268,7 @@ public class PlayerController : MonoBehaviour {
 
     void OnTriggerEnter2D (Collider2D collision) {
         // collision with enemy missile
-        if (collision.gameObject.tag == "Enemy") {
+        if (collision.gameObject.tag == "Enemy" ) {
             health--;
         }
     }
