@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Checkpoint
+  - Power
+  - Coin
+  - Hazard
   layers:
   - Default
   - TransparentFX
@@ -18,10 +22,10 @@ TagManager:
   - Damageable
   - Dead
   - Player
-  - 
-  - 
-  - 
-  - 
+  - Objects
+  - Projectiles
+  - Minimap
+  - UI(Use This)
   - 
   - 
   - 
@@ -57,6 +61,12 @@ TagManager:
   - name: Player
     uniqueID: 3840100765
     locked: 0
+  - name: Objects
+    uniqueID: 1291221989
+    locked: 0
   - name: Foreground Decoration
     uniqueID: 3507477789
+    locked: 0
+  - name: GUI
+    uniqueID: 2162220605
     locked: 0
