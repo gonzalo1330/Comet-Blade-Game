@@ -121,6 +121,7 @@ public class Entity : MonoBehaviour
 
     public virtual void Damage(AttackDetails attackDetails)
     {
+        Debug.Log("Current enemy health " + currentHealth);
         lastDamageTime = Time.time;
 
         currentHealth -= attackDetails.damageAmount;
@@ -128,7 +129,7 @@ public class Entity : MonoBehaviour
 
         DamageHop(entityData.damageHopSpeed);
 
-        Instantiate(entityData.hitParticle, aliveGO.transform.position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
+        //Instantiate(entityData.hitParticle, aliveGO.transform.position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
 
         // if the enemy's x position is > the players position, then set the last damage direction = -1
         if(attackDetails.position.x > aliveGO.transform.position.x)
