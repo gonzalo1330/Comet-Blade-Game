@@ -1,5 +1,5 @@
 # CSS 385 Final Game Project
-Team: Champagne
+Team: Champagne1
 
 On command line copy the repo to your local memory be sure to be on the folder you want to copy into
   
