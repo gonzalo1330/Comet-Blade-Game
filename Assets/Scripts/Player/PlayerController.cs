@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour
             canWallJump = true;
         }
 
-        if(amountOfJumpsLeft <= 0 || !isGrounded)
+        if(amountOfJumpsLeft <= 0)
         {
             canNormalJump = false;
         }
