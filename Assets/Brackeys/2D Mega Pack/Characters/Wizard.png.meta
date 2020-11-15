@@ -1,13 +1,21 @@
 fileFormatVersion: 2
 guid: c98b9cd543d1a6d448e27babb81798a0
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: Wizard_0
-    21300002: Wizard_1
-    21300004: Wizard_2
-    21300006: Wizard_3
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: Wizard_0
+  - first:
+      213: 21300002
+    second: Wizard_1
+  - first:
+      213: 21300004
+    second: Wizard_2
+  - first:
+      213: 21300006
+    second: Wizard_3
   externalObjects: {}
-  serializedVersion: 9
+  serializedVersion: 10
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -92,6 +100,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: c5c9d8606d446c7419725a46a8dd394b
+      internalID: 21300000
       vertices: []
       indices: 
       edges: []
@@ -112,6 +121,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: e8a2d0472e6fa5c47a5ce2f3e453cb55
+      internalID: 21300002
       vertices: []
       indices: 
       edges: []
@@ -132,6 +142,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 7b930044373c0014f9ed0d913717c312
+      internalID: 21300004
       vertices: []
       indices: 
       edges: []
@@ -152,6 +163,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 33b8042e4cbfb784c899813a9cb9d263
+      internalID: 21300006
       vertices: []
       indices: 
       edges: []
@@ -160,10 +172,12 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 8261d2486596b20498bcef19081cbca8
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
+    secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

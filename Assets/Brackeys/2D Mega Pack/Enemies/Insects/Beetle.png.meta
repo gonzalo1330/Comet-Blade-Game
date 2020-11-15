@@ -1,15 +1,27 @@
 fileFormatVersion: 2
 guid: a50747b7090647445a1aa71f3aefd771
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: BeetleAnimation_0
-    21300002: BeetleAnimation_1
-    21300004: BeetleAnimation_2
-    21300006: Beetle_0
-    21300008: Beetle_1
-    21300010: Beetle_2
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: BeetleAnimation_0
+  - first:
+      213: 21300002
+    second: BeetleAnimation_1
+  - first:
+      213: 21300004
+    second: BeetleAnimation_2
+  - first:
+      213: 21300006
+    second: Beetle_0
+  - first:
+      213: 21300008
+    second: Beetle_1
+  - first:
+      213: 21300010
+    second: Beetle_2
   externalObjects: {}
-  serializedVersion: 9
+  serializedVersion: 10
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -94,6 +106,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 5a22688abb1c3cc4eb67ef8672dae0c8
+      internalID: 21300006
       vertices: []
       indices: 
       edges: []
@@ -114,6 +127,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 659516f7aee2c364fa130481d0a3847b
+      internalID: 21300008
       vertices: []
       indices: 
       edges: []
@@ -134,6 +148,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: c5cec6a6d938b9a49bc1f261107b6fef
+      internalID: 21300010
       vertices: []
       indices: 
       edges: []
@@ -142,10 +157,12 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 7ffd2d961eb40ff48adb17c7bd8ce787
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
+    secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
