@@ -65,7 +65,6 @@ public class Enemy1 : Entity
 
         if (isDead)
         {
-            Debug.Log("Dead");
             stateMachine.ChangeState(deadState);
         }
         else if (isStunned && stateMachine.currentState != stunState)

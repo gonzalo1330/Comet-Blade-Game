@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     private bool hasWallJumped;
 
     private bool isDashing;
+    private bool powerup;
     private bool knockback;
 
     [SerializeField]
@@ -45,8 +46,10 @@ public class PlayerController : MonoBehaviour
 
     public int amountOfJumps = 1;
 
-    public float movementSpeed = 10.0f;
-    public float jumpForce = 16.0f;
+    public float movementSpeed;
+    private float defaultSpeed = 10.0f;
+    public float jumpForce;
+    private float defaultForce = 16.0f;
     public float groundCheckRadius;
     public float wallCheckDistance;
     public float wallSlideSpeed;
@@ -81,6 +84,8 @@ public class PlayerController : MonoBehaviour
         amountOfJumpsLeft = amountOfJumps;
         wallHopDirection.Normalize();
         wallJumpDirection.Normalize();
+        movementSpeed = defaultSpeed;
+        jumpForce = defaultForce;
     }
 
     // Update is called once per frame
@@ -155,7 +160,7 @@ public class PlayerController : MonoBehaviour
             canWallJump = true;
         }
 
-        if(amountOfJumpsLeft <= 0)
+        if(amountOfJumpsLeft <= 0 || !isGrounded)
         {
             canNormalJump = false;
         }
@@ -269,6 +274,15 @@ public class PlayerController : MonoBehaviour
 
     private void CheckDash()
     {
+        if(powerup) {
+            jumpForce = 50;
+            movementSpeed = 20;
+        }
+        else {
+            movementSpeed = defaultSpeed;
+            jumpForce = defaultForce;
+        }
+
         if (isDashing)
         {
             if(dashTimeLeft > 0)
@@ -411,7 +425,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnCollisionEnter2D (Collision2D collision) {
         if (collision.gameObject.tag == "Power") {
-            isDashing = true;
+            powerup = true;
             Destroy (collision.gameObject);
             StartCoroutine (SetDashToFalse ());
         }
@@ -423,7 +437,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator SetDashToFalse () {
         yield return new WaitForSeconds (defaultDashTime); // waits before continuing in seconds
-        isDashing = false;
+        powerup = false;
     }
 
     private void OnDrawGizmos()
