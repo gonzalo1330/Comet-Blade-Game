@@ -23,12 +23,16 @@ public class PlayerStats : MonoBehaviour {
         health -= damage;
     }
 
-    public bool GetCheckpointStatus() {
-        return checkpointMet;
-    }
-
     public float GetHealth () {
         return health;
+    }
+
+    public void SetHealth() {
+        health = maxHealth;
+    }
+
+    public bool GetCheckpointStatus() {
+        return checkpointMet;
     }
 
     private void UpdateHealthBar () {
@@ -58,7 +62,7 @@ public class PlayerStats : MonoBehaviour {
                     Timer1.transform.position = new Vector3 (53, -20, 0);
                 }
             } else {
-                SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex - 1);
+                SceneManager.LoadScene(SceneManager.GetActiveScene ().buildIndex - 1);
             }
         }
     }

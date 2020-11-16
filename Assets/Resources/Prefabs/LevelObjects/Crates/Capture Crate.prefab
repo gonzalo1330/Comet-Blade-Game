@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3326377025198157080}
   - component: {fileID: 5829686308298218017}
   - component: {fileID: 4651884615679211313}
-  - component: {fileID: 6967503780048982919}
   - component: {fileID: 5447285895551514471}
+  - component: {fileID: 975220141459547115}
   m_Layer: 12
   m_Name: Capture Crate
   m_TagString: Untagged
@@ -69,7 +69,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1291221989
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9c4b538f4a81c8a4eaf3eeff049612fa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -108,19 +108,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.64, y: 0.64}
   m_EdgeRadius: 0.01
---- !u!114 &6967503780048982919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6149507165818100353}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68e946b84c47ffb43a5c7d3dc2bd8e12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canCapture: 1
 --- !u!50 &5447285895551514471
 Rigidbody2D:
   serializedVersion: 4
@@ -133,12 +120,29 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 5
+  m_Mass: 3
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 8
+  m_GravityScale: 5
   m_Material: {fileID: 6200000, guid: c89abc3ff90546f4bacd541ec70e3b9a, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &975220141459547115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6149507165818100353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 573d1960020673c4db3a04ef5d5a6a38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanCapture: 1
+  IsLaunched: 0
+  FlyStraight: 0
+  IsBreakable: 0
+  IsExplosive: 0

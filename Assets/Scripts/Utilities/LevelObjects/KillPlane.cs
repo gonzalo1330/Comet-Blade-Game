@@ -14,31 +14,32 @@ public class KillPlane : MonoBehaviour
         Debug.Assert(respawnPoint != null);
     }
 
+    public void SetRespawn(GameObject SpawnPoint)
+    {
+        respawnPoint = SpawnPoint;
+    }
 
     private void OnCollisionEnter2D(Collision2D collider)
     {
-        if(collider.gameObject.tag == "Player") {
+        if(collider.gameObject.layer == 11) {
             if(PS.GetCheckpointStatus()) {
                 PS.RespawnAtLastCheckPoint();
             }
             else {
                 Vector3 pos = respawnPoint.transform.position;
                 collider.transform.position = pos;
+                if(PS.GetHealth() < 50f) {
+                    PS.SetHealth();
+                }
             }
         }
         else {
-            Destroy(collider.gameObject);
+            if (collider.gameObject.layer != 12)
+            {
+                Destroy(collider.gameObject);
+            }
         }
     }
-/*
-    private void OnCollisionEnter2D(Collision2D collider)
-    {
-        if(collider.gameObject.tag == "Player") {
-            PS.RespawnAtLastCheckPoint();
-        }
-        else {
-            Destroy(collider.gameObject);
-        }
-    }
-*/
 }
+
+
