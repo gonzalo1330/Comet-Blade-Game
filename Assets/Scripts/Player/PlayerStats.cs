@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStats : MonoBehaviour
-{
+public class PlayerStats : MonoBehaviour {
     // health
     public float health = 50f;
     public float maxHealth = 50f;
@@ -14,16 +13,16 @@ public class PlayerStats : MonoBehaviour
     private bool checkpointMet = false;
     private Vector3 savedPostion;
 
-    private void Update() {
-        UpdateHealthBar();
-        Checkpoint();
+    private void Update () {
+        UpdateHealthBar ();
+        Checkpoint ();
     }
 
-    public void DecreaseHealth(float damage) {
+    public void DecreaseHealth (float damage) {
         health -= damage;
     }
 
-    public float GetHealth() {
+    public float GetHealth () {
         return health;
     }
 
@@ -44,22 +43,25 @@ public class PlayerStats : MonoBehaviour
     }
 
     // function for checking if checkpoints are met when you lose all health
-    private void Checkpoint() {
-        if (health == 0)   // met checkpoint but lost all health
-        {
-            if(checkpointMet) {
+    private void Checkpoint () {
+        if (health == 0) { // met checkpoint but lost all health
+            if (checkpointMet) {
                 RespawnAtLastCheckPoint ();
-            }
-            else {
-                Application.Quit();
+                if (GameObject.Find ("Timer1(Clone)") == null) {
+                    Debug.Log ("should appear new one");
+                    GameObject Timer1 = Instantiate (Resources.Load ("Prefabs/LevelObjects/Collectables/Timer1") as GameObject);
+                    Timer1.transform.position = new Vector3 (53, -20, 0);
+                }
+            } else {
+                Application.Quit ();
             }
         }
     }
-    
+
     // respawns character at last known checkpoint and restores health
     private void RespawnAtLastCheckPoint () {
         health = 50;
-        healthBar.setColor(Color.red);
+        healthBar.setColor (Color.red);
         gameObject.transform.position = savedPostion; // location change
     }
 
