@@ -29,16 +29,6 @@ public class CaptureBar : MonoBehaviour
         RenderSlots();
     }
 
-    public void CaptureObject(GameObject toCapture, Vector3 dir, Vector3 launchOrg)
-    {
-        if(captured.Count > 2)
-        {
-            Launch(0, dir, launchOrg);
-        }
-        captured.Add(toCapture);
-        toCapture.transform.localPosition = hideObject;
-    }
-
     void RenderSlots()
     {
         for(int ndx = 0; ndx < captureSlots.Count; ndx++)
@@ -76,54 +66,6 @@ public class CaptureBar : MonoBehaviour
         }
     }
 
-    public void Launch(int toLaunch, Vector3 direction, Vector3 origin)
-    {
-        Vector2 launchDir = new Vector2(direction.x, direction.y);
-        GameObject launched;
-        if(captured.Count > 0)
-        {
-            if (toLaunch < 0)
-            {
-                launched = captured[selected];
-                captured.RemoveAt(selected);
-            }
-            else
-            {
-                launched = captured[0];
-                captured.RemoveAt(0);
-            }
-            if(launched != null)
-            {
-                selected--;
-                if (selected < 0) selected = 0;
-                launched.transform.localPosition = origin - 0.5f* direction;
-                Rigidbody2D body = launched.GetComponent<Rigidbody2D>();
-                if(body != null)
-                {
-                    body.AddForce(direction * 10f, ForceMode2D.Impulse);
-                }
-            }
-        }
-        
-    }
-
-    //TODO: prevent from placing inside level geometry
-    public void Place(Vector3 pos)
-    {
-        GameObject launched;
-        pos.z = 0;
-        if (captured.Count > 0)
-        {
-            launched = captured[selected];
-            captured.RemoveAt(selected);
-            
-            if (launched != null)
-            {
-                launched.transform.localPosition = pos;
-            }
-        }
-    }
-
     public void IncrementSlot()
     {
         selected++;
@@ -132,4 +74,35 @@ public class CaptureBar : MonoBehaviour
             selected = 0;
         }
     }
+
+    public void OnCapture(GameObject toCapture)
+    {
+        captured.Add(toCapture);
+        toCapture.transform.position = hideObject;
+    }
+
+    public GameObject OnLaunch(int toLaunch)
+    {
+        GameObject g = null;
+
+        if(captured.Count > 0)
+        {
+            if (toLaunch < 0)
+            {
+                g = captured[selected];
+                captured.RemoveAt(selected);
+            }
+            else
+            {
+                g = captured[0];
+                captured.RemoveAt(0);
+            }
+        }
+        if (g != null) selected--;
+        if (selected < 0) selected = 0;
+
+        return g;
+    }
+
+    public int GetCount() { return captured.Count; }
 }
