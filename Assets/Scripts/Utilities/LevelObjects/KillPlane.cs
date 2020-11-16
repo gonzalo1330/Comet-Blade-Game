@@ -12,20 +12,22 @@ public class KillPlane : MonoBehaviour
         Debug.Assert(respawnPoint != null);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetRespawn(GameObject SpawnPoint)
     {
-        
+        respawnPoint = SpawnPoint;
     }
 
     private void OnCollisionEnter2D(Collision2D collider)
     {
-        if(collider.gameObject.layer != 9 || collider.gameObject.layer != 10 || collider.gameObject.layer != 13)
+        if(collider.gameObject.layer == 11)
         {
             collider.gameObject.transform.position = respawnPoint.transform.position;
         } else
         {
-            //destroy enemies
+            if (collider.gameObject.layer != 12)
+            {
+                Destroy(collider.gameObject);
+            }
         }
     }
 }
