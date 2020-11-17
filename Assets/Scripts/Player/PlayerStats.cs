@@ -62,6 +62,7 @@ public class PlayerStats : MonoBehaviour {
                     Timer1.transform.position = new Vector3 (53, -20, 0);
                 }
             } else {
+                // if die w/o checkpoint taken back to prev scence 
                 SceneManager.LoadScene(SceneManager.GetActiveScene ().buildIndex - 1);
             }
         }
