@@ -13,10 +13,13 @@ public class PlayerStats : MonoBehaviour {
     // checkpoint
     private bool checkpointMet = false;
     private Vector3 savedPostion;
+    public AudioSource hurtSrc;
     public AudioSource source;
 
     void Start() {
-        source = GetComponent<AudioSource> ();
+        AudioSource[] audioSources = GetComponents<AudioSource>();
+        source = audioSources[0];
+        hurtSrc = audioSources[1];
     }
 
     private void Update () {
@@ -25,6 +28,7 @@ public class PlayerStats : MonoBehaviour {
     }
 
     public void DecreaseHealth (float damage) {
+        hurtSrc.Play ();
         health -= damage;
     }
 
