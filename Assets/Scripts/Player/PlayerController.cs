@@ -77,8 +77,6 @@ public class PlayerController : MonoBehaviour {
 
   private const float defaultDashTime = 7.0f;
 
-  public AudioSource coinSrc;
-
   // Start is called before the first frame update
   void Start () {
     rb = GetComponent<Rigidbody2D> ();
@@ -88,8 +86,6 @@ public class PlayerController : MonoBehaviour {
     wallJumpDirection.Normalize ();
     movementSpeed = defaultSpeed;
     jumpForce = defaultForce;
-    AudioSource[] audioSources = GetComponents<AudioSource>();
-    coinSrc = audioSources[2];
   }
 
   // Update is called once per frame
@@ -367,7 +363,6 @@ public class PlayerController : MonoBehaviour {
 
     if (collision.gameObject.tag == "Coin") {
       Destroy (collision.gameObject);
-      coinSrc.Play();
     }
   }
 
