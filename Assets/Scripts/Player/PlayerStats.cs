@@ -13,6 +13,11 @@ public class PlayerStats : MonoBehaviour {
     // checkpoint
     private bool checkpointMet = false;
     private Vector3 savedPostion;
+    public AudioSource source;
+
+    void Start() {
+        source = GetComponent<AudioSource> ();
+    }
 
     private void Update () {
         UpdateHealthBar ();
@@ -77,6 +82,7 @@ public class PlayerStats : MonoBehaviour {
     public void OnCollisionEnter2D (Collision2D collision) {
         // player located the checkpoint
         if (collision.gameObject.tag == "Checkpoint") {
+            source.Play ();
             savedPostion = collision.transform.position;
             checkpointMet = true;
             Destroy (collision.gameObject);
