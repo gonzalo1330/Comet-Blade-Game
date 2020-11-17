@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour {
   private bool isFacingRight = true;
   private bool isWalking;
   private bool isGrounded;
+  private bool isObject;
   private bool isTouchingWall;
   private bool isWallSliding;
   private bool canNormalJump;
@@ -72,6 +73,7 @@ public class PlayerController : MonoBehaviour {
   public Transform wallCheck;
 
   public LayerMask whatIsGround;
+  public LayerMask whatIsObject;
 
   private const float defaultDashTime = 7.0f;
 
@@ -130,12 +132,13 @@ public class PlayerController : MonoBehaviour {
 
   private void CheckSurroundings () {
     isGrounded = Physics2D.OverlapCircle (groundCheck.position, groundCheckRadius, whatIsGround);
+    isObject = Physics2D.OverlapCircle (groundCheck.position, groundCheckRadius, whatIsObject);
 
     isTouchingWall = Physics2D.Raycast (wallCheck.position, transform.right, wallCheckDistance, whatIsGround);
   }
 
   private void CheckIfCanJump () {
-    if (isGrounded && rb.velocity.y <= 0.01f) {
+    if ((isGrounded || isObject) && rb.velocity.y <= 0.01f) {
       amountOfJumpsLeft = amountOfJumps;
     }
 
@@ -168,6 +171,7 @@ public class PlayerController : MonoBehaviour {
 
   private void UpdateAnimations () {
     anim.SetBool ("isWalking", isWalking);
+    anim.SetBool ("isOnObject", isObject);
     anim.SetBool ("isGrounded", isGrounded);
     anim.SetFloat ("yVelocity", rb.velocity.y);
     anim.SetBool ("isWallSliding", isWallSliding);
@@ -177,7 +181,7 @@ public class PlayerController : MonoBehaviour {
     movementInputDirection = Input.GetAxisRaw ("Horizontal");
 
     if (Input.GetButtonDown ("Jump")) {
-      if (isGrounded || (amountOfJumpsLeft > 0 && !isTouchingWall)) {
+      if (isGrounded || isObject || (amountOfJumpsLeft > 0 && !isTouchingWall)) {
         NormalJump ();
       } else {
         jumpTimer = jumpTimerSet;
@@ -186,7 +190,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     if (Input.GetButtonDown ("Horizontal") && isTouchingWall) {
-      if (!isGrounded && movementInputDirection != facingDirection) {
+      if (!isGrounded && !isObject && movementInputDirection != facingDirection) {
         canMove = false;
         canFlip = false;
 
@@ -265,7 +269,7 @@ public class PlayerController : MonoBehaviour {
   private void CheckJump () {
     if (jumpTimer > 0) {
       //WallJump
-      if (!isGrounded && isTouchingWall && movementInputDirection != 0 && movementInputDirection != facingDirection) {
+      if (!isGrounded && !isObject && isTouchingWall && movementInputDirection != 0 && movementInputDirection != facingDirection) {
         WallJump ();
       } else if (isGrounded) {
         NormalJump ();
@@ -321,7 +325,7 @@ public class PlayerController : MonoBehaviour {
 
   private void ApplyMovement () {
 
-    if (!isGrounded && !isWallSliding && movementInputDirection == 0 && !knockback) {
+    if (!isGrounded && !isObject && !isWallSliding && movementInputDirection == 0 && !knockback) {
       rb.velocity = new Vector2 (rb.velocity.x * airDragMultiplier, rb.velocity.y);
     } else if (canMove && !knockback) {
       rb.velocity = new Vector2 (movementSpeed * movementInputDirection, rb.velocity.y);

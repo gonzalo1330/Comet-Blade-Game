@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour {
     // health
@@ -26,6 +27,14 @@ public class PlayerStats : MonoBehaviour {
         return health;
     }
 
+    public void SetHealth() {
+        health = maxHealth;
+    }
+
+    public bool GetCheckpointStatus() {
+        return checkpointMet;
+    }
+
     private void UpdateHealthBar () {
         float healthPercent = (float) health / maxHealth;
         if (healthPercent >= 0) {
@@ -43,7 +52,7 @@ public class PlayerStats : MonoBehaviour {
     }
 
     // function for checking if checkpoints are met when you lose all health
-    private void Checkpoint () {
+    public void Checkpoint () {
         if (health == 0) { // met checkpoint but lost all health
             if (checkpointMet) {
                 RespawnAtLastCheckPoint ();
@@ -53,13 +62,13 @@ public class PlayerStats : MonoBehaviour {
                     Timer1.transform.position = new Vector3 (53, -20, 0);
                 }
             } else {
-                Application.Quit ();
+                SceneManager.LoadScene(SceneManager.GetActiveScene ().buildIndex - 1);
             }
         }
     }
 
     // respawns character at last known checkpoint and restores health
-    private void RespawnAtLastCheckPoint () {
+    public void RespawnAtLastCheckPoint () {
         health = 50;
         healthBar.setColor (Color.red);
         gameObject.transform.position = savedPostion; // location change
