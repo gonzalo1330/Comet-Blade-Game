@@ -9,6 +9,7 @@ TagManager:
   - Power
   - Coin
   - Hazard
+  - EndLevel
   layers:
   - Default
   - TransparentFX

@@ -364,6 +364,11 @@ public class PlayerController : MonoBehaviour {
     if (collision.gameObject.tag == "Coin") {
       Destroy (collision.gameObject);
     }
+
+    if (collision.gameObject.tag == "EndLevel") {
+      Destroy (collision.gameObject);
+      SceneManager.LoadScene(SceneManager.GetActiveScene ().buildIndex + 1);
+    }
   }
 
   IEnumerator SetDashToFalse () {
