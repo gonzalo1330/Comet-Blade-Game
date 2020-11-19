@@ -23,12 +23,12 @@ TagManager:
   - Damageable
   - Dead
   - Player
-  - Collectables
   - Objects
   - Projectiles
   - Minimap
   - UI(Use This)
   - KillPlane
+  - 
   - 
   - 
   - 
