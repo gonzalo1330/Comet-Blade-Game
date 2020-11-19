@@ -45,7 +45,6 @@ public class FireBallBehavior : MonoBehaviour {
     void Update() {
         transform.position += transform.right * (kEggSpeed * Time.smoothDeltaTime);
         mLifeCount -= Time.smoothDeltaTime;
-
         CheckSurroundings();
         CheckAttackHitBox();
     }
@@ -70,8 +69,10 @@ public class FireBallBehavior : MonoBehaviour {
 
         foreach (Collider2D collider in detectedObjects)
         {
-            collider.transform.parent.SendMessage("Damage", attackDetails);
-            //Instantiate hit particle
+            if(collider.gameObject.name == "TouchDamageCheck") {
+                collider.transform.parent.SendMessage("Damage", attackDetails);
+                //Instantiate hit particle
+            }
         }
     }
 

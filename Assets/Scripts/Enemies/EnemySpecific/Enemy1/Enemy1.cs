@@ -69,6 +69,7 @@ public class Enemy1 : Entity
         }
         else if (isStunned && stateMachine.currentState != stunState)
         {
+            Debug.Log("inside stun state");
             stateMachine.ChangeState(stunState);
         }        
     }
