@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     [SerializeField]
-    private bool combatEnabled;
+    private bool combatEnabled, specialAttackEnabled;
     [SerializeField]
     private float inputTimer, attack1Radius, attack1Damage;
     [SerializeField]
@@ -27,6 +27,7 @@ public class PlayerCombat : MonoBehaviour
     private PlayerControl PC;
 
     public GameObject bulletPrefab;
+    public Transform firePoint;
 
     private void Start()
     {
@@ -44,8 +45,7 @@ public class PlayerCombat : MonoBehaviour
 
     private void CheckCombatInput()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
+        if (Input.GetKeyDown(KeyCode.X)) {
             if (combatEnabled)
             {
                 //Attempt combat
@@ -55,6 +55,10 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
+    public void ToggleSpecialAttack(bool toggle) {
+        specialAttackEnabled = toggle;
+    }
+    
     private void CheckAttacks()
     {
         if (gotInput)
@@ -75,9 +79,11 @@ public class PlayerCombat : MonoBehaviour
                     isFirstAttack = false;
                     anim.SetBool("attack2", true);
 
-                    GameObject e = Instantiate (bulletPrefab);
-                    e.transform.localPosition = transform.localPosition;
-                    e.transform.localRotation = transform.localRotation;
+                    if(specialAttackEnabled) {
+                        GameObject e = Instantiate (bulletPrefab, firePoint.position, firePoint.rotation);
+                        e.transform.position = firePoint.position;
+                        e.transform.up =  firePoint.up;
+                    }
                 }
                 anim.SetBool("firstAttack", isFirstAttack);
                 anim.SetBool("isAttacking", isAttacking);

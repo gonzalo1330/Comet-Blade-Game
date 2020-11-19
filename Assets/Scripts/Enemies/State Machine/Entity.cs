@@ -141,7 +141,7 @@ public class Entity : MonoBehaviour
             lastDamageDirection = 1;
         }
 
-/*
+        /*
         if(currentStunResistance <= 0)
         {
             Debug.Log("current stun resistance is 0");
