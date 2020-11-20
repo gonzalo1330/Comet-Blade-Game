@@ -67,18 +67,23 @@ public class FireBallBehavior : MonoBehaviour {
         attackDetails.damageAmount = attack1Damage;
         attackDetails.position = transform.position;
         attackDetails.stunDamageAmount = stunDamageAmount;
+        bool hit = false;
 
         foreach (Collider2D collider in detectedObjects)
         {
             collider.transform.parent.SendMessage("Damage", attackDetails);
+            hit = true;
             //Instantiate hit particle
         }
+        if (hit)
+            Destroy(gameObject);
     }
 
 
     private void OnTriggerEnter2D(Collider2D collision) {
         print(collision.gameObject.name);
         GameObject parent = collision.transform.parent.gameObject;
+        CheckAttackHitBox();
         //parent.GetComponent<BasicEnemyController>().TakeDamage(5f);
     }
 
