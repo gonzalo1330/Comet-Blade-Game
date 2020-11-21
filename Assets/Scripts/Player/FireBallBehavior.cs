@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FireBallBehavior : MonoBehaviour {
-    private const float kEggSpeed = 20f;
+    private const float moveSpeed = 20f;
     private const float kLifeTime = 10; // Alife for this number of cycles
     private float mLifeCount = 0;
     private static Cursor sCursor = null;
@@ -29,49 +29,50 @@ public class FireBallBehavior : MonoBehaviour {
 
     public Transform groundCheck;
     public Transform wallCheck;
+    
 
     private bool isGrounded;
     private bool isTouchingWall;
 
     public LayerMask whatIsGround;
+    private Rigidbody2D rb;
+    private Vector2 moveDirection;
+    private GameObject director = null;
 
     // Start is called before the first frame update
     void Start() {
         mLifeCount = kLifeTime;
         Destroy(gameObject, 3f);
+        rb = GetComponent<Rigidbody2D> ();
+        director = GameObject.Find("Director");
     }
 
     // Update is called once per frame
     void Update() {
-        transform.position += transform.right * (kEggSpeed * Time.smoothDeltaTime);
-        mLifeCount -= Time.smoothDeltaTime;
+        RaycastHit2D hitInfo = Physics2D.Raycast(attack1HitBoxPos.position, transform.up, whatIsDamageable);
+        if (hitInfo.collider != null) {
+            attackDetails.damageAmount = attack1Damage;
+            attackDetails.position = transform.position;
+            attackDetails.stunDamageAmount = stunDamageAmount;
+            if (hitInfo.collider.gameObject.tag == "Enemy") {
+                GetComponent<Collider>().transform.parent.SendMessage("Damage", attackDetails);
+                Destroy(gameObject);
+            }
+        }
 
+        transform.Translate(Vector2.up * moveSpeed * Time.deltaTime);
+    }
+
+    void FixedUpdate() {
         CheckSurroundings();
-        CheckAttackHitBox();
     }
 
     private void CheckSurroundings()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
-        isTouchingWall = Physics2D.Raycast(wallCheck.position, transform.right, wallCheckDistance, whatIsGround);
+        RaycastHit2D hitInfo = Physics2D.Raycast(attack1HitBoxPos.position, transform.up, whatIsDamageable);
 
         if(isGrounded || isTouchingWall) {
             Destroy(gameObject);
-        }
-    }
-
-    private void CheckAttackHitBox()
-    {
-        Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(attack1HitBoxPos.position, attack1Radius, whatIsDamageable);
-
-        attackDetails.damageAmount = attack1Damage;
-        attackDetails.position = transform.position;
-        attackDetails.stunDamageAmount = stunDamageAmount;
-
-        foreach (Collider2D collider in detectedObjects)
-        {
-            collider.transform.parent.SendMessage("Damage", attackDetails);
-            //Instantiate hit particle
         }
     }
 
@@ -79,7 +80,6 @@ public class FireBallBehavior : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision) {
         print(collision.gameObject.name);
         GameObject parent = collision.transform.parent.gameObject;
-        //parent.GetComponent<BasicEnemyController>().TakeDamage(5f);
     }
 
     private void OnDrawGizmos()

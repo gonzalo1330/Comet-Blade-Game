@@ -33,6 +33,7 @@ public class PlayerControl : MonoBehaviour
     private bool canClimbLedge = false;
     private bool ledgeDetected;
     private bool isDashing;
+    private bool switchPower = false;
 
     private Vector2 ledgePosBot;
     private Vector2 ledgePos1;
@@ -80,11 +81,16 @@ public class PlayerControl : MonoBehaviour
     private bool powerup;
     private const float defaultDashTime = 7.0f;
 
+    private PlayerCombat PC;
+    private GameObject director;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        PC = GetComponent<PlayerCombat>();
+        director = GameObject.Find("Director");
         amountOfJumpsLeft = amountOfJumps;
         wallHopDirection.Normalize();
         wallJumpDirection.Normalize();
@@ -276,6 +282,13 @@ public class PlayerControl : MonoBehaviour
         {
             if(Time.time >= (lastDash + dashCoolDown))
             AttemptToDash();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Tab)) {
+            switchPower = !switchPower;
+            PC.ToggleSpecialAttack(switchPower);
+            GetComponent<CaptureBehavior>().enabled = !switchPower;
+            director.SetActive(!switchPower);
         }
 
     }
