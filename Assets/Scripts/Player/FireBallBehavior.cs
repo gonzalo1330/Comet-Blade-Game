@@ -43,7 +43,7 @@ public class FireBallBehavior : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        transform.position += transform.up * (kEggSpeed * Time.smoothDeltaTime);
+        transform.position += transform.right * (kEggSpeed * Time.smoothDeltaTime);
         mLifeCount -= Time.smoothDeltaTime;
 
         CheckSurroundings();
@@ -53,7 +53,7 @@ public class FireBallBehavior : MonoBehaviour {
     private void CheckSurroundings()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
-        isTouchingWall = Physics2D.Raycast(wallCheck.position, transform.up, wallCheckDistance, whatIsGround);
+        isTouchingWall = Physics2D.Raycast(wallCheck.position, transform.right, wallCheckDistance, whatIsGround);
 
         if(isGrounded || isTouchingWall) {
             Destroy(gameObject);
