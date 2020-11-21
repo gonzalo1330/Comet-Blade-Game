@@ -60,6 +60,7 @@ public class Enemy1 : Entity
 
     public override void Damage(AttackDetails attackDetails)
     {
+        Debug.Log("Damage");
         base.Damage(attackDetails);
 
         if (isDead)

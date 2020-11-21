@@ -29,9 +29,6 @@ public class PlayerCombat : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform firePoint;
 
-    // damage
-    private float damageHopSpeed = 3f;
-
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -127,20 +124,8 @@ public class PlayerCombat : MonoBehaviour
     {
         if (!PC.GetDashStatus())
         {
-            int direction;
-
             PS.DecreaseHealth(attackDetails.damageAmount);
-
-            if (attackDetails.position.x < transform.position.x)
-            {
-                direction = 1;
-            }
-            else
-            {
-                direction = -1;
-            }
-
-            PC.Knockback(direction);
+            //PC.Knockback(direction);
         }        
     }
 
@@ -149,10 +134,6 @@ public class PlayerCombat : MonoBehaviour
         if (collision.gameObject.tag == "Hazard") {
             Debug.Log("Hit by ball");
             PS.DecreaseHealth(10f);
-        }
-        else if (collision.gameObject.tag == "Egg") {
-            Debug.Log("Hit by egg");
-            PS.DecreaseHealth(5f);
         }
     }
 

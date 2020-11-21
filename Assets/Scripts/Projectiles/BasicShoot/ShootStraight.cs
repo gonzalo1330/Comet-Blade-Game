@@ -5,14 +5,13 @@ using UnityEngine;
 public class ShootStraight : MonoBehaviour
 {
     public GameObject bullet;
-    private GameObject temp;
 
-    [SerializeField]
-	private float fireRate = 1f;
+	private float fireRate;
 	private float nextFire;
 
 	// Use this for initialization
 	void Start () {
+		fireRate = 1f;
 		nextFire = Time.time;
 	}
 	
@@ -24,7 +23,7 @@ public class ShootStraight : MonoBehaviour
 	void CheckIfTimeToFire()
 	{
 		if (Time.time > nextFire) {
-			temp = Instantiate (bullet, transform.position, Quaternion.identity);
+			Instantiate (bullet, transform.position, Quaternion.identity);
 			nextFire = Time.time + fireRate;
 		}
 	}
