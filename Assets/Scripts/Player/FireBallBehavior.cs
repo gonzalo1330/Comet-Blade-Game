@@ -81,9 +81,9 @@ public class FireBallBehavior : MonoBehaviour {
 
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        print(collision.gameObject.name);
-        GameObject parent = collision.transform.parent.gameObject;
-        CheckAttackHitBox();
+        //print(collision.gameObject.name);
+        //GameObject parent = collision.transform.parent.gameObject;
+        //CheckAttackHitBox();
         //parent.GetComponent<BasicEnemyController>().TakeDamage(5f);
     }
 
