@@ -12,6 +12,9 @@ public class PlayerControl : MonoBehaviour
     private float dashTimeLeft;
     private float lastImageXpos;
     private float lastDash = -100f;
+    private float knockbackStartTime;
+    [SerializeField]
+    private float knockbackDuration;
 
     private int amountOfJumpsLeft;
     private int facingDirection = 1;
@@ -34,6 +37,10 @@ public class PlayerControl : MonoBehaviour
     private bool ledgeDetected;
     private bool isDashing;
     private bool switchPower = false;
+    private bool knockback;
+
+    [SerializeField]
+    private Vector2 knockbackSpeed;
 
     private Vector2 ledgePosBot;
     private Vector2 ledgePos1;
@@ -70,6 +77,7 @@ public class PlayerControl : MonoBehaviour
 
     public Vector2 wallHopDirection;
     public Vector2 wallJumpDirection;
+    private Vector2 velocityWorkspace;
 
     public Transform groundCheck;
     public Transform wallCheck;
@@ -83,6 +91,7 @@ public class PlayerControl : MonoBehaviour
 
     private PlayerCombat PC;
     private GameObject director;
+    private Camera minimap;
 
     // Start is called before the first frame update
     void Start()
@@ -91,6 +100,7 @@ public class PlayerControl : MonoBehaviour
         anim = GetComponent<Animator>();
         PC = GetComponent<PlayerCombat>();
         director = GameObject.Find("Director");
+        minimap = GameObject.Find("MinimapCamera").GetComponent<Camera>();
         amountOfJumpsLeft = amountOfJumps;
         wallHopDirection.Normalize();
         wallJumpDirection.Normalize();
@@ -102,17 +112,26 @@ public class PlayerControl : MonoBehaviour
         CheckInput();
         CheckMovementDirection();
         UpdateAnimations();
+        UpdateCameraPosition();
         CheckIfCanJump();
         CheckIfWallSliding();
         CheckJump();
         CheckLedgeClimb();
         CheckDash();
+        CheckKnockback();
     }
 
     private void FixedUpdate()
     {
         ApplyMovement();
         CheckSurroundings();
+    }
+
+    public virtual void DamageHop(float velocity)
+    {
+        Debug.Log("damagehop");
+        velocityWorkspace.Set(rb.velocity.x, velocity);
+        rb.velocity = velocityWorkspace;
     }
 
     private void CheckIfWallSliding()
@@ -225,6 +244,12 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    private void UpdateCameraPosition() {
+        Vector3 pos = transform.position;
+        pos.z = -10f;
+        minimap.gameObject.transform.position = pos;
+    }
+
     private void UpdateAnimations()
     {
         anim.SetBool("isWalking", isWalking);
@@ -299,6 +324,23 @@ public class PlayerControl : MonoBehaviour
 
     public bool GetDashStatus () {
         return isDashing;
+    }
+
+    public void Knockback(int direction)
+    {
+        Debug.Log("player knockback");
+        knockback = true;
+        knockbackStartTime = Time.time;
+        rb.velocity = new Vector2(knockbackSpeed.x * direction, knockbackSpeed.y);
+    }
+
+    private void CheckKnockback()
+    {
+        if(Time.time >= knockbackStartTime + knockbackDuration && knockback)
+        {
+            knockback = false;
+            rb.velocity = new Vector2(0.0f, rb.velocity.y);
+        }
     }
 
     private void AttemptToDash()
@@ -419,11 +461,11 @@ public class PlayerControl : MonoBehaviour
     private void ApplyMovement()
     {
 
-        if (!isGrounded && !isWallSliding && movementInputDirection == 0)
+        if (!isGrounded && !isWallSliding && movementInputDirection == 0 && !knockback)
         {
             rb.velocity = new Vector2(rb.velocity.x * airDragMultiplier, rb.velocity.y);
         }
-        else if(canMove)
+        else if(canMove && !knockback)
         {
             rb.velocity = new Vector2(movementSpeed * movementInputDirection, rb.velocity.y);
         }
@@ -450,7 +492,7 @@ public class PlayerControl : MonoBehaviour
 
     private void Flip()
     {
-        if (!isWallSliding && canFlip)
+        if (!isWallSliding && canFlip && !knockback)
         {
             facingDirection *= -1;
             isFacingRight = !isFacingRight;
@@ -468,6 +510,21 @@ public class PlayerControl : MonoBehaviour
         if (collision.gameObject.tag == "Coin") {
             Destroy(collision.gameObject);
         }
+        if(collision.gameObject.tag == "Trap") {
+            GameObject box = GameObject.Find("CaptureCrate10");
+            box.SetActive(false);
+            Destroy(collision.gameObject);
+
+            GameObject spikes = GameObject.Find("RisingSpikes");
+            spikes.GetComponent<SpriteRenderer>().enabled = true;
+            spikes.GetComponent<SpikeBehavior>().enabled = true;
+            GameObject environment = Instantiate(Resources.Load("Prefabs/Obstacles/LavaEnvironment") as GameObject);
+            SpriteRenderer s = environment.GetComponent<SpriteRenderer>();
+            Color c = s.color;
+            c.a -= 0.75f;
+            s.color = c;
+        }
+
     }
 
     IEnumerator SetDashToFalse () {

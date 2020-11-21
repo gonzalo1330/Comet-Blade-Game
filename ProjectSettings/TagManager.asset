@@ -11,6 +11,10 @@ TagManager:
   - Hazard
   - EndLevel
   - Waypoint
+  - UprightSaw
+  - SidewaysSaw
+  - Trap
+  - Egg
   layers:
   - Default
   - TransparentFX
