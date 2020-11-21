@@ -23,8 +23,8 @@ public class BulletBehavior : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter2D (Collider2D col) {
-		if (col.tag != ("Enemy")) {
+	void OnCollisionEnter2D (Collision2D col) {
+		if (col.gameObject.tag != ("Enemy")) {
 			//Debug.Log ("Hit!");
 			Destroy (gameObject);
 		}
