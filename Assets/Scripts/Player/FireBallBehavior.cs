@@ -81,6 +81,9 @@ public class FireBallBehavior : MonoBehaviour {
 
 
     private void OnTriggerEnter2D(Collider2D collision) {
+        //print(collision.gameObject.name);
+        //GameObject parent = collision.transform.parent.gameObject;
+        //CheckAttackHitBox();
 <<<<<<< Updated upstream
         if(collision.gameObject.tag != "Enemy" && collision.gameObject.tag != "Player") {
             Destroy(gameObject);
@@ -92,7 +95,7 @@ public class FireBallBehavior : MonoBehaviour {
 =======
         if(collision.gameObject.tag != "Enemy") {
             Destroy(gameObject);
-        }
+    }
         else {
             print(collision.gameObject.name);
             GameObject parent = collision.transform.parent.gameObject;

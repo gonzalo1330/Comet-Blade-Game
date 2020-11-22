@@ -210,7 +210,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundCheckRadius: 0.5
   wallCheckDistance: 0
+<<<<<<< HEAD
   attack1HitBoxPos: {fileID: 8469355660915631592}
+=======
+  attack1HitBoxPos: {fileID: 6566665015481549265}
+>>>>>>> origin/main
   stunDamageAmount: 10
   inputTimer: 0.2
   attack1Radius: 0.5
@@ -218,6 +222,7 @@ MonoBehaviour:
   whatIsDamageable:
     serializedVersion: 2
     m_Bits: 512
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   groundCheck: {fileID: 4510402037112372102}
   wallCheck: {fileID: 4381961498799869615}
@@ -225,6 +230,10 @@ MonoBehaviour:
   groundCheck: {fileID: 1166542059697692607}
   wallCheck: {fileID: 8447393937366799196}
 >>>>>>> Stashed changes
+=======
+  groundCheck: {fileID: 1166542059697692607}
+  wallCheck: {fileID: 1166542059697692607}
+>>>>>>> origin/main
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
