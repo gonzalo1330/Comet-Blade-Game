@@ -1,6 +1,15 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream:Assets/Animations/Animations/Bat.meta
 guid: e34505210733547abb9a7dc6564da55a
 folderAsset: yes
+=======
+guid: 3a7bd672ad6cd4afdacdf50d9680e3e7
+>>>>>>> Stashed changes:Assets/Scenes/Level2/Level2.unity.meta
+=======
+guid: 92302a0924fbe48f7832f7c93dee72f1
+folderAsset: yes
+>>>>>>> Stashed changes
 DefaultImporter:
   externalObjects: {}
   userData: 

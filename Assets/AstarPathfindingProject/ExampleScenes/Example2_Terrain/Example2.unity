@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!29 &1
@@ -2187,3 +2188,8 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1555243644}
+=======
+version https://git-lfs.github.com/spec/v1
+oid sha256:fc0e8635aed1989140360ff60ff98e01249f01de828129cdc1cf05f5d6c47a9c
+size 58838
+>>>>>>> Stashed changes

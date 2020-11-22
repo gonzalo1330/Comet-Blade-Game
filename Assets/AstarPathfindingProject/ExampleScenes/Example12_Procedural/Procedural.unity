@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!29 &1
@@ -2204,3 +2205,8 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 61432558c555740a38a88fa99d358883, type: 2}
   m_IsPrefabParent: 0
+=======
+version https://git-lfs.github.com/spec/v1
+oid sha256:8b236b8684b49c375ab7cb32c9c119b0258cc053b6a4ca022b2dbb4ee2c31695
+size 62201
+>>>>>>> Stashed changes

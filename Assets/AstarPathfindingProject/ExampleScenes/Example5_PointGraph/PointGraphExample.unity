@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!29 &1
@@ -8009,3 +8010,8 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2115164595}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+=======
+version https://git-lfs.github.com/spec/v1
+oid sha256:a5313acec02fd0f1dc793818b399be4df6704d89bb3ec48afbf539f1b8ca1334
+size 215212
+>>>>>>> Stashed changes

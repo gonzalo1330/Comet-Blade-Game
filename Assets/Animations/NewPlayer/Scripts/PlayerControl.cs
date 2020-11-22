@@ -87,6 +87,7 @@ public class PlayerControl : MonoBehaviour
 
     private bool isObject;
     private bool powerup;
+    private float coinCount = 0f;
     private const float defaultDashTime = 7.0f;
 
     private PlayerCombat PC;
@@ -129,7 +130,10 @@ public class PlayerControl : MonoBehaviour
 
     public virtual void DamageHop(float velocity)
     {
+<<<<<<< Updated upstream
         Debug.Log("damagehop");
+=======
+>>>>>>> Stashed changes
         velocityWorkspace.Set(rb.velocity.x, velocity);
         rb.velocity = velocityWorkspace;
     }
@@ -508,9 +512,11 @@ public class PlayerControl : MonoBehaviour
         }
 
         if (collision.gameObject.tag == "Coin") {
+            coinCount++;
             Destroy(collision.gameObject);
         }
         if(collision.gameObject.tag == "Trap") {
+<<<<<<< Updated upstream
             GameObject box = GameObject.Find("CaptureCrate10");
             box.SetActive(false);
             Destroy(collision.gameObject);
@@ -525,6 +531,30 @@ public class PlayerControl : MonoBehaviour
             s.color = c;
         }
 
+=======
+            ActivateTrap(collision.gameObject);
+        }
+
+    }
+
+    private void ActivateTrap(GameObject collision) {
+        GameObject box = GameObject.Find("CaptureCrate10");
+        box.SetActive(false);
+        Destroy(collision.gameObject);
+
+        GameObject spikes = GameObject.Find("RisingSpikes");
+        spikes.GetComponent<SpriteRenderer>().enabled = true;
+        spikes.GetComponent<SpikeBehavior>().enabled = true;
+        GameObject environment = Instantiate(Resources.Load("Prefabs/Obstacles/LavaEnvironment") as GameObject);
+        SpriteRenderer s = environment.GetComponent<SpriteRenderer>();
+        Color c = s.color;
+        c.a -= 0.75f;
+        s.color = c;
+    }
+
+    public string CoinStatus() {
+        return "Found " + coinCount + " Gold";
+>>>>>>> Stashed changes
     }
 
     IEnumerator SetDashToFalse () {

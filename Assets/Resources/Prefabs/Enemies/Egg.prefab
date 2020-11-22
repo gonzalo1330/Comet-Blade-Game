@@ -12,7 +12,11 @@ GameObject:
   - component: {fileID: 693888457051492363}
   - component: {fileID: 3970816112281353578}
   - component: {fileID: 5136426663896945644}
+<<<<<<< Updated upstream
   - component: {fileID: 9121750366456590493}
+=======
+  - component: {fileID: 1850183170932265633}
+>>>>>>> Stashed changes
   m_Layer: 13
   m_Name: Egg
   m_TagString: Egg
@@ -29,7 +33,11 @@ Transform:
   m_GameObject: {fileID: 908826292613682881}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: 0, z: 0}
+<<<<<<< Updated upstream
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+=======
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+>>>>>>> Stashed changes
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -102,7 +110,11 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
+<<<<<<< Updated upstream
   m_Constraints: 0
+=======
+  m_Constraints: 4
+>>>>>>> Stashed changes
 --- !u!114 &5136426663896945644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,7 +127,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fd34639687042afba4a1babcf8fbee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
 --- !u!58 &9121750366456590493
+=======
+--- !u!58 &1850183170932265633
+>>>>>>> Stashed changes
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,4 +146,8 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
+<<<<<<< Updated upstream
   m_Radius: 0.5
+=======
+  m_Radius: 0.8
+>>>>>>> Stashed changes

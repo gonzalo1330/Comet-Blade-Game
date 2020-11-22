@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!29 &1
@@ -25946,3 +25947,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+=======
+version https://git-lfs.github.com/spec/v1
+oid sha256:4388a449274ff50a75ef75dc25c450058310fa59d2c36ccd21d64769e59207ac
+size 699044
+>>>>>>> Stashed changes

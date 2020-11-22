@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!29 &1
@@ -18941,3 +18942,8 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6866592379669307382}
   m_Enabled: 1
+=======
+version https://git-lfs.github.com/spec/v1
+oid sha256:3a3c8faadea284f015b5f608b04191f72bf67bc6ff125463853a4d8a239b9804
+size 511789
+>>>>>>> Stashed changes
