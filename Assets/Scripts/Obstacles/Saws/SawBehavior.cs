@@ -4,11 +4,60 @@ using UnityEngine;
 
 public class SawBehavior : MonoBehaviour
 {
+    [SerializeField]
+    private float groundCheckDistance;
+
+    [SerializeField]
+    private Transform groundCheck;
+
+    [SerializeField]
+    private LayerMask whatIsGround;
+
+    private bool groundDetected;
     private int facingDirection = -1;
+    private float moveSpeed = 5f;
+
+    public float startTime;
+    private float idleTime;
+    private bool isIdleTimeOver;
+
     void Update() {
-        Vector3 pos = transform.position;
-        pos.y += facingDirection * Time.deltaTime;
-        transform.position = pos;
+        UpdateSidewaysMovingState();
+    }
+
+    private void UpdateSidewaysMovingState()
+    {
+        groundDetected = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
+
+        if(gameObject.tag == "SidewaysSaw") {
+            if(groundDetected)
+            {
+                Flip();
+            }
+            else
+            {
+                Vector3 pos = transform.position;
+                pos.y += facingDirection * moveSpeed * Time.deltaTime;
+                transform.position = pos;
+            }
+        }
+        else if(gameObject.tag == "UprightSaw") {
+            if(!groundDetected)
+            {
+                Flip();
+            }
+            else
+            {
+                Vector3 pos = transform.position;
+<<<<<<< Updated upstream
+                pos.y += facingDirection * moveSpeed * Time.deltaTime;
+=======
+                pos.x += facingDirection * moveSpeed * Time.deltaTime;
+>>>>>>> Stashed changes
+                transform.position = pos;
+            }
+        }
+
     }
 
     private void Flip()
@@ -18,12 +67,9 @@ public class SawBehavior : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) {
-        Debug.Log("inside saw collision");
-        if(collision.gameObject.tag == "Waypoint") {
-            Debug.Log("flip");
-            Flip();
-        }
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(groundCheck.position, new Vector2(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
     }
 }
 
@@ -90,6 +136,15 @@ public class SawBehavior : MonoBehaviour
         facingDirection *= -1;
         gameObject.transform.Rotate(0.0f, 180.0f, 0.0f);
 
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        Debug.Log("inside saw collision");
+        if(collision.gameObject.tag == "Waypoint") {
+            Debug.Log("flip");
+            Flip();
+        }
     }
 
     private void OnDrawGizmos()

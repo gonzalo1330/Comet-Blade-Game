@@ -43,7 +43,7 @@ public class FireBallBehavior : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        transform.position += transform.right * (kEggSpeed * Time.smoothDeltaTime);
+        transform.position += transform.up * (kEggSpeed * Time.smoothDeltaTime);
         mLifeCount -= Time.smoothDeltaTime;
 
         CheckSurroundings();
@@ -84,7 +84,25 @@ public class FireBallBehavior : MonoBehaviour {
         //print(collision.gameObject.name);
         //GameObject parent = collision.transform.parent.gameObject;
         //CheckAttackHitBox();
+<<<<<<< Updated upstream
+        if(collision.gameObject.tag != "Enemy" && collision.gameObject.tag != "Player") {
+            Destroy(gameObject);
+        }
+        print(collision.gameObject.name);
+        GameObject parent = collision.transform.parent.gameObject;
+        CheckAttackHitBox();
         //parent.GetComponent<BasicEnemyController>().TakeDamage(5f);
+=======
+        if(collision.gameObject.tag != "Enemy") {
+            Destroy(gameObject);
+    }
+        else {
+            print(collision.gameObject.name);
+            GameObject parent = collision.transform.parent.gameObject;
+            CheckAttackHitBox();
+            //parent.GetComponent<BasicEnemyController>().TakeDamage(5f);
+        }
+>>>>>>> Stashed changes
     }
 
     private void OnDrawGizmos()

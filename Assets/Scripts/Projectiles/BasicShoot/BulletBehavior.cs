@@ -12,19 +12,16 @@ public class BulletBehavior : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		if (gameObject.name == "Turret") {
-			transform.position += transform.up * (moveSpeed * Time.smoothDeltaTime);
-		} else {
-			rb = GetComponent<Rigidbody2D> ();
-			target = GameObject.Find ("Player");
-			moveDirection = (target.transform.position - transform.position).normalized * moveSpeed;
-			rb.velocity = new Vector2 (moveDirection.x, moveDirection.y);
-			Destroy (gameObject, 3f);
-		}
+		rb = GetComponent<Rigidbody2D> ();
+		target = GameObject.Find ("Player");
+		moveDirection = (target.transform.position - transform.position).normalized * moveSpeed;
+		rb.velocity = new Vector2 (moveDirection.x, moveDirection.y);
+		Destroy (gameObject, 3f);
+		
 	}
 
-	void OnTriggerEnter2D (Collider2D col) {
-		if (col.tag != ("Enemy")) {
+	void OnCollisionEnter2D (Collision2D col) {
+		if (col.gameObject.tag != ("Enemy")) {
 			//Debug.Log ("Hit!");
 			Destroy (gameObject);
 		}
