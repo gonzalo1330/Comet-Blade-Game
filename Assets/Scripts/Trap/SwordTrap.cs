@@ -5,7 +5,7 @@ using UnityEngine;
 public class SwordTrap : MonoBehaviour
 {
     private float riseSpeed = 14f;
-    private float timer = 1.5f;
+    private float timer = 1f;
     private SwordTrapState mSwordTrapState = SwordTrapState.RiseState;
 
 
@@ -48,7 +48,7 @@ public class SwordTrap : MonoBehaviour
     void RiseState() {
         Vector3 curr = transform.position;
         curr.y += riseSpeed * Time.deltaTime;
-        if (curr.y >= -15.5) {
+        if (curr.y >= -13.3) {
             mSwordTrapState = SwordTrapState.IdleState;
         } else {
             transform.position = curr;
@@ -59,14 +59,14 @@ public class SwordTrap : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer <= 0) {
             mSwordTrapState = SwordTrapState.LowerState;
-            timer = 1.5f;
+            timer = 1f;
         }
     }
 
     void LowerState() {
         Vector3 curr = transform.position;
         curr.y -= riseSpeed * Time.deltaTime;
-        if (curr.y <= -19.19) {
+        if (curr.y <= -17.2f) {
             mSwordTrapState = SwordTrapState.IdleState2;
         }
         else {
@@ -78,7 +78,7 @@ public class SwordTrap : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer <= 0) {
             mSwordTrapState = SwordTrapState.RiseState;
-            timer = 1.5f;
+            timer = 1f;
         }
     }
 }

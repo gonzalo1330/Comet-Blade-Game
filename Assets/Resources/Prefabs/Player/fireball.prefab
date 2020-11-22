@@ -127,16 +127,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf06416f7f31e9648b2af277caad80f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundCheckRadius: 0.5
+  wallCheckDistance: 0
   attack1HitBoxPos: {fileID: 6566665015481549265}
-  groundHitBox: {fileID: 1166542059697692607}
   stunDamageAmount: 10
   inputTimer: 0.2
   attack1Radius: 0.5
   attack1Damage: 10
-  groundCheckRadius: 0.5
   whatIsDamageable:
     serializedVersion: 2
     m_Bits: 512
+  groundCheck: {fileID: 1166542059697692607}
+  wallCheck: {fileID: 1166542059697692607}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
