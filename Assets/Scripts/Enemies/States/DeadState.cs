@@ -19,11 +19,7 @@ public class DeadState : State
     public override void Enter()
     {
         base.Enter();
-<<<<<<< Updated upstream
-
-=======
         
->>>>>>> Stashed changes
         //GameObject.Instantiate(stateData.deathBloodParticle, entity.aliveGO.transform.position, stateData.deathBloodParticle.transform.rotation);
         //GameObject.Instantiate(stateData.deathChunkParticle, entity.aliveGO.transform.position, stateData.deathChunkParticle.transform.rotation);
         entity.rb.velocity = Vector3.zero;

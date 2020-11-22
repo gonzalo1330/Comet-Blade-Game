@@ -831,11 +831,7 @@ public class AstarPath : VersionedMonoBehaviour {
 
 			if (logPathResults == PathLog.InGame) {
 				inGameDebugPath = debug;
-<<<<<<< Updated upstream
-			}
-=======
 			} 
->>>>>>> Stashed changes
 		}
 	}
 

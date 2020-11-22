@@ -130,10 +130,6 @@ public class PlayerControl : MonoBehaviour
 
     public virtual void DamageHop(float velocity)
     {
-<<<<<<< Updated upstream
-        Debug.Log("damagehop");
-=======
->>>>>>> Stashed changes
         velocityWorkspace.Set(rb.velocity.x, velocity);
         rb.velocity = velocityWorkspace;
     }
@@ -516,22 +512,6 @@ public class PlayerControl : MonoBehaviour
             Destroy(collision.gameObject);
         }
         if(collision.gameObject.tag == "Trap") {
-<<<<<<< Updated upstream
-            GameObject box = GameObject.Find("CaptureCrate10");
-            box.SetActive(false);
-            Destroy(collision.gameObject);
-
-            GameObject spikes = GameObject.Find("RisingSpikes");
-            spikes.GetComponent<SpriteRenderer>().enabled = true;
-            spikes.GetComponent<SpikeBehavior>().enabled = true;
-            GameObject environment = Instantiate(Resources.Load("Prefabs/Obstacles/LavaEnvironment") as GameObject);
-            SpriteRenderer s = environment.GetComponent<SpriteRenderer>();
-            Color c = s.color;
-            c.a -= 0.75f;
-            s.color = c;
-        }
-
-=======
             ActivateTrap(collision.gameObject);
         }
 
@@ -554,7 +534,6 @@ public class PlayerControl : MonoBehaviour
 
     public string CoinStatus() {
         return "Found " + coinCount + " Gold";
->>>>>>> Stashed changes
     }
 
     IEnumerator SetDashToFalse () {

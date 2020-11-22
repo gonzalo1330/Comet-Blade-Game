@@ -81,15 +81,6 @@ public class FireBallBehavior : MonoBehaviour {
 
 
     private void OnTriggerEnter2D(Collider2D collision) {
-<<<<<<< Updated upstream
-        if(collision.gameObject.tag != "Enemy" && collision.gameObject.tag != "Player") {
-            Destroy(gameObject);
-        }
-        print(collision.gameObject.name);
-        GameObject parent = collision.transform.parent.gameObject;
-        CheckAttackHitBox();
-        //parent.GetComponent<BasicEnemyController>().TakeDamage(5f);
-=======
         if(collision.gameObject.tag != "Enemy") {
             Destroy(gameObject);
         }
@@ -99,7 +90,6 @@ public class FireBallBehavior : MonoBehaviour {
             CheckAttackHitBox();
             //parent.GetComponent<BasicEnemyController>().TakeDamage(5f);
         }
->>>>>>> Stashed changes
     }
 
     private void OnDrawGizmos()

@@ -226,9 +226,9 @@ GameObject:
   - component: {fileID: 1739161586033348680}
   - component: {fileID: 1739161586033348682}
   - component: {fileID: 745103424}
-  - component: {fileID: 1667168057}
   - component: {fileID: 1739161586033348684}
   - component: {fileID: 1739161586033348681}
+  - component: {fileID: 1081150762}
   m_Layer: 11
   m_Name: Player 1
   m_TagString: Player
@@ -335,6 +335,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe7cdbd2a35568744bdeb2c6e962ce02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockbackDuration: 0.3
+  knockbackSpeed: {x: 10, y: 10}
   amountOfJumps: 2
   movementSpeed: 9
   jumpForce: 21
@@ -379,7 +381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatEnabled: 1
   specialAttackEnabled: 0
-  inputTimer: 0.2
+  inputTimer: 0.5
   attack1Radius: 0.8
   attack1Damage: 10
   stunDamageAmount: 1
@@ -404,21 +406,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TheBar: {fileID: 0}
   director: {fileID: 0}
---- !u!114 &1667168057
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1739161586033348685}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d055fcec74db40deb8dea971b528f50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 50
-  maxHealth: 50
-  healthBar: {fileID: 0}
 --- !u!50 &1739161586033348684
 Rigidbody2D:
   serializedVersion: 4
@@ -434,7 +421,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 7
+  m_GravityScale: 8
   m_Material: {fileID: 6200000, guid: 9e556b1cc374f488abf9ca4593bbe163, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -466,6 +453,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6, y: 1.6}
   m_EdgeRadius: 0
+--- !u!114 &1081150762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739161586033348685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d055fcec74db40deb8dea971b528f50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
+  health: 50
+  maxHealth: 50
+  deadTimer: 1
 --- !u!1001 &2794504003219258742
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -532,6 +535,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 492166999778811352, guid: 6503a8284cf52461abc7420da8147873,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 492166999778811352, guid: 6503a8284cf52461abc7420da8147873,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 492166999778811353, guid: 6503a8284cf52461abc7420da8147873,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.8375995
+      objectReference: {fileID: 0}
+    - target: {fileID: 492166999778811353, guid: 6503a8284cf52461abc7420da8147873,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.8490566
+      objectReference: {fileID: 0}
+    - target: {fileID: 492166999778811353, guid: 6503a8284cf52461abc7420da8147873,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.14017442
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6503a8284cf52461abc7420da8147873, type: 3}

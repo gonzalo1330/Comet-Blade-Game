@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream:Assets/Resources/PixelPlatformerSet1v-2/Square.png.meta
-guid: 8c93e28f4736b436f96e37cffd7d2482
-=======
 guid: 211a3d503e318439fa48122f0195b4f4
->>>>>>> Stashed changes:Assets/Resources/TeamMaterials/Square.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -87,11 +83,7 @@ TextureImporter:
       - {x: 2, y: 2}
       - {x: 2, y: -2}
     bones: []
-<<<<<<< Updated upstream:Assets/Resources/PixelPlatformerSet1v-2/Square.png.meta
-    spriteID: d73ba0fa7902d45bb8d0abc6a7cfeecb
-=======
     spriteID: b4dc748204b38455b8fa6e68b59cfa99
->>>>>>> Stashed changes:Assets/Resources/TeamMaterials/Square.png.meta
     internalID: 0
     vertices: []
     indices: 

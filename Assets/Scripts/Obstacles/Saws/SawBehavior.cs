@@ -49,11 +49,7 @@ public class SawBehavior : MonoBehaviour
             else
             {
                 Vector3 pos = transform.position;
-<<<<<<< Updated upstream
-                pos.y += facingDirection * moveSpeed * Time.deltaTime;
-=======
                 pos.x += facingDirection * moveSpeed * Time.deltaTime;
->>>>>>> Stashed changes
                 transform.position = pos;
             }
         }

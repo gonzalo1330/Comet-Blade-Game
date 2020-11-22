@@ -126,9 +126,7 @@ public class Entity : MonoBehaviour
         currentHealth -= attackDetails.damageAmount;
         currentStunResistance -= attackDetails.stunDamageAmount;
 
-        if(currentHealth > 0) {
-            DamageHop(entityData.damageHopSpeed);
-        }
+        DamageHop(entityData.damageHopSpeed);
 
         //Instantiate(entityData.hitParticle, aliveGO.transform.position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
 
@@ -142,13 +140,10 @@ public class Entity : MonoBehaviour
             lastDamageDirection = 1;
         }
 
-        /*
         if(currentStunResistance <= 0)
         {
-            Debug.Log("current stun resistance is 0");
             isStunned = true;
         }
-        */
 
         if(currentHealth <= 0)
         {
@@ -169,7 +164,6 @@ public class Entity : MonoBehaviour
     {
         Gizmos.DrawLine(wallCheck.position, wallCheck.position + (Vector3)(Vector2.right * facingDirection * entityData.wallCheckDistance));
         Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position + (Vector3)(Vector2.down * entityData.ledgeCheckDistance));
-        Gizmos.DrawWireSphere(groundCheck.position, entityData.groundCheckRadius);
 
         Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.closeRangeActionDistance), 0.2f);
         Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.minAgroDistance), 0.2f);

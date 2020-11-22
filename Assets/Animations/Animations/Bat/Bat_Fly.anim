@@ -20,21 +20,6 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-<<<<<<< Updated upstream
-      value: {fileID: -8492286351371643537, guid: bb1c531ab6c8e44a7a5c5e28f7673484,
-        type: 3}
-    - time: 0.083333336
-      value: {fileID: -6485103073066414344, guid: bb1c531ab6c8e44a7a5c5e28f7673484,
-        type: 3}
-    - time: 0.16666667
-      value: {fileID: -6033406130653863735, guid: bb1c531ab6c8e44a7a5c5e28f7673484,
-        type: 3}
-    - time: 0.25
-      value: {fileID: -4460476777046176274, guid: bb1c531ab6c8e44a7a5c5e28f7673484,
-        type: 3}
-    - time: 0.33333334
-      value: {fileID: 4297251893678942116, guid: bb1c531ab6c8e44a7a5c5e28f7673484,
-=======
       value: {fileID: 4754826937556007664, guid: e9ee9e97185594caa81295637395c699,
         type: 3}
     - time: 0.083333336
@@ -48,7 +33,6 @@ AnimationClip:
         type: 3}
     - time: 0.33333334
       value: {fileID: -3113498109430736489, guid: e9ee9e97185594caa81295637395c699,
->>>>>>> Stashed changes
         type: 3}
     attribute: m_Sprite
     path: 
@@ -69,19 +53,11 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-<<<<<<< Updated upstream
-    - {fileID: -8492286351371643537, guid: bb1c531ab6c8e44a7a5c5e28f7673484, type: 3}
-    - {fileID: -6485103073066414344, guid: bb1c531ab6c8e44a7a5c5e28f7673484, type: 3}
-    - {fileID: -6033406130653863735, guid: bb1c531ab6c8e44a7a5c5e28f7673484, type: 3}
-    - {fileID: -4460476777046176274, guid: bb1c531ab6c8e44a7a5c5e28f7673484, type: 3}
-    - {fileID: 4297251893678942116, guid: bb1c531ab6c8e44a7a5c5e28f7673484, type: 3}
-=======
     - {fileID: 4754826937556007664, guid: e9ee9e97185594caa81295637395c699, type: 3}
     - {fileID: 1950037884440723967, guid: e9ee9e97185594caa81295637395c699, type: 3}
     - {fileID: -4967168449681225887, guid: e9ee9e97185594caa81295637395c699, type: 3}
     - {fileID: 226292761361202779, guid: e9ee9e97185594caa81295637395c699, type: 3}
     - {fileID: -3113498109430736489, guid: e9ee9e97185594caa81295637395c699, type: 3}
->>>>>>> Stashed changes
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

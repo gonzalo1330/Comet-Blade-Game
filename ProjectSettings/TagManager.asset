@@ -11,15 +11,9 @@ TagManager:
   - Hazard
   - EndLevel
   - Waypoint
-<<<<<<< Updated upstream
-  - UprightSaw
-  - SidewaysSaw
-  - Trap
-=======
   - Trap
   - SidewaysSaw
   - UprightSaw
->>>>>>> Stashed changes
   - Egg
   layers:
   - Default

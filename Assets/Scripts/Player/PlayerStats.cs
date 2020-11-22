@@ -22,11 +22,6 @@ public class PlayerStats : MonoBehaviour {
     [SerializeField]
     private float deadTimer;
 
-<<<<<<< Updated upstream
-    
-
-=======
->>>>>>> Stashed changes
     void Start() {
         anim = GetComponent<Animator>();
     }
@@ -71,21 +66,6 @@ public class PlayerStats : MonoBehaviour {
     // function for checking if checkpoints are met when you lose all health
     public void Checkpoint () 
     {
-<<<<<<< Updated upstream
-        if (health <= 0)    // met checkpoint but lost all health
-        { 
-            /*Debug.Log("dead");
-            dead = true;
-            anim.SetBool("dead", dead);
-            deadTime = Time.time;
-            */
-            if (checkpointMet)
-            {
-                //if(Time.time >= deadTime + deadTimer) {
-                    RespawnAtLastCheckPoint();
-                    RespawnPowerups();
-                //}
-=======
         if(dead) {
             if (checkpointMet)
             {
@@ -93,7 +73,6 @@ public class PlayerStats : MonoBehaviour {
                     RespawnAtLastCheckPoint();
                     RespawnPowerups();
                 }
->>>>>>> Stashed changes
             } 
             else            // if die w/o checkpoint taken back to prev scence 
             {
@@ -113,10 +92,7 @@ public class PlayerStats : MonoBehaviour {
 
     // respawns character at last known checkpoint and restores health
     public void RespawnAtLastCheckPoint () {
-<<<<<<< Updated upstream
-=======
         Debug.Log("Respawn");
->>>>>>> Stashed changes
         dead = false;
         health = 50;
         healthBar.setColor (Color.red);

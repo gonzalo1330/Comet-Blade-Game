@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class SpikeBehavior : MonoBehaviour
 {
-<<<<<<< Updated upstream
+    [SerializeField]
     private float moveSpeed = 0.5f;
-
-=======
+    
     private Vector3 originialPos;
     public GameObject player;
-    private float moveSpeed = 0.5f;
+    
 
     void Start() {
         originialPos = GetComponent<Transform>().position;
     }
->>>>>>> Stashed changes
     // Update is called once per frame
     void Update()
     {
@@ -25,13 +23,10 @@ public class SpikeBehavior : MonoBehaviour
             transform.position = pos;
         }
     }
-<<<<<<< Updated upstream
-=======
 
     void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.tag == "Player") {
             transform.position = originialPos;
         }
     }
->>>>>>> Stashed changes
 }
