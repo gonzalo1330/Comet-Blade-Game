@@ -19,23 +19,21 @@ public class KillPlane : MonoBehaviour
         respawnPoint = SpawnPoint;
     }
 
-    private void OnCollisionEnter2D(Collision2D collider)
-    {
-        if(collider.gameObject.layer == 11) {
-            if(PS.GetCheckpointStatus()) {
+    private void OnCollisionEnter2D(Collision2D collider) {
+        if (collider.gameObject.layer == 11) {
+            if (PS.GetCheckpointStatus()) {
                 PS.RespawnAtLastCheckPoint();
             }
             else {
                 Vector3 pos = respawnPoint.transform.position;
                 collider.transform.position = pos;
-                if(PS.GetHealth() < 50f) {
+                if (PS.GetHealth() < 50f) {
                     PS.SetHealth();
                 }
             }
         }
         else {
-            if (collider.gameObject.layer != 12)
-            {
+            if (collider.gameObject.layer != 12 && collider.gameObject.layer != 9 && collider.gameObject.layer != 10) {
                 Destroy(collider.gameObject);
             }
         }
