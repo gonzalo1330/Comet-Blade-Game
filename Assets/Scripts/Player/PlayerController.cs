@@ -218,7 +218,12 @@ public class PlayerController : MonoBehaviour {
     }
 
     if (Input.GetKeyDown (KeyCode.P)) {
-      SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex - 1);
+      SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
+    }
+
+    if (Input.GetKeyDown (KeyCode.M)) {
+      SceneManager.LoadScene (0);
+      //SceneManager.LoadScene ("Game Menu");
     }
 
   }
@@ -367,7 +372,7 @@ public class PlayerController : MonoBehaviour {
 
     if (collision.gameObject.tag == "EndLevel") {
       Destroy (collision.gameObject);
-      SceneManager.LoadScene(SceneManager.GetActiveScene ().buildIndex + 1);
+      SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
     }
   }
 
