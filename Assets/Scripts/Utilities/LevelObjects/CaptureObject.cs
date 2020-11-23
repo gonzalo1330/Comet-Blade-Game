@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class CaptureObject : MonoBehaviour
 {
-    public bool CanCapture, IsLaunched, FlyStraight, IsBreakable, IsExplosive;
+    public bool CanCapture, IsLaunched, FlyStraight, IsBreakable, IsExplosive, IsTracking;
 
     Vector3 travDir = Vector3.right;
-    Vector3 target = Vector3.zero;
+    public Vector3 target = Vector3.zero;
 
     public Vector3 resetPoint;
 
@@ -20,7 +20,24 @@ public class CaptureObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (IsLaunched && IsTracking)
+        {
+            Vector3 targetDir = (target - transform.position).normalized;
+            if(Vector3.Dot(travDir, targetDir) < 1)
+            {
+                travDir = Vector3.Lerp(travDir, targetDir, 0.05f);
+                transform.up = travDir;
+            }
+
+            if((target - transform.position).magnitude < 5f)
+            {
+                IsTracking = false;
+            }
+        }
+        if(IsLaunched && FlyStraight)
+        {
+            transform.position +=  0.4f * travDir;
+        }
     }
 
     #region GET_CAPTURE_PROPERTIES
@@ -47,6 +64,12 @@ public class CaptureObject : MonoBehaviour
         } else
         {
             travDir = direction;
+            transform.up = direction;
+            if (body != null)
+            {
+                body.isKinematic = true;
+                body.useFullKinematicContacts = true;
+            }
         }
     }
 
@@ -75,13 +98,21 @@ public class CaptureObject : MonoBehaviour
             }
             if (collider.gameObject.layer == 16)
             {
-                Debug.Log("Collide kp");
                 if (IsBreakable)
                 {
                     Destroy(gameObject);
                 }
                 IsLaunched = false;
                 transform.position = resetPoint;
+            }
+            if (FlyStraight)
+            {
+                Debug.Log("Missile collided");
+                Rigidbody2D body = GetComponent<Rigidbody2D>();
+                if(body != null)
+                {
+                    body.isKinematic = false;
+                }
             }
         } else
         {
@@ -99,13 +130,12 @@ public class CaptureObject : MonoBehaviour
                                 //do something to explode
                             }
                             Destroy(gameObject);
-                        }
+                        } 
                     }
                 }
             }
             if(collider.gameObject.layer == 16)
             {
-                Debug.Log("Collide kp");
                 transform.position = resetPoint;
             }
         }

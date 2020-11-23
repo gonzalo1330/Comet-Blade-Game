@@ -142,8 +142,8 @@ public class CaptureBehavior : MonoBehaviour
                     {
                         Launch(0, direction, director.transform.position);
                     }
+                    cap.IsLaunched = false;
                     TheBar.OnCapture(toCapture);
-                    
                 }
             }
         }
@@ -156,7 +156,7 @@ public class CaptureBehavior : MonoBehaviour
         
         if (launched != null)
         {
-            launched.transform.position = origin;
+            launched.transform.position = origin + 0.05f * direction;
 
             CaptureObject cap = launched.GetComponent<CaptureObject>();
             if(cap != null)
