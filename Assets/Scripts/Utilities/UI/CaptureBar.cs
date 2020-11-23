@@ -54,6 +54,7 @@ public class CaptureBar : MonoBehaviour
         {
             g.transform.localPosition = hideObject;
             g.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            g.GetComponent<Rigidbody2D>().angularVelocity = 0f;
         }
     }
 
@@ -79,6 +80,7 @@ public class CaptureBar : MonoBehaviour
     {
         captured.Add(toCapture);
         toCapture.transform.position = hideObject;
+        toCapture.transform.up = Vector3.up;
     }
 
     public GameObject OnLaunch(int toLaunch)
