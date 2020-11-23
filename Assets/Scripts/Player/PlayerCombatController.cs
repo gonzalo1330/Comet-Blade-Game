@@ -54,7 +54,7 @@ public class PlayerCombatController : MonoBehaviour
 
     private void CheckCombatInput()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.W))
         {
             if (combatEnabled)
             {
