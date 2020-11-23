@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager sTheGlobalBehavior = null;    // Single pattern
     public PlayerControl mHero = null;
     public Text coins = null;
+    public Text stopwatch = null;
 
     void Awake() {
         GameManager.sTheGlobalBehavior = this;    // Singleton pattern
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
         }
 
         coins.text = mHero.CoinStatus();
+        stopwatch.text = mHero.StopwatchTimer();
     }
 
     

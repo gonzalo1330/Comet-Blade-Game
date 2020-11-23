@@ -8,8 +8,7 @@ public class SpikeBehavior : MonoBehaviour
     private float moveSpeed = 0.5f;
     
     private Vector3 originialPos;
-    public GameObject player;
-    
+    public PlayerStats PS;
 
     void Start() {
         originialPos = GetComponent<Transform>().position;
@@ -26,7 +25,10 @@ public class SpikeBehavior : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.tag == "Player") {
-            transform.position = originialPos;
+            if(PS.GetCheckpointStatus()) {
+                PS.RespawnAtLastCheckPoint();
+                transform.position = originialPos;
+            }
         }
     }
 }

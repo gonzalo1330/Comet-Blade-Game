@@ -53,8 +53,8 @@ public class PlayerControl : MonoBehaviour
 
     public float movementSpeed = 10.0f;
     private float defaultSpeed = 10.0f;
-    public float jumpForce = 16.0f;
-    private float defaultForce = 16.0f;
+    public float jumpForce = 25.0f;
+    private float defaultForce = 20.0f;
     public float groundCheckRadius;
     public float wallCheckDistance;
     public float wallSlideSpeed;
@@ -360,6 +360,14 @@ public class PlayerControl : MonoBehaviour
 
     private void CheckDash()
     {
+        if (powerup) {
+            jumpForce = 28;
+        } 
+        else {
+            movementSpeed = defaultSpeed;
+            jumpForce = defaultForce;
+        }
+
         if (isDashing)
         {
             if(dashTimeLeft > 0)
@@ -530,6 +538,10 @@ public class PlayerControl : MonoBehaviour
         Color c = s.color;
         c.a -= 0.75f;
         s.color = c;
+    }
+
+    public string StopwatchTimer() {
+        return "Time: " + Time.time;
     }
 
     public string CoinStatus() {
