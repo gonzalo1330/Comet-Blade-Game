@@ -69,14 +69,11 @@ public class CaptureBehavior : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             if (EventSystem.current.IsPointerOverGameObject(fingerID)) return;
-            if (Input.GetKey(KeyCode.LeftControl))
-            {
-                Launch(-1, direction, director.transform.position);
-            }
-            else
-            {
-                ObjectCapture();
-            }
+            ObjectCapture();
+        } else if (Input.GetMouseButtonDown(1))
+        {
+            if (EventSystem.current.IsPointerOverGameObject(fingerID)) return;
+            Launch(-1, direction, director.transform.position);
         }
     }
 
@@ -159,7 +156,7 @@ public class CaptureBehavior : MonoBehaviour
         
         if (launched != null)
         {
-            launched.transform.position = origin - 0.25f * direction;
+            launched.transform.position = origin;
 
             CaptureObject cap = launched.GetComponent<CaptureObject>();
             if(cap != null)

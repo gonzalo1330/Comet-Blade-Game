@@ -48,7 +48,7 @@ public class PlayerCombat : MonoBehaviour
 
     private void CheckCombatInput()
     {
-        if (Input.GetKeyDown(KeyCode.X)) {
+        if (Input.GetKeyDown(KeyCode.W)) {
             if (combatEnabled)
             {
                 //Attempt combat
