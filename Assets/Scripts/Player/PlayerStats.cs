@@ -76,7 +76,7 @@ public class PlayerStats : MonoBehaviour {
             } 
             else            // if die w/o checkpoint taken back to prev scence 
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene ().buildIndex - 1);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
             }
         }
         else {
