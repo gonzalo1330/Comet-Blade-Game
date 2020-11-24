@@ -28,7 +28,7 @@ public class KillPlane : MonoBehaviour {
         }
       }
     } else {
-      if (collider.gameObject.layer != 12) {
+      if (collider.gameObject.layer != 12 && collider.gameObject.tag != "Enemy") {
         Destroy (collider.gameObject);
       }
     }
