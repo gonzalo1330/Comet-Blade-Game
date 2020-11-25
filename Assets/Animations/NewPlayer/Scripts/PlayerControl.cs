@@ -53,8 +53,8 @@ public class PlayerControl : MonoBehaviour {
 
     public float movementSpeed = 10.0f;
     private float defaultSpeed = 10.0f;
-    public float jumpForce = 21.0f;
-    private float defaultForce = 21.0f;
+    public float jumpForce = 25.0f;
+    private float defaultForce = 25.0f;
     public float groundCheckRadius;
     public float wallCheckDistance;
     public float wallSlideSpeed;

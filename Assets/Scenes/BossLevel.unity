@@ -881,11 +881,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 622682551547676807, guid: be2ff3ab74fc1de4ca5775993c1857b0,
-        type: 3}
-      propertyPath: m_Name
-      value: GrayCrate
-      objectReference: {fileID: 0}
     - target: {fileID: 8348244426059890462, guid: be2ff3ab74fc1de4ca5775993c1857b0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -950,6 +945,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 622682551547676807, guid: be2ff3ab74fc1de4ca5775993c1857b0,
+        type: 3}
+      propertyPath: m_Name
+      value: GrayCrate
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be2ff3ab74fc1de4ca5775993c1857b0, type: 3}
@@ -1194,11 +1194,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6149507165818100353, guid: 0d7cef123e26abc4b81a4328365ff20c,
-        type: 3}
-      propertyPath: m_Name
-      value: CaptureCrate4
-      objectReference: {fileID: 0}
     - target: {fileID: 3326377025198157080, guid: 0d7cef123e26abc4b81a4328365ff20c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1263,6 +1258,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6149507165818100353, guid: 0d7cef123e26abc4b81a4328365ff20c,
+        type: 3}
+      propertyPath: m_Name
+      value: CaptureCrate4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d7cef123e26abc4b81a4328365ff20c, type: 3}
@@ -1358,11 +1358,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6149507165818100353, guid: 0d7cef123e26abc4b81a4328365ff20c,
-        type: 3}
-      propertyPath: m_Name
-      value: CaptureCrate3
-      objectReference: {fileID: 0}
     - target: {fileID: 3326377025198157080, guid: 0d7cef123e26abc4b81a4328365ff20c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1427,6 +1422,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6149507165818100353, guid: 0d7cef123e26abc4b81a4328365ff20c,
+        type: 3}
+      propertyPath: m_Name
+      value: CaptureCrate3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d7cef123e26abc4b81a4328365ff20c, type: 3}
@@ -1680,6 +1680,11 @@ PrefabInstance:
         - Cycle selected object\n'W' - Attack\t\t\t\t\t\t'P' - Game Menu\t\t'Tab'-Change
         Ability"
       objectReference: {fileID: 0}
+    - target: {fileID: 1718504208891323888, guid: cc9e280c6f692264e8071f71019672a5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -28.700012
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc9e280c6f692264e8071f71019672a5, type: 3}
 --- !u!1 &721511463 stripped
@@ -1848,11 +1853,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6149507165818100353, guid: 0d7cef123e26abc4b81a4328365ff20c,
-        type: 3}
-      propertyPath: m_Name
-      value: CaptureCrate2
-      objectReference: {fileID: 0}
     - target: {fileID: 3326377025198157080, guid: 0d7cef123e26abc4b81a4328365ff20c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1917,6 +1917,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6149507165818100353, guid: 0d7cef123e26abc4b81a4328365ff20c,
+        type: 3}
+      propertyPath: m_Name
+      value: CaptureCrate2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d7cef123e26abc4b81a4328365ff20c, type: 3}
@@ -27097,11 +27102,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6149507165818100353, guid: 0d7cef123e26abc4b81a4328365ff20c,
-        type: 3}
-      propertyPath: m_Name
-      value: CaptureCrate1
-      objectReference: {fileID: 0}
     - target: {fileID: 3326377025198157080, guid: 0d7cef123e26abc4b81a4328365ff20c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -27166,6 +27166,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6149507165818100353, guid: 0d7cef123e26abc4b81a4328365ff20c,
+        type: 3}
+      propertyPath: m_Name
+      value: CaptureCrate1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d7cef123e26abc4b81a4328365ff20c, type: 3}
