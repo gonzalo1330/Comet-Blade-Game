@@ -71,7 +71,12 @@ public class FireBallBehavior : MonoBehaviour {
 
         foreach (Collider2D collider in detectedObjects)
         {
-            collider.transform.parent.SendMessage("Damage", attackDetails);
+            if (collider.gameObject.name == "Boss") {
+                collider.transform.SendMessage("Damage", attackDetails);
+            }
+            else {
+                collider.transform.parent.SendMessage("Damage", attackDetails);
+            }
             hit = true;
             //Instantiate hit particle
         }

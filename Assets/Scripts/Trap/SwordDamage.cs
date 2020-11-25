@@ -17,6 +17,7 @@ public class SwordDamage : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.name == "Player")
         collision.gameObject.GetComponent<PlayerStats>().DecreaseHealth(10f);
     }
 }
