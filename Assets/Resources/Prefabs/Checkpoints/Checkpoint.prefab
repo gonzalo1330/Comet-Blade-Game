@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1201222653626972701}
   - component: {fileID: 1201222653626972690}
-  - component: {fileID: 1201222653626972700}
-  m_Layer: 0
+  - component: {fileID: 6368164529151418081}
+  m_Layer: 12
   m_Name: Checkpoint
-  m_TagString: Untagged
+  m_TagString: Checkpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39,7 +39,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1201222653626972691}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -66,8 +66,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1251204065
-  m_SortingLayer: 3
+  m_SortingLayerID: 1291221989
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 898aaa8b21e234c529a500927d9ca2f3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -80,8 +80,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &1201222653626972700
-BoxCollider2D:
+--- !u!70 &6368164529151418081
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -93,16 +93,6 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.017760754, y: -0.0355196}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.77, y: 2.83}
-    newSize: {x: 8, y: 4.29}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.5709276, y: 2.79817}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0.048013687, y: 0}
+  m_Size: {x: 1.4544716, y: 2.83}
+  m_Direction: 0

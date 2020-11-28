@@ -6,7 +6,7 @@ public class DeadState : State
 {
     protected D_DeadState stateData;
 
-    public DeadState(Entity etity, FiniteStateMachine stateMachine, string animBoolName, D_DeadState stateData) : base(etity, stateMachine, animBoolName)
+    public DeadState(Entity entity, FiniteStateMachine stateMachine, string animBoolName, D_DeadState stateData) : base(entity, stateMachine, animBoolName)
     {
         this.stateData = stateData;
     }
@@ -22,6 +22,7 @@ public class DeadState : State
         
         //GameObject.Instantiate(stateData.deathBloodParticle, entity.aliveGO.transform.position, stateData.deathBloodParticle.transform.rotation);
         //GameObject.Instantiate(stateData.deathChunkParticle, entity.aliveGO.transform.position, stateData.deathChunkParticle.transform.rotation);
+        entity.ChangeLayer();
         entity.rb.velocity = Vector3.zero;
         //entity.gameObject.SetActive(false);
     }

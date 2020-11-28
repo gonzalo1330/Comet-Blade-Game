@@ -15,7 +15,7 @@ public class SawBehavior : MonoBehaviour
 
     private bool groundDetected;
     private int facingDirection = -1;
-    private float moveSpeed = 5f;
+    private float moveSpeed = 8f;
 
     public float startTime;
     private float idleTime;

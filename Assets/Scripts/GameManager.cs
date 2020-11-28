@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour
         Debug.Assert(mHero != null);
     }
 
+    void Start() {
+        SceneManager.LoadSceneAsync("Intro");
+    }
+
     // Update is called once per frame
     void Update()
     {

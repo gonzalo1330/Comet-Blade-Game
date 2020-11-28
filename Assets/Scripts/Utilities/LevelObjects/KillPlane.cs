@@ -5,11 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class KillPlane : MonoBehaviour {
   public GameObject respawnPoint = null;
-  public PlayerStats PS;
+  public Player stats;
 
   // Start is called before the first frame update
   void Start () {
     Debug.Assert (respawnPoint != null);
+    stats = GameObject.Find("Player").GetComponent<Player>();
   }
 
   public void SetRespawn (GameObject SpawnPoint) {
@@ -18,13 +19,13 @@ public class KillPlane : MonoBehaviour {
 
   private void OnCollisionEnter2D (Collision2D collider) {
     if (collider.gameObject.layer == 11) {
-      if (PS.GetCheckpointStatus ()) {
-        PS.RespawnAtLastCheckPoint ();
+      if (stats.GetCheckpointStatus ()) {
+        stats.RespawnAtLastCheckPoint ();
       } else {
         Vector3 pos = respawnPoint.transform.position;
         collider.transform.position = pos;
-        if (PS.GetHealth () < 50f) {
-          PS.SetHealth ();
+        if (stats.GetHealth () < 50f) {
+          stats.SetHealth ();
         }
       }
     } else {

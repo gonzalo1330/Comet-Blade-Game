@@ -107,6 +107,12 @@ public class Entity : MonoBehaviour
         return Physics2D.Raycast(playerCheck.position, aliveGO.transform.right, entityData.closeRangeActionDistance, entityData.whatIsPlayer);
     }
 
+    public virtual void ChangeLayer() {
+        Debug.Log("Changed layers");
+        Transform child = transform.Find("Alive");
+        child.gameObject.layer = LayerMask.NameToLayer("Dead");
+    }
+
     public virtual void DamageHop(float velocity)
     {
         velocityWorkspace.Set(rb.velocity.x, velocity);

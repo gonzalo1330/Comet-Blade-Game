@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class ParticleController : MonoBehaviour
 {
+    private float startTime;
+    void Start() {
+        startTime = Time.time;
+    }
+    void Update() {
+        FinishAnim();
+    }
     private void FinishAnim()
     {
-        Destroy(gameObject);
+        if(Time.time >= startTime + 0.3f) {
+            Destroy(gameObject);
+        }
     }
 }
