@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Boss_Health : MonoBehaviour
 {
-    public float bossHealth = 120f;
+    public float bossHealth = 160f;
     public GameObject swordTrap;
     public Animator animator;
     public bool special1 = false;
@@ -19,10 +19,13 @@ public class Boss_Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (bossHealth == 80 && !special1) {
+        if (bossHealth == 100 && !special1) {
             StartCoroutine(Timer());
             DropSword();
             flyTimer = 4f;
+        }
+        if (bossHealth == 80) {
+            animator.SetBool("IsEnraged", true);
         }
         if (flyTimer <= 0) {
             animator.SetBool("Special1", false);

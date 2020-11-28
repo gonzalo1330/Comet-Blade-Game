@@ -9,7 +9,7 @@ public class Boss_Run : StateMachineBehaviour
     public float speed = 2.5f;
     public Boss boss;
     public float attackRange = 5f;
-    public float attackCooldown = 2.5f;
+    public float attackCooldown = 2f;
     //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
         player = GameObject.FindGameObjectWithTag("Player").transform;
