@@ -51,6 +51,7 @@ public class BatBehavior : MonoBehaviour
         if(currentHealth <= 0)
         {
             isDead = true;
+            gameObject.layer = LayerMask.NameToLayer("Dead");
         }
         else {
             isStunned = true;       // new

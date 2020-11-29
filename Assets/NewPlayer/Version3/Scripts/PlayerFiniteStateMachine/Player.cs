@@ -310,6 +310,7 @@ public class Player : MonoBehaviour
     private void CheckKnockback () {
         if (Time.time >= knockbackStartTime + knockbackDuration && knockback) {
             knockback = false;
+            Debug.Log("Stopped knockback");
             RB.velocity = new Vector2 (0.0f, RB.velocity.y);
         }
     }
