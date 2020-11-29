@@ -22,16 +22,6 @@ public class BatBehavior : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    void Update() {
-        CheckHealth();
-    }
-
-    private void CheckHealth() {
-        if(currentHealth <= 0) {
-            anim.SetBool("dead", true);
-        }
-    }
-
     public virtual void DamageHop(float velocity)
     {
         velocityWorkspace.Set(rb.velocity.x, velocity);
@@ -51,6 +41,9 @@ public class BatBehavior : MonoBehaviour
         if(currentHealth <= 0)
         {
             isDead = true;
+            anim.SetBool("dead", true);
+            gameObject.layer = LayerMask.NameToLayer("Dead");
+            gameObject.SetActive(false);
         }
         else {
             isStunned = true;       // new
@@ -58,9 +51,4 @@ public class BatBehavior : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter2D(Collision2D col) {
-        if(col.gameObject.name == "fireball") {
-            currentHealth -= 10f;
-        }
-    }
 }

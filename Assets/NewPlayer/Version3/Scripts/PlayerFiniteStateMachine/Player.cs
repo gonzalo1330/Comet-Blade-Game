@@ -89,7 +89,11 @@ public class Player : MonoBehaviour
     public GameObject damageParticle;
     private float deadTime = 0f;
 
-    // other
+    // powerups
+    private float lastPowerupTime = 0f;
+    private bool powerupActive;
+
+    // UI
     private float coinCount = 0f;
     private Camera minimap;
     #endregion
@@ -120,8 +124,7 @@ public class Player : MonoBehaviour
         InputHandler = GetComponent<PlayerInputHandler>();
         RB = GetComponent<Rigidbody2D>();
         PS = GameObject.Find("LaunchPoint").GetComponent<PlayerShoot>();
-        GameObject gb = GameObject.Find("MinimapCamera");
-        if(gb != null) minimap = GetComponent<Camera>();
+        minimap = GameObject.Find("MinimapCamera").GetComponent<Camera>();
         DashDirectionIndicator = transform.Find("DashDirectionIndicator");
 
         FacingDirection = 1;
@@ -141,10 +144,19 @@ public class Player : MonoBehaviour
             ResetStunResistance();
         }
 
+        if(powerupActive && Time.time >= lastPowerupTime + 5f) {
+            ResetPowerup();
+        }
+
         CheckKnockback();
         UpdateHealthBar();
         Checkpoint();
-        if(minimap != null) UpdateCameraPosition();
+        if(minimap != null) {
+            UpdateCameraPosition();
+        }
+        else {
+            Debug.Log("NULL CAMERA");
+        }
     }
 
     private void FixedUpdate()
@@ -185,6 +197,9 @@ public class Player : MonoBehaviour
 
     public void SetVelocityY(float velocity)
     {
+        if(powerupActive) {
+            velocity *= 2;
+        }
         workspace.Set(CurrentVelocity.x, velocity);
         RB.velocity = workspace;
         CurrentVelocity = workspace;
@@ -299,6 +314,7 @@ public class Player : MonoBehaviour
     private void CheckKnockback () {
         if (Time.time >= knockbackStartTime + knockbackDuration && knockback) {
             knockback = false;
+            Debug.Log("Stopped knockback");
             RB.velocity = new Vector2 (0.0f, RB.velocity.y);
         }
     }
@@ -309,11 +325,20 @@ public class Player : MonoBehaviour
         currentStunResistance = stunResistance;
     }
 
+    public virtual void ResetPowerup() 
+    {
+        Debug.Log("Stopping powerup");
+        powerupActive = false;
+        workspace.Set(CurrentVelocity.x, playerData.jumpVelocity);
+        CurrentVelocity = workspace;
+    }
+
     public virtual void Damage(AttackDetails attackDetails)
     {            
         GameObject.Instantiate(damageParticle, transform.position, damageParticle.transform.rotation);
         lastDamageTime = Time.time;
 
+        Debug.Log("Player takes " + attackDetails.damageAmount + " damage");
         currentHealth -= attackDetails.damageAmount;
         currentStunResistance -= attackDetails.stunDamageAmount;
         
@@ -384,8 +409,9 @@ public class Player : MonoBehaviour
 
     public void OnCollisionEnter2D (Collision2D collision) {
         if (collision.gameObject.tag == "Power") {
+            powerupActive = true;
+            lastPowerupTime = Time.time;
             Destroy (collision.gameObject);
-            // need to fix
         }
         if (collision.gameObject.tag == "Coin") {
             coinCount++;

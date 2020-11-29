@@ -20,7 +20,7 @@ public class ActivateTrap : MonoBehaviour
             GameObject environment = Instantiate(Resources.Load("Prefabs/Obstacles/LavaEnvironment") as GameObject);
             SpriteRenderer s = environment.GetComponent<SpriteRenderer>();
             Color c = s.color;
-            c.a -= 0.75f;
+            c.a -= 0.5f;
             s.color = c;
         }
     }

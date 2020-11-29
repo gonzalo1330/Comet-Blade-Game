@@ -7,7 +7,7 @@ using UnityEngine.UI;  // Required to work with UI, e.g., Text
 public class GameManager : MonoBehaviour
 {
     public static GameManager sTheGlobalBehavior = null;    // Single pattern
-    public PlayerControl mHero = null;
+    public Player mHero = null;
     public Text coins = null;
 
     void Awake() {
@@ -15,11 +15,6 @@ public class GameManager : MonoBehaviour
         Debug.Assert(coins != null);      // Assume setting in the editor!
         Debug.Assert(mHero != null);
     }
-
-    void Start() {
-        SceneManager.LoadSceneAsync("Intro");
-    }
-
     // Update is called once per frame
     void Update()
     {
