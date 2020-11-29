@@ -124,8 +124,7 @@ public class Player : MonoBehaviour
         InputHandler = GetComponent<PlayerInputHandler>();
         RB = GetComponent<Rigidbody2D>();
         PS = GameObject.Find("LaunchPoint").GetComponent<PlayerShoot>();
-        GameObject gb = GameObject.Find("MinimapCamera");
-        if(gb != null) minimap = GetComponent<Camera>();
+        minimap = GameObject.Find("MinimapCamera").GetComponent<Camera>();
         DashDirectionIndicator = transform.Find("DashDirectionIndicator");
 
         FacingDirection = 1;
@@ -152,7 +151,12 @@ public class Player : MonoBehaviour
         CheckKnockback();
         UpdateHealthBar();
         Checkpoint();
-        if(minimap != null) UpdateCameraPosition();
+        if(minimap != null) {
+            UpdateCameraPosition();
+        }
+        else {
+            Debug.Log("NULL CAMERA");
+        }
     }
 
     private void FixedUpdate()
@@ -334,6 +338,7 @@ public class Player : MonoBehaviour
         GameObject.Instantiate(damageParticle, transform.position, damageParticle.transform.rotation);
         lastDamageTime = Time.time;
 
+        Debug.Log("Player takes " + attackDetails.damageAmount + " damage");
         currentHealth -= attackDetails.damageAmount;
         currentStunResistance -= attackDetails.stunDamageAmount;
         
