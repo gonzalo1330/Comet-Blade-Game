@@ -89,7 +89,11 @@ public class Player : MonoBehaviour
     public GameObject damageParticle;
     private float deadTime = 0f;
 
-    // other
+    // powerups
+    private float lastPowerupTime = 0f;
+    private bool powerupActive;
+
+    // UI
     private float coinCount = 0f;
     private Camera minimap;
     #endregion
@@ -141,6 +145,10 @@ public class Player : MonoBehaviour
             ResetStunResistance();
         }
 
+        if(powerupActive && Time.time >= lastPowerupTime + 5f) {
+            ResetPowerup();
+        }
+
         CheckKnockback();
         UpdateHealthBar();
         Checkpoint();
@@ -185,6 +193,9 @@ public class Player : MonoBehaviour
 
     public void SetVelocityY(float velocity)
     {
+        if(powerupActive) {
+            velocity *= 2;
+        }
         workspace.Set(CurrentVelocity.x, velocity);
         RB.velocity = workspace;
         CurrentVelocity = workspace;
@@ -309,6 +320,14 @@ public class Player : MonoBehaviour
         currentStunResistance = stunResistance;
     }
 
+    public virtual void ResetPowerup() 
+    {
+        Debug.Log("Stopping powerup");
+        powerupActive = false;
+        workspace.Set(CurrentVelocity.x, playerData.jumpVelocity);
+        CurrentVelocity = workspace;
+    }
+
     public virtual void Damage(AttackDetails attackDetails)
     {            
         GameObject.Instantiate(damageParticle, transform.position, damageParticle.transform.rotation);
@@ -384,8 +403,9 @@ public class Player : MonoBehaviour
 
     public void OnCollisionEnter2D (Collision2D collision) {
         if (collision.gameObject.tag == "Power") {
+            powerupActive = true;
+            lastPowerupTime = Time.time;
             Destroy (collision.gameObject);
-            // need to fix
         }
         if (collision.gameObject.tag == "Coin") {
             coinCount++;
