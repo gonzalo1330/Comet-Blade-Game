@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 
 public class CaptureBehavior : MonoBehaviour
 {
@@ -14,7 +13,6 @@ public class CaptureBehavior : MonoBehaviour
 
     private int fingerID = -1;
     Camera mCam = null;
-
 
     void Start()
     {
@@ -37,30 +35,30 @@ public class CaptureBehavior : MonoBehaviour
 
     void DirPointer()
     {
-        Vector3 dirTarget = mCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        Vector3 dirTarget = mCam.ScreenToWorldPoint(Input.mousePosition);
         dirTarget.z = 0;
         direction = (dirTarget - transform.localPosition).normalized;
-        director.transform.localPosition = transform.localPosition + 1.25f * direction;
+        director.transform.localPosition = transform.localPosition + direction;
     }
 
     void SelectCapturedObject()
     {
-        if (Keyboard.current.digit1Key.wasPressedThisFrame)
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             TheBar.SelectObject(0);
             return;
         }
-        if (Keyboard.current.digit2Key.wasPressedThisFrame)
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             TheBar.SelectObject(1);
             return;
         }
-        if (Keyboard.current.digit3Key.wasPressedThisFrame)
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             TheBar.SelectObject(2);
             return;
         }
-        if (Keyboard.current.rKey.wasPressedThisFrame)
+        if (Input.GetKeyDown(KeyCode.R))
         {
             TheBar.IncrementSlot();
         }
@@ -68,11 +66,11 @@ public class CaptureBehavior : MonoBehaviour
 
     void CaptureLaunch()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (Input.GetMouseButtonDown(0))
         {
             if (EventSystem.current.IsPointerOverGameObject(fingerID)) return;
             ObjectCapture();
-        } else if (Mouse.current.rightButton.wasPressedThisFrame)
+        } else if (Input.GetMouseButtonDown(1))
         {
             if (EventSystem.current.IsPointerOverGameObject(fingerID)) return;
             Launch(-1, direction, director.transform.position);
