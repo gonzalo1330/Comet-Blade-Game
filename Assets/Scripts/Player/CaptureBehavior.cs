@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class CaptureBehavior : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class CaptureBehavior : MonoBehaviour
 
     private int fingerID = -1;
     Camera mCam = null;
+
 
     void Start()
     {
@@ -35,30 +37,30 @@ public class CaptureBehavior : MonoBehaviour
 
     void DirPointer()
     {
-        Vector3 dirTarget = mCam.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 dirTarget = mCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         dirTarget.z = 0;
         direction = (dirTarget - transform.localPosition).normalized;
-        director.transform.localPosition = transform.localPosition + direction;
+        director.transform.localPosition = transform.localPosition + 1.25f * direction;
     }
 
     void SelectCapturedObject()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Keyboard.current.digit1Key.wasPressedThisFrame)
         {
             TheBar.SelectObject(0);
             return;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Keyboard.current.digit2Key.wasPressedThisFrame)
         {
             TheBar.SelectObject(1);
             return;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Keyboard.current.digit3Key.wasPressedThisFrame)
         {
             TheBar.SelectObject(2);
             return;
         }
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Keyboard.current.rKey.wasPressedThisFrame)
         {
             TheBar.IncrementSlot();
         }
@@ -66,11 +68,11 @@ public class CaptureBehavior : MonoBehaviour
 
     void CaptureLaunch()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             if (EventSystem.current.IsPointerOverGameObject(fingerID)) return;
             ObjectCapture();
-        } else if (Input.GetMouseButtonDown(1))
+        } else if (Mouse.current.rightButton.wasPressedThisFrame)
         {
             if (EventSystem.current.IsPointerOverGameObject(fingerID)) return;
             Launch(-1, direction, director.transform.position);

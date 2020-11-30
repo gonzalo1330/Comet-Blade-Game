@@ -125,10 +125,10 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: c89abc3ff90546f4bacd541ec70e3b9a, type: 2}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 4
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!114 &975220141459547115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,4 +146,6 @@ MonoBehaviour:
   FlyStraight: 0
   IsBreakable: 0
   IsExplosive: 0
+  IsTracking: 0
+  target: {x: 0, y: 0, z: 0}
   resetPoint: {x: 0, y: 0, z: 0}
