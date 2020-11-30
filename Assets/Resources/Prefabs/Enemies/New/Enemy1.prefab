@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 4183520693832759686}
   - component: {fileID: 6635531626375907504}
   - component: {fileID: 9101832}
-  - component: {fileID: 9101828}
+  - component: {fileID: 211880872157552016}
   m_Layer: 9
   m_Name: Alive
   m_TagString: Enemy
@@ -249,7 +249,7 @@ CapsuleCollider2D:
   m_Offset: {x: -0.1590643, y: -0.21738791}
   m_Size: {x: 1.0568714, y: 1.6924758}
   m_Direction: 0
---- !u!114 &9101828
+--- !u!114 &211880872157552016
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -258,7 +258,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4183520693832759682}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 927e72cefd61546a0bc16b1967389bf8, type: 3}
+  m_Script: {fileID: 11500000, guid: cab3b94c9db134da39a3444444dd962e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4183520693979524763
