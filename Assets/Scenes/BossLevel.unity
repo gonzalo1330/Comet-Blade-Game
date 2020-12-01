@@ -169,6 +169,12 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 1915280256}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &18785044 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4210157123753652, guid: 6877fb649746c674d8fbbcf60d41892b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1915280256}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &18785045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,7 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFlipped: 0
-  player: {fileID: 1312116110}
+  player: {fileID: 220991390}
 --- !u!114 &18785046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1495,11 +1501,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 622682551547676807, guid: be2ff3ab74fc1de4ca5775993c1857b0,
-        type: 3}
-      propertyPath: m_Name
-      value: GrayCrate
-      objectReference: {fileID: 0}
     - target: {fileID: 8348244426059890462, guid: be2ff3ab74fc1de4ca5775993c1857b0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1564,6 +1565,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 622682551547676807, guid: be2ff3ab74fc1de4ca5775993c1857b0,
+        type: 3}
+      propertyPath: m_Name
+      value: GrayCrate
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be2ff3ab74fc1de4ca5775993c1857b0, type: 3}
@@ -1878,11 +1884,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6149507165818100353, guid: 0d7cef123e26abc4b81a4328365ff20c,
-        type: 3}
-      propertyPath: m_Name
-      value: CaptureCrate4
-      objectReference: {fileID: 0}
     - target: {fileID: 3326377025198157080, guid: 0d7cef123e26abc4b81a4328365ff20c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1947,6 +1948,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6149507165818100353, guid: 0d7cef123e26abc4b81a4328365ff20c,
+        type: 3}
+      propertyPath: m_Name
+      value: CaptureCrate4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d7cef123e26abc4b81a4328365ff20c, type: 3}
@@ -2200,11 +2206,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6149507165818100353, guid: 0d7cef123e26abc4b81a4328365ff20c,
-        type: 3}
-      propertyPath: m_Name
-      value: CaptureCrate3
-      objectReference: {fileID: 0}
     - target: {fileID: 3326377025198157080, guid: 0d7cef123e26abc4b81a4328365ff20c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2269,6 +2270,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6149507165818100353, guid: 0d7cef123e26abc4b81a4328365ff20c,
+        type: 3}
+      propertyPath: m_Name
+      value: CaptureCrate3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d7cef123e26abc4b81a4328365ff20c, type: 3}
@@ -2689,6 +2695,36 @@ CapsuleCollider2D:
   m_Offset: {x: -0.18723392, y: -0.25962448}
   m_Size: {x: 1.0005322, y: 1.4894638}
   m_Direction: 0
+--- !u!1 &731623645
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 731623646}
+  m_Layer: 9
+  m_Name: WallCheck
+  m_TagString: BossWallCheck
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &731623646
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731623645}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.46399996, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 18785044}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &746829349
 GameObject:
   m_ObjectHideFlags: 0
@@ -2741,11 +2777,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6149507165818100353, guid: 0d7cef123e26abc4b81a4328365ff20c,
-        type: 3}
-      propertyPath: m_Name
-      value: CaptureCrate2
-      objectReference: {fileID: 0}
     - target: {fileID: 3326377025198157080, guid: 0d7cef123e26abc4b81a4328365ff20c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2810,6 +2841,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6149507165818100353, guid: 0d7cef123e26abc4b81a4328365ff20c,
+        type: 3}
+      propertyPath: m_Name
+      value: CaptureCrate2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d7cef123e26abc4b81a4328365ff20c, type: 3}
@@ -2967,11 +3003,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6149507165818100353, guid: 0d7cef123e26abc4b81a4328365ff20c,
-        type: 3}
-      propertyPath: m_Name
-      value: CaptureCrate2 (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 3326377025198157080, guid: 0d7cef123e26abc4b81a4328365ff20c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3036,6 +3067,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6149507165818100353, guid: 0d7cef123e26abc4b81a4328365ff20c,
+        type: 3}
+      propertyPath: m_Name
+      value: CaptureCrate2 (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d7cef123e26abc4b81a4328365ff20c, type: 3}
@@ -16843,11 +16879,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6149507165818100353, guid: 0d7cef123e26abc4b81a4328365ff20c,
-        type: 3}
-      propertyPath: m_Name
-      value: CaptureCrate1
-      objectReference: {fileID: 0}
     - target: {fileID: 3326377025198157080, guid: 0d7cef123e26abc4b81a4328365ff20c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -16912,6 +16943,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6149507165818100353, guid: 0d7cef123e26abc4b81a4328365ff20c,
+        type: 3}
+      propertyPath: m_Name
+      value: CaptureCrate1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d7cef123e26abc4b81a4328365ff20c, type: 3}
@@ -17182,12 +17218,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8601874759961371348, guid: 85294a760db264f6f933d9dd61901928,
     type: 3}
   m_PrefabInstance: {fileID: 1303329556}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1312116110 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1739161586033348686, guid: f96063d3f707c4a3a82d41c9c24aabe9,
-    type: 3}
-  m_PrefabInstance: {fileID: 1978721081}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1329018228
 GameObject:
@@ -18337,6 +18367,10 @@ PrefabInstance:
     - target: {fileID: 1290715225530138, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4954531293351526, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4210157123753652, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
       propertyPath: m_LocalPosition.x
