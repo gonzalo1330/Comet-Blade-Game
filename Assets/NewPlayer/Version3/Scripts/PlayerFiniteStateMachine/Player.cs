@@ -283,6 +283,9 @@ public class Player : MonoBehaviour
 
         foreach (Collider2D collider in detectedObjects)
         {
+            if (collider.gameObject.name == "Boss") {
+                collider.transform.SendMessage("Damage", attackDetails);
+            } else
             collider.transform.parent.SendMessage("Damage", attackDetails);
             //Instantiate hit particle
         }

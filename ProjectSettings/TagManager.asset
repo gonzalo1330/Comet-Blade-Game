@@ -15,6 +15,7 @@ TagManager:
   - SidewaysSaw
   - UprightSaw
   - Egg
+  - BossWallCheck
   layers:
   - Default
   - TransparentFX

@@ -118,8 +118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fd34639687042afba4a1babcf8fbee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundCheckRadius: 0.2
-  wallCheckDistance: 0.2
+  groundCheckRadius: 0.4
+  wallCheckDistance: 0.3
   stunDamageAmount: 5
   attack1Radius: 0.3
   attack1Damage: 5

@@ -10,9 +10,11 @@ public class Boss_Combat : MonoBehaviour
     public float attackRange = 15f;
     public LayerMask playerMask;
     public Transform attackPos;
+    public AttackDetails attackDetails;
     // Start is called before the first frame update
     void Start()
     {
+        attackDetails.damageAmount = damage;
     }
 
     // Update is called once per frame
@@ -24,8 +26,8 @@ public class Boss_Combat : MonoBehaviour
     public void Attack() {
             Vector3 pos = transform.position;
             Collider2D player = Physics2D.OverlapCircle(attackPos.position, attackRange, playerMask);
-            if (player != null)
-                player.GetComponent<PlayerStats>().DecreaseHealth(10f);
+        if (player != null)
+            player.GetComponent<Player>().Damage(attackDetails);
     }
 
     void OnDrawGizmosSelected() {
