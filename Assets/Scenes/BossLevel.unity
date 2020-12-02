@@ -2911,7 +2911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbfc7d155c2497f4d9bdcdad3d0f210c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextLevel: GameMenu
+  nextLevel: FinalScreen
 --- !u!61 &1057916236
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2994,7 +2994,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1057916234}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 122.11234, y: -41.683907, z: 0}
+  m_LocalPosition: {x: 22.15, y: -51.86, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -18372,10 +18372,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 4954531293351526, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4210157123753652, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.42
@@ -18429,6 +18425,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4210157123753652, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4954531293351526, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
@@ -18748,10 +18748,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1081150762, guid: f96063d3f707c4a3a82d41c9c24aabe9, type: 3}
-      propertyPath: healthBar
-      value: 
-      objectReference: {fileID: 1149273927}
     - target: {fileID: 745103424, guid: f96063d3f707c4a3a82d41c9c24aabe9, type: 3}
       propertyPath: TheBar
       value: 
@@ -18760,6 +18756,10 @@ PrefabInstance:
       propertyPath: director
       value: 
       objectReference: {fileID: 721511463}
+    - target: {fileID: 1081150762, guid: f96063d3f707c4a3a82d41c9c24aabe9, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1149273927}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f96063d3f707c4a3a82d41c9c24aabe9, type: 3}
 --- !u!1001 &1979646039
