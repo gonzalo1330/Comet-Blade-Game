@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
-public class Player : MonoBehaviour
-{
+public class Player : MonoBehaviour {
     #region State Variables
     public PlayerStateMachine StateMachine { get; private set; }
 
@@ -53,7 +52,7 @@ public class Player : MonoBehaviour
 
     #region Other Variables
     public Vector2 CurrentVelocity { get; private set; }
-    public int FacingDirection { get; private set; }    
+    public int FacingDirection { get; private set; }
 
     public HealthBar healthBar;
     private float flashtimer = 0.3f;
@@ -99,113 +98,121 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Unity Callback Functions
-    private void Awake()
-    {
-        StateMachine = new PlayerStateMachine();
+    private void Awake () {
+        StateMachine = new PlayerStateMachine ();
 
-        IdleState = new PlayerIdleState(this, StateMachine, playerData, "idle");
-        MoveState = new PlayerMoveState(this, StateMachine, playerData, "move");
-        JumpState = new PlayerJumpState(this, StateMachine, playerData, "inAir");
-        InAirState = new PlayerInAirState(this, StateMachine, playerData, "inAir");
-        LandState = new PlayerLandState(this, StateMachine, playerData, "land");
-        WallSlideState = new PlayerWallSlideState(this, StateMachine, playerData, "wallSlide");
-        WallGrabState = new PlayerWallGrabState(this, StateMachine, playerData, "wallGrab");
-        WallClimbState = new PlayerWallClimbState(this, StateMachine, playerData, "wallClimb");
-        WallJumpState = new PlayerWallJumpState(this, StateMachine, playerData, "inAir");
-        LedgeClimbState = new PlayerLedgeClimbState(this, StateMachine, playerData, "ledgeClimbState");
-        DashState = new PlayerDashState(this, StateMachine, playerData, "inAir");
-        AttackState = new PlayerAttackState(this, StateMachine, playerData, "attack1");
-        AirAttackState = new PlayerAirAttackState(this, StateMachine, playerData, "attack2");
+        IdleState = new PlayerIdleState (this, StateMachine, playerData, "idle");
+        MoveState = new PlayerMoveState (this, StateMachine, playerData, "move");
+        JumpState = new PlayerJumpState (this, StateMachine, playerData, "inAir");
+        InAirState = new PlayerInAirState (this, StateMachine, playerData, "inAir");
+        LandState = new PlayerLandState (this, StateMachine, playerData, "land");
+        WallSlideState = new PlayerWallSlideState (this, StateMachine, playerData, "wallSlide");
+        WallGrabState = new PlayerWallGrabState (this, StateMachine, playerData, "wallGrab");
+        WallClimbState = new PlayerWallClimbState (this, StateMachine, playerData, "wallClimb");
+        WallJumpState = new PlayerWallJumpState (this, StateMachine, playerData, "inAir");
+        LedgeClimbState = new PlayerLedgeClimbState (this, StateMachine, playerData, "ledgeClimbState");
+        DashState = new PlayerDashState (this, StateMachine, playerData, "inAir");
+        AttackState = new PlayerAttackState (this, StateMachine, playerData, "attack1");
+        AirAttackState = new PlayerAirAttackState (this, StateMachine, playerData, "attack2");
     }
 
-    private void Start()
-    {
-        Anim = GetComponent<Animator>();
-        InputHandler = GetComponent<PlayerInputHandler>();
-        RB = GetComponent<Rigidbody2D>();
-        PS = GameObject.Find("LaunchPoint").GetComponent<PlayerShoot>();
-        minimap = GameObject.Find("MinimapCamera").GetComponent<Camera>();
-        DashDirectionIndicator = transform.Find("DashDirectionIndicator");
+    private void Start () {
+        Anim = GetComponent<Animator> ();
+        InputHandler = GetComponent<PlayerInputHandler> ();
+        RB = GetComponent<Rigidbody2D> ();
+        PS = GameObject.Find ("LaunchPoint").GetComponent<PlayerShoot> ();
+        minimap = GameObject.Find ("MinimapCamera").GetComponent<Camera> ();
+        DashDirectionIndicator = transform.Find ("DashDirectionIndicator");
 
         FacingDirection = 1;
 
-        StateMachine.Initialize(IdleState);
+        StateMachine.Initialize (IdleState);
     }
 
-    private void Update()
-    {
+    private void Update () {
         CurrentVelocity = RB.velocity;
-        StateMachine.CurrentState.LogicUpdate();
+        StateMachine.CurrentState.LogicUpdate ();
 
-        Anim.SetFloat("yVelocity", RB.velocity.y);
+        Anim.SetFloat ("yVelocity", RB.velocity.y);
 
-        if(Time.time >= lastDamageTime + stunRecoveryTime)
-        {
-            ResetStunResistance();
+        if (Time.time >= lastDamageTime + stunRecoveryTime) {
+            ResetStunResistance ();
         }
 
-        if(powerupActive && Time.time >= lastPowerupTime + 5f) {
-            ResetPowerup();
+        if (powerupActive && Time.time >= lastPowerupTime + 5f) {
+            ResetPowerup ();
         }
 
-        CheckKnockback();
-        UpdateHealthBar();
-        Checkpoint();
-        if(minimap != null) {
-            UpdateCameraPosition();
+        CheckKnockback ();
+        UpdateHealthBar ();
+        Checkpoint ();
+        if (minimap != null) {
+            UpdateCameraPosition ();
+        } else {
+            Debug.Log ("NULL CAMERA");
         }
-        else {
-            Debug.Log("NULL CAMERA");
+
+        SwitchScenes ();
+    }
+
+    private void SwitchScenes () {
+        // loads the next level
+        if (Input.GetKeyDown (KeyCode.P)) {
+            SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
+        }
+
+        // resetting current scene
+        if (Input.GetKeyDown (KeyCode.R)) {
+            SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
+        }
+
+        // loads the game menu while in game-play
+        if (Input.GetKeyDown (KeyCode.M)) {
+            SceneManager.LoadSceneAsync ("GameMenu");
         }
     }
 
-    private void FixedUpdate()
-    {
-        StateMachine.CurrentState.PhysicsUpdate();
+    private void FixedUpdate () {
+        StateMachine.CurrentState.PhysicsUpdate ();
     }
     #endregion
 
     #region Set Functions
 
-    public void SetVelocityZero()
-    {
+    public void SetVelocityZero () {
         RB.velocity = Vector2.zero;
         CurrentVelocity = Vector2.zero;
     }
 
-    public void SetVelocity(float velocity, Vector2 angle, int direction)
-    {
-        angle.Normalize();
-        workspace.Set(angle.x * velocity * direction, angle.y * velocity);
+    public void SetVelocity (float velocity, Vector2 angle, int direction) {
+        angle.Normalize ();
+        workspace.Set (angle.x * velocity * direction, angle.y * velocity);
         RB.velocity = workspace;
         CurrentVelocity = workspace;
     }
 
-    public void SetVelocity(float velocity, Vector2 direction)
-    {
+    public void SetVelocity (float velocity, Vector2 direction) {
         workspace = direction * velocity;
         RB.velocity = workspace;
         CurrentVelocity = workspace;
     }
 
-    public void SetVelocityX(float velocity)
-    {
-        workspace.Set(velocity, CurrentVelocity.y);
+    public void SetVelocityX (float velocity) {
+        workspace.Set (velocity, CurrentVelocity.y);
         RB.velocity = workspace;
         CurrentVelocity = workspace;
     }
 
-    public void SetVelocityY(float velocity)
-    {
-        if(powerupActive) {
+    public void SetVelocityY (float velocity) {
+        if (powerupActive) {
             velocity *= 2;
         }
-        workspace.Set(CurrentVelocity.x, velocity);
+        workspace.Set (CurrentVelocity.x, velocity);
         RB.velocity = workspace;
         CurrentVelocity = workspace;
     }
 
-    public void SetHealth() {
+    public void SetHealth () {
         currentHealth = maxHealth;
     }
 
@@ -213,11 +220,11 @@ public class Player : MonoBehaviour
 
     #region Getter Functions
 
-    public float GetHealth() {
+    public float GetHealth () {
         return currentHealth;
     }
 
-    public bool GetCheckpointStatus() {
+    public bool GetCheckpointStatus () {
         return checkpointMet;
     }
 
@@ -225,31 +232,25 @@ public class Player : MonoBehaviour
 
     #region Check Functions
 
-    public bool CheckIfGrounded()
-    {
-        return Physics2D.OverlapCircle(groundCheck.position, playerData.groundCheckRadius, playerData.whatIsGround);
+    public bool CheckIfGrounded () {
+        return Physics2D.OverlapCircle (groundCheck.position, playerData.groundCheckRadius, playerData.whatIsGround);
     }
 
-    public bool CheckIfTouchingWall()
-    {
-        return Physics2D.Raycast(wallCheck.position, Vector2.right * FacingDirection, playerData.wallCheckDistance, playerData.whatIsGround);
+    public bool CheckIfTouchingWall () {
+        return Physics2D.Raycast (wallCheck.position, Vector2.right * FacingDirection, playerData.wallCheckDistance, playerData.whatIsGround);
     }
 
-    public bool CheckIfTouchingLedge()
-    {
-        return Physics2D.Raycast(ledgeCheck.position, Vector2.right * FacingDirection, playerData.wallCheckDistance, playerData.whatIsGround);
+    public bool CheckIfTouchingLedge () {
+        return Physics2D.Raycast (ledgeCheck.position, Vector2.right * FacingDirection, playerData.wallCheckDistance, playerData.whatIsGround);
     }
 
-    public bool CheckIfTouchingWallBack()
-    {
-        return Physics2D.Raycast(wallCheck.position, Vector2.right * -FacingDirection, playerData.wallCheckDistance, playerData.whatIsGround);
+    public bool CheckIfTouchingWallBack () {
+        return Physics2D.Raycast (wallCheck.position, Vector2.right * -FacingDirection, playerData.wallCheckDistance, playerData.whatIsGround);
     }
 
-    public void CheckIfShouldFlip(int xInput)
-    {
-        if(xInput != 0 && xInput != FacingDirection)
-        {
-            Flip();
+    public void CheckIfShouldFlip (int xInput) {
+        if (xInput != 0 && xInput != FacingDirection) {
+            Flip ();
         }
     }
 
@@ -257,54 +258,49 @@ public class Player : MonoBehaviour
 
     #region Other Functions
 
-    public Vector2 DetermineCornerPosition()
-    {
-        RaycastHit2D xHit = Physics2D.Raycast(wallCheck.position, Vector2.right * FacingDirection, playerData.wallCheckDistance, playerData.whatIsGround);
+    public Vector2 DetermineCornerPosition () {
+        RaycastHit2D xHit = Physics2D.Raycast (wallCheck.position, Vector2.right * FacingDirection, playerData.wallCheckDistance, playerData.whatIsGround);
         float xDist = xHit.distance;
-        workspace.Set(xDist * FacingDirection, 0f);
-        RaycastHit2D yHit = Physics2D.Raycast(ledgeCheck.position + (Vector3)(workspace), Vector2.down, ledgeCheck.position.y - wallCheck.position.y, playerData.whatIsGround);
+        workspace.Set (xDist * FacingDirection, 0f);
+        RaycastHit2D yHit = Physics2D.Raycast (ledgeCheck.position + (Vector3) (workspace), Vector2.down, ledgeCheck.position.y - wallCheck.position.y, playerData.whatIsGround);
         float yDist = yHit.distance;
 
-        workspace.Set(wallCheck.position.x + (xDist * FacingDirection), ledgeCheck.position.y - yDist);
+        workspace.Set (wallCheck.position.x + (xDist * FacingDirection), ledgeCheck.position.y - yDist);
         return workspace;
     }
 
-    private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();
+    private void AnimationTrigger () => StateMachine.CurrentState.AnimationTrigger ();
 
-    private void AnimtionFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
+    private void AnimtionFinishTrigger () => StateMachine.CurrentState.AnimationFinishTrigger ();
 
-    private void CheckAttackHitBox()
-    {
-        Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(attack1HitBoxPos.position, playerData.attack1Radius, whatIsDamageable);
+    private void CheckAttackHitBox () {
+        Collider2D[] detectedObjects = Physics2D.OverlapCircleAll (attack1HitBoxPos.position, playerData.attack1Radius, whatIsDamageable);
 
         attackDetails.damageAmount = playerData.attack1Damage;
         attackDetails.position = transform.position;
         attackDetails.stunDamageAmount = playerData.stunDamageAmount;
 
-        foreach (Collider2D collider in detectedObjects)
-        {
+        foreach (Collider2D collider in detectedObjects) {
             if (collider.gameObject.name == "Boss") {
-                collider.transform.SendMessage("Damage", attackDetails);
+                collider.transform.SendMessage ("Damage", attackDetails);
             } else
-            collider.transform.parent.SendMessage("Damage", attackDetails);
+                collider.transform.parent.SendMessage ("Damage", attackDetails);
             //Instantiate hit particle
         }
     }
 
-    private void FinishAttack1()
-    {
-        Anim.SetBool("isAttacking", false);
-        Anim.SetBool("firstAttack", false);
-        Anim.SetBool("attack1", false);
-        StateMachine.ChangeState(IdleState);
+    private void FinishAttack1 () {
+        Anim.SetBool ("isAttacking", false);
+        Anim.SetBool ("firstAttack", false);
+        Anim.SetBool ("attack1", false);
+        StateMachine.ChangeState (IdleState);
     }
 
-    private void FinishSecondAttack()
-    {
-        Anim.SetBool("isAttacking", false);
-        Anim.SetBool("firstAttack", false);
-        Anim.SetBool("attack2", false);
-        StateMachine.ChangeState(InAirState);
+    private void FinishSecondAttack () {
+        Anim.SetBool ("isAttacking", false);
+        Anim.SetBool ("firstAttack", false);
+        Anim.SetBool ("attack2", false);
+        StateMachine.ChangeState (InAirState);
     }
 
     public void Knockback (int direction) {
@@ -317,57 +313,51 @@ public class Player : MonoBehaviour
     private void CheckKnockback () {
         if (Time.time >= knockbackStartTime + knockbackDuration && knockback) {
             knockback = false;
-            Debug.Log("Stopped knockback");
+            Debug.Log ("Stopped knockback");
             RB.velocity = new Vector2 (0.0f, RB.velocity.y);
         }
     }
 
-    public virtual void ResetStunResistance()
-    {
+    public virtual void ResetStunResistance () {
         isStunned = false;
         currentStunResistance = stunResistance;
     }
 
-    public virtual void ResetPowerup() 
-    {
-        Debug.Log("Stopping powerup");
+    public virtual void ResetPowerup () {
+        Debug.Log ("Stopping powerup");
         powerupActive = false;
-        workspace.Set(CurrentVelocity.x, playerData.jumpVelocity);
+        workspace.Set (CurrentVelocity.x, playerData.jumpVelocity);
         CurrentVelocity = workspace;
     }
 
-    public virtual void Damage(AttackDetails attackDetails)
-    {            
-        GameObject.Instantiate(damageParticle, transform.position, damageParticle.transform.rotation);
+    public virtual void Damage (AttackDetails attackDetails) {
+        GameObject.Instantiate (damageParticle, transform.position, damageParticle.transform.rotation);
         lastDamageTime = Time.time;
 
-        Debug.Log("Player takes " + attackDetails.damageAmount + " damage");
+        Debug.Log ("Player takes " + attackDetails.damageAmount + " damage");
         currentHealth -= attackDetails.damageAmount;
         currentStunResistance -= attackDetails.stunDamageAmount;
-        
+
         int direction;
         if (attackDetails.position.x < transform.position.x) direction = 1;
         else direction = -1;
 
-        Knockback(direction);
+        Knockback (direction);
 
-        if(currentStunResistance <= 0)
-        {
+        if (currentStunResistance <= 0) {
             isStunned = true;
         }
 
-        if(currentHealth <= 0)
-        {
+        if (currentHealth <= 0) {
             isDead = true;
-            Anim.SetBool("dead", isDead);
+            Anim.SetBool ("dead", isDead);
             deadTime = Time.time;
         }
     }
 
-    private void Flip()
-    {
+    private void Flip () {
         FacingDirection *= -1;
-        transform.Rotate(0.0f, 180.0f, 0.0f);
+        transform.Rotate (0.0f, 180.0f, 0.0f);
     }
 
     private void UpdateHealthBar () {
@@ -388,26 +378,25 @@ public class Player : MonoBehaviour
 
     // function for checking if checkpoints are met when you lose all health
     public void Checkpoint () {
-        if(isDead) {
+        if (isDead) {
             if (checkpointMet) {
-                if(Time.time >= deadTime + 0.4f) {
-                    RespawnAtLastCheckPoint();
+                if (Time.time >= deadTime + 0.4f) {
+                    RespawnAtLastCheckPoint ();
                 }
-            } 
-            else {
-                SceneManager.LoadSceneAsync("GameMenu");
+            } else {
+                SceneManager.LoadSceneAsync ("GameMenu");
             }
         }
     }
 
     // respawns character at last known checkpoint and restores health
     public void RespawnAtLastCheckPoint () {
-        Debug.Log("Respawn");
+        Debug.Log ("Respawn");
         isDead = false;
         currentHealth = 50;
         healthBar.setColor (Color.red);
         gameObject.transform.position = savedPostion; // location change
-        Anim.SetBool("dead", isDead);
+        Anim.SetBool ("dead", isDead);
     }
 
     public void OnCollisionEnter2D (Collision2D collision) {
@@ -431,7 +420,7 @@ public class Player : MonoBehaviour
         return "Found " + coinCount + " Gold";
     }
 
-    private void UpdateCameraPosition() {
+    private void UpdateCameraPosition () {
         Vector3 pos = transform.position;
         pos.z = -10f;
         minimap.gameObject.transform.position = pos;

@@ -5,7 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
     public void PlayGame () {
-        SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
+        SceneManager.LoadSceneAsync ("Intro");
+    }
+
+    // these function will give the options menu the ability to switch between levels
+    public void LoadLevel1 () {
+        SceneManager.LoadSceneAsync ("Level1");
+    }
+
+    public void LoadLevel2 () {
+        SceneManager.LoadSceneAsync ("Level2");
+    }
+    public void LoadBossLevel () {
+        SceneManager.LoadSceneAsync ("BossLevel");
     }
 
     public void QuitGame () {
