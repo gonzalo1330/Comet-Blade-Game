@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
@@ -97,6 +99,9 @@ public class Player : MonoBehaviour {
     private Camera minimap;
     #endregion
 
+    //stats
+    public string path = "Assets/statistics.txt";
+
     #region Unity Callback Functions
     private void Awake () {
         StateMachine = new PlayerStateMachine ();
@@ -156,9 +161,18 @@ public class Player : MonoBehaviour {
     }
 
     private void SwitchScenes () {
-        // loads the next level
+        // essentially skips a level since it will load the following scene
         if (Input.GetKeyDown (KeyCode.P)) {
             SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
+
+            Scene currentScene = SceneManager.GetActiveScene ();
+            string sceneName = currentScene.name;
+            if (sceneName != "Intro") {
+                //Write some text to the .txt file
+                StreamWriter writer = new StreamWriter (path, true);
+                writer.WriteLine ("Skipped");
+                writer.Close ();
+            }
         }
 
         // resetting current scene
@@ -413,6 +427,13 @@ public class Player : MonoBehaviour {
             savedPostion = collision.transform.position;
             checkpointMet = true;
             Destroy (collision.gameObject);
+        }
+
+        if (collision.gameObject.tag == "EndLevel") {
+            //Write some text to the .txt file
+            StreamWriter writer = new StreamWriter (path, true);
+            writer.WriteLine ("Completed " + coinCount + " 0");
+            writer.Close ();
         }
     }
 
