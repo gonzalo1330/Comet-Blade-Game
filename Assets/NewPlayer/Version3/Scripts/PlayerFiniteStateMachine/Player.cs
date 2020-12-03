@@ -84,7 +84,10 @@ public class Player : MonoBehaviour {
 
     // checkpoint
     private bool checkpointMet = false;
-    private Vector3 savedPostion;
+    private Vector3 checkpointPostion;
+
+    // power up respawn 
+    private Vector3 powerUpPostion;
 
     // damage
     public GameObject damageParticle;
@@ -158,6 +161,9 @@ public class Player : MonoBehaviour {
         }
 
         SwitchScenes ();
+
+        if (Input.GetKeyDown (KeyCode.Q))
+            Application.Quit ();
     }
 
     private void SwitchScenes () {
@@ -342,6 +348,9 @@ public class Player : MonoBehaviour {
         powerupActive = false;
         workspace.Set (CurrentVelocity.x, playerData.jumpVelocity);
         CurrentVelocity = workspace;
+        // power up will reappear in the world
+        GameObject e = Instantiate (Resources.Load ("Prefabs/LevelObjects/Collectables/timer1") as GameObject);
+        e.transform.position = powerUpPostion; // location change
     }
 
     public virtual void Damage (AttackDetails attackDetails) {
@@ -409,12 +418,13 @@ public class Player : MonoBehaviour {
         isDead = false;
         currentHealth = 50;
         healthBar.setColor (Color.red);
-        gameObject.transform.position = savedPostion; // location change
+        gameObject.transform.position = checkpointPostion; // location change
         Anim.SetBool ("dead", isDead);
     }
 
     public void OnCollisionEnter2D (Collision2D collision) {
         if (collision.gameObject.tag == "Power") {
+            powerUpPostion = collision.transform.position;
             powerupActive = true;
             lastPowerupTime = Time.time;
             Destroy (collision.gameObject);
@@ -424,7 +434,7 @@ public class Player : MonoBehaviour {
             Destroy (collision.gameObject);
         }
         if (collision.gameObject.tag == "Checkpoint") {
-            savedPostion = collision.transform.position;
+            checkpointPostion = collision.transform.position;
             checkpointMet = true;
             Destroy (collision.gameObject);
         }
