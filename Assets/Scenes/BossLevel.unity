@@ -16831,7 +16831,7 @@ CompositeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths: []
@@ -18693,6 +18693,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1081150762, guid: f96063d3f707c4a3a82d41c9c24aabe9, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1149273927}
     - target: {fileID: 1739161586033348686, guid: f96063d3f707c4a3a82d41c9c24aabe9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -18756,10 +18760,6 @@ PrefabInstance:
       propertyPath: director
       value: 
       objectReference: {fileID: 721511463}
-    - target: {fileID: 1081150762, guid: f96063d3f707c4a3a82d41c9c24aabe9, type: 3}
-      propertyPath: healthBar
-      value: 
-      objectReference: {fileID: 1149273927}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f96063d3f707c4a3a82d41c9c24aabe9, type: 3}
 --- !u!1001 &1979646039
