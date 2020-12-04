@@ -2,23 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss_Health : MonoBehaviour
-{
+public class Boss_Health : MonoBehaviour {
     public float bossHealth = 160f;
     public GameObject swordTrap;
     public Animator animator;
     public bool special1 = false;
     public float flyTimer = 4f;
-    
+    public GameObject player;
+
     // Start is called before the first frame update
-    void Start()
-    {
-        
+    void Start() {
+        Debug.Assert(player != null);
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         if (bossHealth == 100 && !special1) {
             StartCoroutine(Timer());
             DropSword();
@@ -37,6 +35,7 @@ public class Boss_Health : MonoBehaviour
         }
     }
     public void Die() {
+        player.GetComponent<Player>().EndOfLevel();
         Destroy(gameObject, 5f);
         bossHealth -= 10;
         animator.SetTrigger("Die");
