@@ -28,8 +28,6 @@ public class StatisticManager : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start () {
-        TextAsset SourceFile = (TextAsset) Resources.Load ("g", typeof (TextAsset));
-
         LevelStatus = new string[3];
         CoinCount = new int[3];
         RespawnCount = new int[3];

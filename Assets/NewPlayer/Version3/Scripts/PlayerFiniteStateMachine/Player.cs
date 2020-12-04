@@ -104,6 +104,7 @@ public class Player : MonoBehaviour {
 
     //stats
     public string path = "Assets/statistics.txt";
+    private int respawnCount;
 
     #region Unity Callback Functions
     private void Awake () {
@@ -135,6 +136,7 @@ public class Player : MonoBehaviour {
         FacingDirection = 1;
 
         StateMachine.Initialize (IdleState);
+        respawnCount = 0;
     }
 
     private void Update () {
@@ -372,6 +374,7 @@ public class Player : MonoBehaviour {
         }
 
         if (currentHealth <= 0) {
+            incrementSpawnCount ();
             isDead = true;
             Anim.SetBool ("dead", isDead);
             deadTime = Time.time;
@@ -440,11 +443,19 @@ public class Player : MonoBehaviour {
         }
 
         if (collision.gameObject.tag == "EndLevel") {
-            //Write some text to the .txt file
-            StreamWriter writer = new StreamWriter (path, true);
-            writer.WriteLine ("Completed " + coinCount + " 0");
-            writer.Close ();
+            EndOfLevel ();
         }
+    }
+
+    public void EndOfLevel () {
+        //Write some text to the .txt file
+        StreamWriter writer = new StreamWriter (path, true);
+        writer.WriteLine ("Completed " + coinCount + " " + respawnCount);
+        writer.Close ();
+    }
+
+    public void incrementSpawnCount () {
+        respawnCount++;
     }
 
     public string CoinStatus () {
