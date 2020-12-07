@@ -184,7 +184,7 @@ public class Player : MonoBehaviour {
         }
 
         // resetting current scene
-        if (Input.GetKeyDown (KeyCode.R)) {
+        if (Input.GetKeyDown (KeyCode.T)) {
             SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
         }
 
@@ -248,6 +248,10 @@ public class Player : MonoBehaviour {
 
     public bool GetCheckpointStatus () {
         return checkpointMet;
+    }
+
+    public bool GetPowerupStatus () {
+        return powerupActive;
     }
 
     #endregion
