@@ -16,6 +16,9 @@ TagManager:
   - UprightSaw
   - Egg
   - BossWallCheck
+  - UIBackground
+  - RisingSpikes
+  - Box
   layers:
   - Default
   - TransparentFX

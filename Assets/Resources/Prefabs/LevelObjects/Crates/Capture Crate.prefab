@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 975220141459547115}
   m_Layer: 12
   m_Name: Capture Crate
-  m_TagString: Untagged
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,4 +146,6 @@ MonoBehaviour:
   FlyStraight: 0
   IsBreakable: 0
   IsExplosive: 0
+  IsTracking: 0
+  target: {x: 0, y: 0, z: 0}
   resetPoint: {x: 0, y: 0, z: 0}
