@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
     #region State Variables
@@ -100,6 +101,7 @@ public class Player : MonoBehaviour {
     // UI
     private float coinCount = 0f;
     private Camera minimap;
+    private bool menuIsOpen = false;
     #endregion
 
     //stats
@@ -153,46 +155,25 @@ public class Player : MonoBehaviour {
             ResetPowerup ();
         }
 
+        if (minimap != null) {
+            UpdateCameraPosition ();
+        }
+
+        if(InputHandler.MenuInput) {
+            if(!menuIsOpen) {
+                Time.timeScale = 0;
+            }
+            else {
+                Time.timeScale = 1;
+            }
+            Debug.Log("Menu Opened");
+        }
+
         CheckKnockback ();
         UpdateHealthBar ();
         Checkpoint ();
-        if (minimap != null) {
-            UpdateCameraPosition ();
-        } else {
-            Debug.Log ("NULL CAMERA");
-        }
-
-        SwitchScenes ();
-
-        if (Input.GetKeyDown (KeyCode.Q))
-            Application.Quit ();
     }
 
-    private void SwitchScenes () {
-        // essentially skips a level since it will load the following scene
-        if (Input.GetKeyDown (KeyCode.P)) {
-            SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
-
-            Scene currentScene = SceneManager.GetActiveScene ();
-            string sceneName = currentScene.name;
-            if (sceneName != "Intro") {
-                //Write some text to the .txt file
-                StreamWriter writer = new StreamWriter (path, true);
-                writer.WriteLine ("Skipped");
-                writer.Close ();
-            }
-        }
-
-        // resetting current scene
-        if (Input.GetKeyDown (KeyCode.T)) {
-            SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
-        }
-
-        // loads the game menu while in game-play
-        if (Input.GetKeyDown (KeyCode.M)) {
-            SceneManager.LoadSceneAsync ("GameMenu");
-        }
-    }
 
     private void FixedUpdate () {
         StateMachine.CurrentState.PhysicsUpdate ();

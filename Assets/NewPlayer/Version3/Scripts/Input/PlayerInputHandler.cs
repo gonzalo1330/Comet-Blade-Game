@@ -20,12 +20,15 @@ public class PlayerInputHandler : MonoBehaviour
     public bool DashInputStop { get; private set; }
     public bool AttackInput { get; private set; }
     public bool AttackInputStop { get; private set; }
+    public bool MenuInput { get; private set; }
+    public bool MenuInputStop { get; private set; }
 
     [SerializeField]
     private float inputHoldTime = 0.2f;
 
     private float jumpInputStartTime;
     private float dashInputStartTime;
+    private float MenuInputStartTime;
     public float AttackInputStartTime { get; private set; }
 
     private void Start()
@@ -38,6 +41,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         CheckJumpInputHoldTime();
         CheckDashInputHoldTime();
+        CheckMenuInputHoldTime();
     }
 
     public void OnMoveInput(InputAction.CallbackContext context)
@@ -131,9 +135,25 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
+    public void OnMenuInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            MenuInput = true;
+            MenuInputStop = false;
+            MenuInputStartTime = Time.time;
+        }
+        else if (context.canceled)
+        {
+            MenuInputStop = true;
+        }
+    }
+
     public void UseJumpInput() => JumpInput = false;
 
     public void UseDashInput() => DashInput = false;
+
+    public void UseMenuInput() => MenuInput = false;
 
     public void UseAttackInput() => AttackInput = false;
 
@@ -157,6 +177,13 @@ public class PlayerInputHandler : MonoBehaviour
         if(Time.time >= AttackInputStartTime + inputHoldTime)
         {
             AttackInput = false;
+        }
+    }
+
+    private void CheckMenuInputHoldTime() {
+        if(Time.time >= MenuInputStartTime + inputHoldTime)
+        {
+            MenuInput = false;
         }
     }
 }
