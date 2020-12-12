@@ -424,7 +424,7 @@ public class Player : MonoBehaviour {
     }
 
     public void OnCollisionEnter2D (Collision2D collision) {
-        if (collision.gameObject.tag == "Power" && powerupActive == false) {
+        if (collision.gameObject.tag == "Power") {
             powerUpPostion = collision.transform.position;
             powerupActive = true;
             lastPowerupTime = Time.time;

@@ -11,11 +11,6 @@ public class GameManager : MonoBehaviour {
 
     void Awake () {
         GameManager.sTheGlobalBehavior = this; // Singleton pattern
-        Debug.Assert (coins != null); // Assume setting in the editor!
         Debug.Assert (mHero != null);
-    }
-    // Update is called once per frame
-    void Update () {
-        coins.text = mHero.CoinStatus ();
     }
 }
