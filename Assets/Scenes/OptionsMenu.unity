@@ -796,7 +796,9 @@ MonoBehaviour:
 
     ''M'' Loads Game Menu
 
-    ''T'' Reset Level'
+    ''T'' Reset Level
+
+    ''Q'' Quit Game'
 --- !u!222 &1439665430
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1209,7 +1211,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: OTHER
+  m_Text: LEVEL
 --- !u!222 &1709087931
 CanvasRenderer:
   m_ObjectHideFlags: 0

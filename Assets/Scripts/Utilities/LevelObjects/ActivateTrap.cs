@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ActivateTrap : MonoBehaviour
 {
+    public GameObject lava;
     public void OnCollisionEnter2D (Collision2D collision) {
         if(collision.gameObject.tag == "Player") {
             // change layer so dont collide with player
@@ -22,6 +23,9 @@ public class ActivateTrap : MonoBehaviour
             Color c = s.color;
             c.a -= 0.5f;
             s.color = c;
+            Vector3 pos = lava.transform.position;
+            pos.y += 50f;
+            environment.transform.position = pos;
         }
     }
 }
