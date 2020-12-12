@@ -155,20 +155,7 @@ public class Player : MonoBehaviour {
             ResetPowerup ();
         }
 
-        if (minimap != null) {
-            UpdateCameraPosition ();
-        }
-
-        if(InputHandler.MenuInput) {
-            if(!menuIsOpen) {
-                Time.timeScale = 0;
-            }
-            else {
-                Time.timeScale = 1;
-            }
-            Debug.Log("Menu Opened");
-        }
-
+        CheckUI ();
         CheckKnockback ();
         UpdateHealthBar ();
         Checkpoint ();
@@ -258,6 +245,32 @@ public class Player : MonoBehaviour {
     public void CheckIfShouldFlip (int xInput) {
         if (xInput != 0 && xInput != FacingDirection) {
             Flip ();
+        }
+    }
+
+    public void CheckUI() {
+        if (minimap != null) {
+            UpdateCameraPosition ();
+        }
+
+        if(InputHandler.PreviousLevel) {
+            Debug.Log("Loading previous level");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        }
+
+        if(InputHandler.ResetLevel) {
+            Debug.Log("restarting level");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        if(InputHandler.LoadMainInput) {
+            Debug.Log("Loading Game Menu");
+            SceneManager.LoadScene("GameMenu");
+        }
+
+        if(InputHandler.QuitInput) {
+            Debug.Log("Quit Game");
+            Application.Quit();
         }
     }
 
