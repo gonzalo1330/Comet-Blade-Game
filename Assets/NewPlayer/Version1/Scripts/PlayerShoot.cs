@@ -17,7 +17,7 @@ public class PlayerShoot : MonoBehaviour
 
         //Get the angle between the points
         float angle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
-        transform.rotation =  Quaternion.Euler (new Vector3(0f,0f,angle - 270f ));
+        transform.rotation =  Quaternion.Euler (new Vector3(0f,0f,angle + 90f ));
     }
  
     private float AngleBetweenTwoPoints(Vector3 a, Vector3 b) {
