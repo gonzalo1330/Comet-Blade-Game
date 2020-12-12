@@ -48,7 +48,7 @@ public class SwordTrap : MonoBehaviour
     void RiseState() {
         Vector3 curr = transform.position;
         curr.y += riseSpeed * Time.deltaTime;
-        if (curr.y >= -14.2) {
+        if (curr.y >= -48.5) {
             mSwordTrapState = SwordTrapState.IdleState;
         } else {
             transform.position = curr;
@@ -66,7 +66,7 @@ public class SwordTrap : MonoBehaviour
     void LowerState() {
         Vector3 curr = transform.position;
         curr.y -= riseSpeed * Time.deltaTime;
-        if (curr.y <= -17f) {
+        if (curr.y <= -52) {
             mSwordTrapState = SwordTrapState.IdleState2;
         }
         else {
