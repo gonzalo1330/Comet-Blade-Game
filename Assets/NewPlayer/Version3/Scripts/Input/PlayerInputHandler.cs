@@ -22,6 +22,14 @@ public class PlayerInputHandler : MonoBehaviour
     public bool AttackInputStop { get; private set; }
     public bool MenuInput { get; private set; }
     public bool MenuInputStop { get; private set; }
+    public bool PreviousLevel { get; private set; }
+    public bool PreviousLevelStop { get; private set; }
+    public bool ResetLevel { get; private set; }
+    public bool ResetLevelStop { get; private set; }
+    public bool LoadMainInput { get; private set; }
+    public bool LoadMainInputStop { get; private set; }
+    public bool QuitInput { get; private set; }
+    public bool QuitInputStop { get; private set; }
 
     [SerializeField]
     private float inputHoldTime = 0.2f;
@@ -146,6 +154,55 @@ public class PlayerInputHandler : MonoBehaviour
         else if (context.canceled)
         {
             MenuInputStop = true;
+        }
+    }
+
+    
+    public void OnPreviousLevelInput(InputAction.CallbackContext context) {
+        if (context.started)
+        {
+            PreviousLevel = true;
+            PreviousLevelStop = false;
+        }
+        else if (context.canceled)
+        {
+            PreviousLevelStop = true;
+        }
+    }
+
+    public void OnResetLevelInput(InputAction.CallbackContext context) {
+        if (context.started)
+        {
+            ResetLevel = true;
+            ResetLevelStop = false;
+        }
+        else if (context.canceled)
+        {
+            ResetLevelStop = true;
+        }
+    }
+
+    public void OnLoadMenuInput(InputAction.CallbackContext context) {
+        if (context.started)
+        {
+            LoadMainInput = true;
+            LoadMainInputStop = false;
+        }
+        else if (context.canceled)
+        {
+            LoadMainInputStop = true;
+        }
+    }
+
+    public void OnQuitInput(InputAction.CallbackContext context) {
+        if (context.started)
+        {
+            QuitInput = true;
+            QuitInputStop = false;
+        }
+        else if (context.canceled)
+        {
+            QuitInputStop = true;
         }
     }
 

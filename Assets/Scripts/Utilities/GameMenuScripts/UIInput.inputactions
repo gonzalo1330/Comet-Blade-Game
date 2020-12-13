@@ -6,17 +6,9 @@
             "id": "51c19bc8-8cba-4dea-be26-4678bd713ad6",
             "actions": [
                 {
-                    "name": "Select",
+                    "name": "SelectButton",
                     "type": "Button",
                     "id": "085eeb51-ecaf-412b-9b0a-33f0fe5ef93f",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Pause",
-                    "type": "Button",
-                    "id": "c7c86387-ad16-4ce6-a864-8adbf2eb1fba",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -30,18 +22,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse",
-                    "action": "Select",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8eed2ab7-8b83-4b91-96e9-4d5e4f7e7df3",
-                    "path": "<Keyboard>/anyKey",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "Pause",
+                    "action": "SelectButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -63,7 +44,13 @@
         {
             "name": "Keyboard",
             "bindingGroup": "Keyboard",
-            "devices": []
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
         }
     ]
 }

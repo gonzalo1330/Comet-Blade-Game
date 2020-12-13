@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanCapture: 1
-  IsLaunched: 0
+  IsLaunched: 1
   FlyStraight: 0
   IsBreakable: 0
   IsExplosive: 0

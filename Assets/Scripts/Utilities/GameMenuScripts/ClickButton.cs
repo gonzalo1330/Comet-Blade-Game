@@ -39,6 +39,7 @@ public class ClickButton : MonoBehaviour {
                     GameObject cMenu = GameObject.Find("ControlsMenu");
                     if(cMenu != null) {
                         if(open == false) {
+                            Debug.Log("working");
                             open = true;
                             cMenu.GetComponent<SpriteRenderer>().enabled = true;
                         }
@@ -48,7 +49,7 @@ public class ClickButton : MonoBehaviour {
                         }
                     }
                     else {
-                        Debug.Log("Bruh aint no sih here");
+                        Debug.Log("Nothing here");
                     }
                     
                     Debug.Log (hit.collider.gameObject.name + "Button Clicked");
@@ -56,4 +57,5 @@ public class ClickButton : MonoBehaviour {
             }
         }
     }
+
 }
