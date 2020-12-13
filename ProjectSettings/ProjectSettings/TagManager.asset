@@ -16,6 +16,9 @@ TagManager:
   - UprightSaw
   - Egg
   - BossWallCheck
+  - UIBackground
+  - RisingSpikes
+  - Box
   layers:
   - Default
   - TransparentFX
@@ -34,7 +37,7 @@ TagManager:
   - Minimap
   - UI(Use This)
   - KillPlane
-  - 
+  - Boss
   - 
   - 
   - 

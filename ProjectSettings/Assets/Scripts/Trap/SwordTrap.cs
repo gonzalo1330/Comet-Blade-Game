@@ -7,7 +7,8 @@ public class SwordTrap : MonoBehaviour
     private float riseSpeed = 14f;
     private float timer = 1.5f;
     private SwordTrapState mSwordTrapState = SwordTrapState.RiseState;
-
+    public float minimum;
+    public float maximum;
 
     private enum SwordTrapState {
         RiseState,
@@ -48,7 +49,7 @@ public class SwordTrap : MonoBehaviour
     void RiseState() {
         Vector3 curr = transform.position;
         curr.y += riseSpeed * Time.deltaTime;
-        if (curr.y >= -14.2) {
+        if (curr.y >= maximum) {
             mSwordTrapState = SwordTrapState.IdleState;
         } else {
             transform.position = curr;
@@ -66,7 +67,7 @@ public class SwordTrap : MonoBehaviour
     void LowerState() {
         Vector3 curr = transform.position;
         curr.y -= riseSpeed * Time.deltaTime;
-        if (curr.y <= -17f) {
+        if (curr.y <= minimum) {
             mSwordTrapState = SwordTrapState.IdleState2;
         }
         else {

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 975220141459547115}
   m_Layer: 12
   m_Name: Capture Crate
-  m_TagString: Untagged
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 1291221989
   m_SortingLayer: 7
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9c4b538f4a81c8a4eaf3eeff049612fa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 794aa25d484d140d89ea9601c122ece0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,7 +99,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -142,8 +142,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanCapture: 1
-  IsLaunched: 0
+  IsLaunched: 1
   FlyStraight: 0
   IsBreakable: 0
   IsExplosive: 0
+  IsTracking: 0
+  target: {x: 0, y: 0, z: 0}
   resetPoint: {x: 0, y: 0, z: 0}

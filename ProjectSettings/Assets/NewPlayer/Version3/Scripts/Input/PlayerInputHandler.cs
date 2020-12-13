@@ -20,12 +20,23 @@ public class PlayerInputHandler : MonoBehaviour
     public bool DashInputStop { get; private set; }
     public bool AttackInput { get; private set; }
     public bool AttackInputStop { get; private set; }
+    public bool MenuInput { get; private set; }
+    public bool MenuInputStop { get; private set; }
+    public bool PreviousLevel { get; private set; }
+    public bool PreviousLevelStop { get; private set; }
+    public bool ResetLevel { get; private set; }
+    public bool ResetLevelStop { get; private set; }
+    public bool LoadMainInput { get; private set; }
+    public bool LoadMainInputStop { get; private set; }
+    public bool QuitInput { get; private set; }
+    public bool QuitInputStop { get; private set; }
 
     [SerializeField]
     private float inputHoldTime = 0.2f;
 
     private float jumpInputStartTime;
     private float dashInputStartTime;
+    private float MenuInputStartTime;
     public float AttackInputStartTime { get; private set; }
 
     private void Start()
@@ -38,6 +49,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         CheckJumpInputHoldTime();
         CheckDashInputHoldTime();
+        CheckMenuInputHoldTime();
     }
 
     public void OnMoveInput(InputAction.CallbackContext context)
@@ -131,9 +143,74 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
+    public void OnMenuInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            MenuInput = true;
+            MenuInputStop = false;
+            MenuInputStartTime = Time.time;
+        }
+        else if (context.canceled)
+        {
+            MenuInputStop = true;
+        }
+    }
+
+    
+    public void OnPreviousLevelInput(InputAction.CallbackContext context) {
+        if (context.started)
+        {
+            PreviousLevel = true;
+            PreviousLevelStop = false;
+        }
+        else if (context.canceled)
+        {
+            PreviousLevelStop = true;
+        }
+    }
+
+    public void OnResetLevelInput(InputAction.CallbackContext context) {
+        if (context.started)
+        {
+            ResetLevel = true;
+            ResetLevelStop = false;
+        }
+        else if (context.canceled)
+        {
+            ResetLevelStop = true;
+        }
+    }
+
+    public void OnLoadMenuInput(InputAction.CallbackContext context) {
+        if (context.started)
+        {
+            LoadMainInput = true;
+            LoadMainInputStop = false;
+        }
+        else if (context.canceled)
+        {
+            LoadMainInputStop = true;
+        }
+    }
+
+    public void OnQuitInput(InputAction.CallbackContext context) {
+        if (context.started)
+        {
+            QuitInput = true;
+            QuitInputStop = false;
+        }
+        else if (context.canceled)
+        {
+            QuitInputStop = true;
+        }
+    }
+
     public void UseJumpInput() => JumpInput = false;
 
     public void UseDashInput() => DashInput = false;
+
+    public void UseMenuInput() => MenuInput = false;
 
     public void UseAttackInput() => AttackInput = false;
 
@@ -157,6 +234,13 @@ public class PlayerInputHandler : MonoBehaviour
         if(Time.time >= AttackInputStartTime + inputHoldTime)
         {
             AttackInput = false;
+        }
+    }
+
+    private void CheckMenuInputHoldTime() {
+        if(Time.time >= MenuInputStartTime + inputHoldTime)
+        {
+            MenuInput = false;
         }
     }
 }
