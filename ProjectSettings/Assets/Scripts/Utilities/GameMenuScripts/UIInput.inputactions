@@ -6,7 +6,7 @@
             "id": "51c19bc8-8cba-4dea-be26-4678bd713ad6",
             "actions": [
                 {
-                    "name": "SelectButton",
+                    "name": "Select",
                     "type": "Button",
                     "id": "085eeb51-ecaf-412b-9b0a-33f0fe5ef93f",
                     "expectedControlType": "Button",
@@ -22,7 +22,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse",
-                    "action": "SelectButton",
+                    "action": "Select",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -36,17 +36,6 @@
             "devices": [
                 {
                     "devicePath": "<Mouse>",
-                    "isOptional": false,
-                    "isOR": false
-                }
-            ]
-        },
-        {
-            "name": "Keyboard",
-            "bindingGroup": "Keyboard",
-            "devices": [
-                {
-                    "devicePath": "<Keyboard>",
                     "isOptional": false,
                     "isOR": false
                 }

@@ -10,7 +10,7 @@ public class KillPlane : MonoBehaviour {
   // Start is called before the first frame update
   void Start () {
     Debug.Assert (respawnPoint != null);
-    stats = GameObject.Find ("Player").GetComponent<Player> ();
+    stats = GameObject.Find("Player").GetComponent<Player>();
   }
 
   public void SetRespawn (GameObject SpawnPoint) {
@@ -19,7 +19,6 @@ public class KillPlane : MonoBehaviour {
 
   private void OnCollisionEnter2D (Collision2D collider) {
     if (collider.gameObject.layer == 11) {
-      stats.incrementSpawnCount ();
       if (stats.GetCheckpointStatus ()) {
         stats.RespawnAtLastCheckPoint ();
       } else {

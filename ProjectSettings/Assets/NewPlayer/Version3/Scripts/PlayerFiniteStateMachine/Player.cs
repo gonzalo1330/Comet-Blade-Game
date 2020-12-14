@@ -1,11 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
     #region State Variables
@@ -85,10 +82,7 @@ public class Player : MonoBehaviour {
 
     // checkpoint
     private bool checkpointMet = false;
-    private Vector3 checkpointPostion;
-
-    // power up respawn 
-    private Vector3 powerUpPostion;
+    private Vector3 savedPostion;
 
     // damage
     public GameObject damageParticle;
@@ -101,12 +95,7 @@ public class Player : MonoBehaviour {
     // UI
     private float coinCount = 0f;
     private Camera minimap;
-    private bool menuIsOpen = false;
     #endregion
-
-    //stats
-    public string path = "Assets/statistics.txt";
-    private int respawnCount;
 
     #region Unity Callback Functions
     private void Awake () {
@@ -138,7 +127,6 @@ public class Player : MonoBehaviour {
         FacingDirection = 1;
 
         StateMachine.Initialize (IdleState);
-        respawnCount = 0;
     }
 
     private void Update () {
@@ -155,12 +143,34 @@ public class Player : MonoBehaviour {
             ResetPowerup ();
         }
 
-        CheckUI ();
         CheckKnockback ();
         UpdateHealthBar ();
         Checkpoint ();
+        if (minimap != null) {
+            UpdateCameraPosition ();
+        } else {
+            Debug.Log ("NULL CAMERA");
+        }
+
+        SwitchScenes ();
     }
 
+    private void SwitchScenes () {
+        // loads the next level
+        if (Input.GetKeyDown (KeyCode.P)) {
+            SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
+        }
+
+        // resetting current scene
+        if (Input.GetKeyDown (KeyCode.R)) {
+            SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
+        }
+
+        // loads the game menu while in game-play
+        if (Input.GetKeyDown (KeyCode.M)) {
+            SceneManager.LoadSceneAsync ("GameMenu");
+        }
+    }
 
     private void FixedUpdate () {
         StateMachine.CurrentState.PhysicsUpdate ();
@@ -218,10 +228,6 @@ public class Player : MonoBehaviour {
         return checkpointMet;
     }
 
-    public bool GetPowerupStatus () {
-        return powerupActive;
-    }
-
     #endregion
 
     #region Check Functions
@@ -245,32 +251,6 @@ public class Player : MonoBehaviour {
     public void CheckIfShouldFlip (int xInput) {
         if (xInput != 0 && xInput != FacingDirection) {
             Flip ();
-        }
-    }
-
-    public void CheckUI() {
-        if (minimap != null) {
-            UpdateCameraPosition ();
-        }
-
-        if(InputHandler.PreviousLevel) {
-            Debug.Log("Loading previous level");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-        }
-
-        if(InputHandler.ResetLevel) {
-            Debug.Log("restarting level");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-
-        if(InputHandler.LoadMainInput) {
-            Debug.Log("Loading Game Menu");
-            SceneManager.LoadScene("GameMenu");
-        }
-
-        if(InputHandler.QuitInput) {
-            Debug.Log("Quit Game");
-            Application.Quit();
         }
     }
 
@@ -348,9 +328,6 @@ public class Player : MonoBehaviour {
         powerupActive = false;
         workspace.Set (CurrentVelocity.x, playerData.jumpVelocity);
         CurrentVelocity = workspace;
-        // power up will reappear in the world
-        GameObject e = Instantiate (Resources.Load ("Prefabs/LevelObjects/Collectables/timer1") as GameObject);
-        e.transform.position = powerUpPostion; // location change
     }
 
     public virtual void Damage (AttackDetails attackDetails) {
@@ -372,7 +349,6 @@ public class Player : MonoBehaviour {
         }
 
         if (currentHealth <= 0) {
-            incrementSpawnCount ();
             isDead = true;
             Anim.SetBool ("dead", isDead);
             deadTime = Time.time;
@@ -419,13 +395,12 @@ public class Player : MonoBehaviour {
         isDead = false;
         currentHealth = 50;
         healthBar.setColor (Color.red);
-        gameObject.transform.position = checkpointPostion; // location change
+        gameObject.transform.position = savedPostion; // location change
         Anim.SetBool ("dead", isDead);
     }
 
     public void OnCollisionEnter2D (Collision2D collision) {
         if (collision.gameObject.tag == "Power") {
-            powerUpPostion = collision.transform.position;
             powerupActive = true;
             lastPowerupTime = Time.time;
             Destroy (collision.gameObject);
@@ -435,25 +410,10 @@ public class Player : MonoBehaviour {
             Destroy (collision.gameObject);
         }
         if (collision.gameObject.tag == "Checkpoint") {
-            checkpointPostion = collision.transform.position;
+            savedPostion = collision.transform.position;
             checkpointMet = true;
             Destroy (collision.gameObject);
         }
-
-        if (collision.gameObject.tag == "EndLevel") {
-            EndOfLevel ();
-        }
-    }
-
-    public void EndOfLevel () {
-        //Write some text to the .txt file
-        StreamWriter writer = new StreamWriter (path, true);
-        writer.WriteLine ("Completed " + coinCount + " " + respawnCount);
-        writer.Close ();
-    }
-
-    public void incrementSpawnCount () {
-        respawnCount++;
     }
 
     public string CoinStatus () {

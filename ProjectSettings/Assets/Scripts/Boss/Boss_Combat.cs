@@ -26,7 +26,7 @@ public class Boss_Combat : MonoBehaviour
     public void Attack() {
             Vector3 pos = transform.position;
             Collider2D player = Physics2D.OverlapCircle(attackPos.position, attackRange, playerMask);
-        if (player != null && player.gameObject.name == "Player")
+        if (player != null)
             player.GetComponent<Player>().Damage(attackDetails);
     }
 

@@ -52,38 +52,6 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
-                },
-                {
-                    "name": "MainMenu",
-                    "type": "Button",
-                    "id": "9d225876-da0e-4640-985a-8705e123b35b",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "RestartLevel",
-                    "type": "Button",
-                    "id": "cf677615-3230-4334-8c2d-d598af6a1906",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "PreviousLevel",
-                    "type": "Button",
-                    "id": "c4393236-b321-47d6-a91e-e02f7db5e2f8",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Quit",
-                    "type": "Button",
-                    "id": "3b200d9e-2a7b-4a74-92ab-a598363c84fe",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -249,50 +217,6 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6a61f643-0250-4bd1-88e0-98211f3cf985",
-                    "path": "<Keyboard>/m",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "MainMenu",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ebfeebf3-0d8d-4df5-b95c-1d8bd7f73c39",
-                    "path": "<Keyboard>/t",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "RestartLevel",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "27f05f4f-34df-4f06-9f8b-860a87261328",
-                    "path": "<Keyboard>/p",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "PreviousLevel",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "49d71aa2-8658-4f49-994a-d9f8d882d225",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "Quit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

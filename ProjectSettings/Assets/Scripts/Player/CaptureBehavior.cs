@@ -15,7 +15,6 @@ public class CaptureBehavior : MonoBehaviour
     private int fingerID = -1;
     Camera mCam = null;
 
-    LayerMask groundMask;
 
     void Start()
     {
@@ -23,9 +22,6 @@ public class CaptureBehavior : MonoBehaviour
 
         Debug.Assert(TheBar != null);
         Debug.Assert(director != null);
-
-        groundMask = LayerMask.GetMask("Ground");
-
         DirPointer();
     }
 
@@ -87,23 +83,20 @@ public class CaptureBehavior : MonoBehaviour
 
     #region POINTER_SUPPORT
 
-    private RaycastHit2D PointInDirection(LayerMask mask)
+    private RaycastHit2D PointInDirection()
     {
         Vector2 origin = new Vector2(transform.localPosition.x, transform.localPosition.y);
         Vector2 rayDir = new Vector2(direction.x, direction.y);
-        return Physics2D.Raycast(origin, rayDir, Mathf.Infinity, mask);
+        return Physics2D.Raycast(origin, rayDir, Mathf.Infinity, LayerMask.GetMask("Objects"));
     }
 
     void Highlight()
     {
         GameObject toHighlight = null;
-        RaycastHit2D cast = PointInDirection(LayerMask.GetMask("Objects"));
-        RaycastHit2D groundCast = PointInDirection(groundMask);
-        if (groundCast.distance < cast.distance) return;
-
+        RaycastHit2D cast = PointInDirection();
         if (cast.collider != null)
         {
-            toHighlight = cast.collider.gameObject;
+            toHighlight = PointInDirection().collider.gameObject;
         }
         else
         {
@@ -130,14 +123,10 @@ public class CaptureBehavior : MonoBehaviour
     void ObjectCapture()
     {
         //additional check if in camera
-        RaycastHit2D cast = PointInDirection(LayerMask.GetMask("Objects"));
-        RaycastHit2D groundCast = PointInDirection(groundMask);
-
-        if (groundCast.distance < cast.distance) return;
-
+        RaycastHit2D cast = PointInDirection();
         if (cast.collider != null)
         {
-            toCapture = cast.collider.gameObject;
+            toCapture = PointInDirection().collider.gameObject;
         }
         else
         {
@@ -162,14 +151,8 @@ public class CaptureBehavior : MonoBehaviour
         }
     }
 
-    bool TestLaunch()
-    {
-        return Physics2D.OverlapCircle(director.transform.position, .5f, groundMask);
-    }
-
     void Launch(int toLaunch, Vector3 direction, Vector3 origin)
     {
-        if (TestLaunch()) return;
         Vector2 launchDir = new Vector2(direction.x, direction.y);
         GameObject launched = TheBar.OnLaunch(toLaunch);
         
