@@ -31,6 +31,8 @@ public class PlayerInputHandler : MonoBehaviour
     public bool QuitInput { get; private set; }
     public bool QuitInputStop { get; private set; }
 
+    public bool PauseClicked { get; private set; }
+
     [SerializeField]
     private float inputHoldTime = 0.2f;
 
@@ -203,6 +205,15 @@ public class PlayerInputHandler : MonoBehaviour
         else if (context.canceled)
         {
             QuitInputStop = true;
+        }
+    }
+
+    public void OnEscInput(InputAction.CallbackContext context) {
+        if (context.started) {
+            PauseClicked = true;
+        }
+        else if (context.canceled) {
+            PauseClicked = false;
         }
     }
 
