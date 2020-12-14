@@ -19,6 +19,7 @@ TagManager:
   - UIBackground
   - RisingSpikes
   - Box
+  - StatTracker
   layers:
   - Default
   - TransparentFX
