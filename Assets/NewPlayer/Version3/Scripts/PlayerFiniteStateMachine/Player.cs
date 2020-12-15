@@ -105,6 +105,8 @@ public class Player : MonoBehaviour {
     #endregion
 
     //stats
+    public Persist GameStatistics = null;
+
     public string path = "Assets/statistics.txt";
     private int respawnCount;
 
@@ -139,6 +141,7 @@ public class Player : MonoBehaviour {
 
         StateMachine.Initialize (IdleState);
         respawnCount = 0;
+        Debug.Assert (GameStatistics != null);
     }
 
     private void Update () {
@@ -159,8 +162,10 @@ public class Player : MonoBehaviour {
         CheckKnockback ();
         UpdateHealthBar ();
         Checkpoint ();
-    }
 
+        if (Input.GetKey (KeyCode.L))
+            SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
+    }
 
     private void FixedUpdate () {
         StateMachine.CurrentState.PhysicsUpdate ();
@@ -248,29 +253,29 @@ public class Player : MonoBehaviour {
         }
     }
 
-    public void CheckUI() {
+    public void CheckUI () {
         if (minimap != null) {
             UpdateCameraPosition ();
         }
 
-        if(InputHandler.PreviousLevel) {
-            Debug.Log("Loading previous level");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        if (InputHandler.PreviousLevel) {
+            Debug.Log ("Loading previous level");
+            SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex - 1);
         }
 
-        if(InputHandler.ResetLevel) {
-            Debug.Log("restarting level");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (InputHandler.ResetLevel) {
+            Debug.Log ("restarting level");
+            SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
         }
 
-        if(InputHandler.LoadMainInput) {
-            Debug.Log("Loading Game Menu");
-            SceneManager.LoadScene("GameMenu");
+        if (InputHandler.LoadMainInput) {
+            Debug.Log ("Loading Game Menu");
+            SceneManager.LoadScene ("GameMenu");
         }
 
-        if(InputHandler.QuitInput) {
-            Debug.Log("Quit Game");
-            Application.Quit();
+        if (InputHandler.QuitInput) {
+            Debug.Log ("Quit Game");
+            Application.Quit ();
         }
     }
 
@@ -433,6 +438,7 @@ public class Player : MonoBehaviour {
         if (collision.gameObject.tag == "Coin") {
             coinCount++;
             Destroy (collision.gameObject);
+            GameStatistics.IncrementCoins ();
         }
         if (collision.gameObject.tag == "Checkpoint") {
             checkpointPostion = collision.transform.position;
@@ -453,7 +459,7 @@ public class Player : MonoBehaviour {
     }
 
     public void incrementSpawnCount () {
-        respawnCount++;
+        GameStatistics.IncrementDeaths ();
     }
 
     public string CoinStatus () {

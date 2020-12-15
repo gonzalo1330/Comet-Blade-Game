@@ -1,46 +1,72 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI; // Required to work with UI, e.g., Text
+using UnityEngine.SceneManagement;
 
-public class Persist : MonoBehaviour
-{
+public class Persist : MonoBehaviour {
     static Persist ToPersist = null;
     bool TheOne = false;
 
-    int coinsCollected = 0;
-    int deaths = 0;
-
-    int coinBest = 0;
-    int deathsBest = 999;
+    public int[] CoinCount;
+    public int[] RespawnCount;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        if (!TheOne)
-        {
-            if (ToPersist == null)
-            {
+    void Start () {
+        if (!TheOne) {
+            if (ToPersist == null) {
                 ToPersist = this;
                 TheOne = true;
-                DontDestroyOnLoad(gameObject);
-            } else
-            {
-                Destroy(gameObject);
+                DontDestroyOnLoad (gameObject);
+            } else {
+                Destroy (gameObject);
             }
+        }
+        CoinCount = new int[3];
+        RespawnCount = new int[3];
+
+        CoinCount[0] = 100;
+    }
+
+    public void IncrementCoins () {
+        // will read in the current scene
+        // Create a temporary reference to the current scene.
+        Scene currentScene = SceneManager.GetActiveScene ();
+        // Retrieve the name of this scene.
+        string sceneName = currentScene.name;
+        if (sceneName == "Level1") {
+            CoinCount[0]++;
+        } else if (sceneName == "Level2") {
+            CoinCount[1]++;
+        } else if (sceneName == "BossLevel") {
+            CoinCount[2]++;
         }
     }
 
-    public void IncrementCoins() { coinsCollected++; }
-    public void IncrementDeaths() { deaths++; }
-    public void Reset() { coinsCollected = 0; deaths = 0; }
-    public void Finish()
-    {
-        if (coinsCollected > coinBest) coinBest = coinsCollected;
-        if (deathsBest > deaths) deathsBest = deaths;
+    public void IncrementDeaths () {
+        // will read in the current scene
+        // Create a temporary reference to the current scene.
+        Scene currentScene = SceneManager.GetActiveScene ();
+        // Retrieve the name of this scene.
+        string sceneName = currentScene.name;
+        if (sceneName == "Level1") {
+            RespawnCount[0]++;
+        } else if (sceneName == "Level2") {
+            RespawnCount[1]++;
+        } else if (sceneName == "BossLevel") {
+            RespawnCount[2]++;
+        }
     }
 
-    public int GetBestDeaths() { return deathsBest; }
-    public int GetBestCoins() { return coinBest; }
-    public int GetDeaths() { return deaths; }
-    public int GetCoins() { return coinsCollected; }
+    public string getLevel1 () {
+        return CoinCount[0].ToString ();
+    }
+
+    public string getLevel2 () {
+        return CoinCount[1].ToString ();
+    }
+
+    public string getLevel3 () {
+        return CoinCount[2].ToString ();
+    }
 }
